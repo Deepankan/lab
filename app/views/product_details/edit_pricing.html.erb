@@ -1,0 +1,17 @@
+<%= form_for(@product_pricing, as: @product_pricing, url: update_pricing_path(@product_pricing)) do |f| %>
+    <div class="field">
+    <%= f.label :package %><br />
+    <%= f.text_field :pakaging, autocomplete: "off" %>
+  </div>
+     <div class="field">
+    <%= f.label :price %><br />
+    <%= f.text_field :price, autocomplete: "off" %>
+  </div>
+  
+
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

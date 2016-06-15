@@ -1,0 +1,87 @@
+<br /><br />
+
+<%= link_to 'New Product detail', new_product_detail_path %>
+<%= link_to 'Upload XLS', product_details_upload_file_path %>
+<%= link_to 'Sample Xls', sample_xls_path(format: "xls") %>
+
+<h1>Listing Product Details</h1>
+
+<table>
+  <thead>
+    <tr>
+     <th >Id</th>
+     <th >Product Name</th>
+     <th >Product Code</th>
+     <th >Grade</th>
+     <th >Formula</th>
+     <th >Molar Mass</th>
+     <th >Image</th>
+     <th >Package</th>
+     <th colspan="3">Manage Price& Pakage</th>
+     <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @product_details.each do |product_detail| %>
+    <%if product_detail.product_pricings%>
+    <% product_detail.product_pricings.each do |pp|%>
+      <tr>
+      <td><%= product_detail.id%></td>
+      <td><%= product_detail.product_name%></td>
+      <td><%= product_detail.product_code%></td>
+      <td><%= product_detail.grade%></td>
+      <td><%= product_detail.formula%></td>
+      <td><%= product_detail.molar_mass%></td>
+      <%if product_detail.image_url%>
+      <td><%= image_tag product_detail.image_url%></td>
+      <%else%>
+      <td><% product_detail.product_images.each do |k| %>
+          <%= image_tag k%>
+          <%end if product_detail.product_images%>
+      </td>
+      <%end%>
+      <td><%= pp.pakaging%></td>
+      <td><%= pp.price%></td>
+        <td><%= link_to 'Edit', get_pricing_path(pp) %></td>
+        <td><%= link_to 'Destroy', delete_pricing_path(pp), data: { confirm: 'Are you sure?' } %></td>
+         
+        <%if product_detail.product_pricings.last == pp%>
+        <td><%= link_to 'Show', product_detail %></td>
+        <td><%= link_to 'Edit', edit_product_detail_path(product_detail) %></td>
+        <td><%= link_to 'Destroy', product_detail, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%end%>
+      </tr>
+      <%end%>
+      <%else%>
+      <tr>
+      <td><%= product_detail.id%></td>
+      <td><%= product_detail.product_name%></td>
+      <td><%= product_detail.product_code%></td>
+      <td><%= product_detail.product_grade%></td>
+      <td><%= product_detail.product_formula%></td>
+      <td><%= product_detail.molar_mass%></td>
+      <%if product_detail.image_url%>
+      <td><%= image_tag product_detail.image_url%></td>
+      <%else%>
+      <td><% product_detail.product_images.each do |k| %>
+          <%= image_tag k%>
+          <%end%>
+      </td>
+      <%end%>
+      <td>-</td>
+      <td>-</td>
+        <td><%= link_to 'Edit', edit_product_detail_path(product_detail) %></td>
+        <td><%= link_to 'Destroy', product_detail, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+
+
+
+
+      <%end%>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

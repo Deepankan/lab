@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Labkit</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <% if current_user.present? %>
+            <%= render partial: 'layouts/header' %>
+            <%= render partial: 'layouts/common_messages' %>
+        <% end %>
+<%= yield %>
+
+</body>
+</html>
