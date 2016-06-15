@@ -32,7 +32,6 @@ class ProductDetailsController < ApplicationController
    all_product = ProductDetail.pluck(:product_name,:product_code,:grade,:formula,:molar_mass).flatten
 
     s.sheets.each do |sheet|
-
       if sheet.upcase == 'PRODUCT'
         puts "\nCreating Product................................."
           begin
@@ -66,6 +65,7 @@ class ProductDetailsController < ApplicationController
                    product_details.product_pricings.create(pakaging: pakaging, price: price)
 
                   end
+                  p "-----------------Product Count----------------"+ ProductDetail.all.count.to_s
                 trav_row = trav_row + 1
               end
           end
