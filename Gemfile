@@ -38,6 +38,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
  gem "paranoia", "~> 2.0" #For Soft Delete
  gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
  gem 'roo'
+ gem 'puma'
 #========================================
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
