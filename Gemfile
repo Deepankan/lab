@@ -39,7 +39,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
  gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
  gem 'roo'
  gem 'puma'
- gem "rack-timeout"
+ gem "rack-timeout", require:"rack/timeout/base"
 #========================================
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
