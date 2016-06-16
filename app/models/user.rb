@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :access_tokens
   has_many :advertisements 
   has_many :product_details
+  has_many :products
   acts_as_paranoid      
   accepts_nested_attributes_for :user_profile
 

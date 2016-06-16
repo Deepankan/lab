@@ -18,7 +18,7 @@ class RegistrationsController < Devise::RegistrationsController
     @user.save
     @user.create_user_profile(params[:user][:user_profile].permit!) 
     # add custom create logic here
-    redirect_to root_path
+    redirect_to sign_out_path
   end
   def edit
 

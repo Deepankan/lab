@@ -16,7 +16,7 @@ class ProductDetailsController < ApplicationController
   def upload_file
   end
 
-  def import_file
+   def import_file
     file_type = params[:file].content_type
     file_name = ""
     if file_type == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' or file_type == "application/vnd.ms-excel"
@@ -65,7 +65,7 @@ class ProductDetailsController < ApplicationController
                    product_details.product_pricings.create(pakaging: pakaging, price: price)
 
                   end
-                  p "-----------------Product Count----------------"+ ProductDetail.all.count.to_s
+                  #p "-----------------Product Count----------------"+ ProductDetail.all.count.to_s
                 trav_row = trav_row + 1
               end
           end
@@ -120,7 +120,7 @@ class ProductDetailsController < ApplicationController
   def update
    
     respond_to do |format|
-      if  @product_detail.update(params[:product_detail].permit!)
+      if  @product_detail.update(product_detail_params)
         format.html { redirect_to product_details_path, notice: 'Product detail was successfully updated.' }
         format.json { render :show, status: :ok, location: @product_detail }
       else

@@ -39,6 +39,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
  gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
  gem 'roo'
  gem 'puma'
+ gem 'activerecord-import'
+ gem "rmagick", :require => 'RMagick'
  gem "rack-timeout", require:"rack/timeout/base"
 #========================================
 group :development, :test do

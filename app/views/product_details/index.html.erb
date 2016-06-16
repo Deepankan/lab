@@ -4,6 +4,8 @@
 <%= link_to 'Upload XLS', product_details_upload_file_path %>
 <%= link_to 'Sample Xls', sample_xls_path(format: "xls") %>
 
+<%= link_to 'Products', products_path %>
+
 <h1>Listing Product Details</h1>
 
 <table>
@@ -24,6 +26,7 @@
   </thead>
 
   <tbody>
+
     <% @product_details.each do |product_detail| %>
     <%if product_detail.product_pricings%>
     <% product_detail.product_pricings.each do |pp|%>
@@ -67,9 +70,11 @@
       <td><%= product_detail.product_grade%></td>
       <td><%= product_detail.product_formula%></td>
       <td><%= product_detail.molar_mass%></td>
+      
       <%if product_detail.image_url%>
       <td><%= image_tag product_detail.image_url%></td>
       <%else%>
+
       <td><% product_detail.product_images.each do |k| %>
           <%= image_tag k%>
           <%end%>

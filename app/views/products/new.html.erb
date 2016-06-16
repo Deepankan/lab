@@ -1,0 +1,62 @@
+<h1>New Product</h1>
+<label>Upload A File------</label>
+<%= form_tag @product, multipart: true do %>   
+<%= hidden_field_tag :file_upload, true%>
+<%= file_field_tag :file %>   <%= submit_tag "Import" %> 
+<% end %> 
+<label>----------------Single New Form</label>
+<%= form_for @product, :enctype =>"multipart/form-data" do |f| %>
+  <% if @product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product_detail from being saved:</h2>
+
+      <ul>
+      <% @product.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+     <div class="field">
+    <%= f.label :product_name %><br />
+    <%= f.text_field :product_name, autocomplete: "off" %>
+  </div>
+   <div class="field">
+    <%= f.label :product_code %><br />
+    <%= f.text_field :product_code, autocomplete: "off" %>
+  </div>
+     <div class="field">
+    <%= f.label :grade %><br />
+    <%= f.text_field :grade, autocomplete: "off" %>
+  </div>
+     <div class="field">
+    <%= f.label :formula %><br />
+    <%= f.text_field :formula, autocomplete: "off" %>
+  </div>
+     <div class="field">
+    <%= f.label :molar_mass %><br />
+    <%= f.text_field :molar_mass, autocomplete: "off" %>
+  </div>
+       <div class="field">
+    <%= f.label :image %><br />
+   
+    <%= f.file_field :chemical_images,  multiple: true %>
+  </div>
+
+
+     <div class="field">
+      <%= f.label :pakaging %><br />
+      <%= f.text_field :pakaging, autocomplete: "off" %>
+    </div>
+     <div class="field">
+      <%= f.label :price %><br />
+      <%= f.text_field :price %>
+      
+    </div>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<%= link_to 'Back', products_path %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160614065915) do
+ActiveRecord::Schema.define(version: 201606160525010) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,23 @@ ActiveRecord::Schema.define(version: 20160614065915) do
   end
 
   add_index "product_pricings", ["product_detail_id"], name: "index_product_pricings_on_product_detail_id", using: :btree
+
+  create_table "products", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "product_name",    limit: 500
+    t.string   "product_code",    limit: 500
+    t.string   "grade",           limit: 200
+    t.string   "formula",         limit: 200
+    t.string   "molar_mass"
+    t.string   "image_url"
+    t.boolean  "status",                      default: true, null: false
+    t.string   "pakaging",        limit: 100
+    t.float    "price"
+    t.json     "chemical_images"
+    t.datetime "deleted_at"
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string   "role_type",  limit: 50, null: false

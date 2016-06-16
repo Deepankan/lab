@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  #resources :products
+  resources :products
   devise_for :users, :controllers => {:registrations => "registrations"}
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -24,7 +24,7 @@ Rails.application.routes.draw do
  post 'product_details/import_file' => 'product_details/import_file'
  get 'product_details/sample_xls' => 'product_details#sample_xls', as: :sample_xls
  resources :product_details
- root to: redirect('/users/sign_in')
+ root to: redirect('/users/sign_in'), as: :sign_out
   # Example resource route with options:
   #   resources :products do
   #     member do
