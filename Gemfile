@@ -41,7 +41,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
  gem 'puma'
  gem 'activerecord-import'
  gem "rmagick", :require => 'RMagick'
- #gem "rack-timeout", require:"rack/timeout/base"
+ gem "rack-timeout", require:"rack/timeout/base"
 #========================================
 
 #----------Added Gem for API's------------------------------------------------
