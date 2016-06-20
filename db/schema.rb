@@ -27,21 +27,15 @@ ActiveRecord::Schema.define(version: 201606160525010) do
 
   create_table "advertisements", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "title",       limit: 500
-    t.string   "description", limit: 500
-    t.string   "image_url",   limit: 200
-    t.string   "web_url",     limit: 200
-    t.json     "images"
+    t.string   "title"
+    t.text     "description"
+    t.string   "web_url"
     t.datetime "start_date"
     t.datetime "end_date"
-    t.boolean  "status",                  default: true, null: false
-    t.datetime "deleted_at"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.json     "images"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
-
-  add_index "advertisements", ["deleted_at"], name: "index_advertisements_on_deleted_at", using: :btree
-  add_index "advertisements", ["user_id"], name: "index_advertisements_on_user_id", using: :btree
 
   create_table "cities", force: :cascade do |t|
     t.string   "city",       limit: 200, null: false
@@ -55,6 +49,7 @@ ActiveRecord::Schema.define(version: 201606160525010) do
     t.string   "apn_key",    limit: 500
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.integer  "user_id"
   end
 
   create_table "product_details", force: :cascade do |t|

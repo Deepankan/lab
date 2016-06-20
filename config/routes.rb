@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :advertisements
   resources :products
   devise_for :users, :controllers => {:registrations => "registrations"}
   # The priority is based upon order of creation: first created -> highest priority.
@@ -63,4 +64,25 @@ Rails.application.routes.draw do
   #     # Directs /admin/products/* to Admin::ProductsController
   #     # (app/controllers/admin/products_controller.rb)
   #     #   end
+
+
+   #-------------Routes for Inmegh API Version 1 -------------------------------------------------------
+
+  
+  namespace :api, defaults: {format: 'json'} do
+         get '/get_city_role' => 'registrations#get_city_role'
+         post '/sign_in' => 'registrations#sign_in'
+         get '/sign_out' => 'registrations#sign_out'
+         post '/sign_up' => 'registrations#sign_up'
+         post '/forgot_password' => 'registrations#forgot_password'
+         post '/reset_password' => 'registrations#reset_password'
+         post '/advertisements' => 'visitors#advertisements'
+         post '/products' => 'visitors#products'
+         post '/new_advertisement' => 'advertisements#new_advertisement'
+         post '/edit_advertisement' => 'advertisements#edit_advertisement'
+         post '/update_advertisement' => 'advertisements#update_advertisement'
+         delete '/delete_advertisement' => 'advertisements#delete_advertisement'
+  end
+
+  #------------------------------------------------------------------------------------
 end

@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Advertisements</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Web url</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>Images</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @advertisements.each do |advertisement| %>
+      <tr>
+        <td><%= advertisement.title %></td>
+        <td><%= advertisement.description %></td>
+        <td><%= advertisement.web_url %></td>
+        <td><%= advertisement.start_date %></td>
+        <td><%= advertisement.end_date %></td>
+        <td> <% advertisement.images.each do |k|%>
+              <%= image_tag k.thumb.url %>
+            <%end%></td>
+        <td><%= link_to 'Show', advertisement %></td>
+        <td><%= link_to 'Edit', edit_advertisement_path(advertisement) %></td>
+        <td><%= link_to 'Destroy', advertisement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Advertisement', new_advertisement_path %>

@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :advertisements 
   has_many :product_details
   has_many :products
+  has_many :devise_infos
   acts_as_paranoid      
   accepts_nested_attributes_for :user_profile
 
@@ -19,5 +20,11 @@ class User < ActiveRecord::Base
   def self.set_role
   
      Role.find_by_role_type(COMPANY)
+  end
+
+  def get_profile
+    up ={}
+    user_profile = self.user_profile if self.user_profile
+    up = {city: user_profile.city.city, name: user_profile.name, address: user_profile.address, company_code: user_profile.company_code, fax: user_profile.fax, image: user_profile.avatar.url} if user_profile
   end
 end

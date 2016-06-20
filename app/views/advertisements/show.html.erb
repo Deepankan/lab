@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @advertisement.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @advertisement.description %>
+</p>
+
+<p>
+  <strong>Web url:</strong>
+  <%= @advertisement.web_url %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @advertisement.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @advertisement.end_date %>
+</p>
+
+<p>
+  <strong>Images:</strong>
+  <% @advertisement.images.each do |k|%>
+    <%= image_tag k.thumb.url %>
+  <%end%>
+</p>
+
+<%= link_to 'Edit', edit_advertisement_path(@advertisement) %> |
+<%= link_to 'Back', advertisements_path %>
