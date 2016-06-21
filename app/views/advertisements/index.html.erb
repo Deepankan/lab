@@ -22,8 +22,8 @@
         <td><%= advertisement.title %></td>
         <td><%= advertisement.description %></td>
         <td><%= advertisement.web_url %></td>
-        <td><%= advertisement.start_date %></td>
-        <td><%= advertisement.end_date %></td>
+        <td><%= get_date_format(advertisement.start_date) %></td>
+        <td><%= get_date_format(advertisement.end_date) %></td>
         <td> <% advertisement.images.each do |k|%>
               <%= image_tag k.thumb.url %>
             <%end%></td>
