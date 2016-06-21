@@ -22,6 +22,7 @@ class Advertisement < ActiveRecord::Base
 	         my_hash[:description] = h.description
 	         my_hash[:web_url] = h.web_url
 	         my_hash[:image] =  h.images.map{|h| h.thumb.url}  if h.images
+	         my_hash[:status] = (h.status == ACTIVE ? "Approved" : "Pending")
 	       end
 	       
 	     tmp_hash 
