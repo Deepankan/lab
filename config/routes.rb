@@ -25,6 +25,10 @@ Rails.application.routes.draw do
  post 'product_details/import_file' => 'product_details/import_file'
  get 'product_details/sample_xls' => 'product_details#sample_xls', as: :sample_xls
  resources :product_details
+
+ authenticated :user do
+  root :to => 'products#index', as: :authenticated_root
+end
  root to: redirect('/users/sign_in'), as: :sign_out
   # Example resource route with options:
   #   resources :products do

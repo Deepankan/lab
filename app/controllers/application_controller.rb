@@ -5,17 +5,17 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!, except: [:after_sign_in_path_for]
  # before_action :configure_permitted_parameters, if: :devise_controller?
   before_filter :get_role
- def after_sign_in_path_for(resource_or_scope)   
-    case @role
-      when ADMIN 
-      	admin_root_path
-      when COMPANY 
-      	product_details_path
-      else
-        sign_out_path
-      end	
+ # def after_sign_in_path_for(resource_or_scope)   
+ #    case @role
+ #      when ADMIN 
+ #      	admin_root_path
+ #      when COMPANY 
+ #      	product_details_path
+ #      else
+ #        sign_out_path
+ #      end	
     
-  end  
+ #  end  
 
   def get_role
     if current_user

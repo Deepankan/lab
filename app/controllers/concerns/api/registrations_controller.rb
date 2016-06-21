@@ -39,11 +39,12 @@ class Api::RegistrationsController < Api::ApiController
         msg = "User created sucessfully."
         @msg = {status: status,token: token.token, user_type: user.role.role_type, profile: user.get_profile,  message: msg}
       rescue Exception => e
-         user.really_destroy! if user
-         token.destroy if token
-         user.devise_infos.destroy_all if user and user.devise_infos
+         user.really_destroy! if user and (message = user.errors.full_messages if user.errors.full_messages.present?)
+         token.destroy if token and (message = token.errors.full_messages if token.errors.full_messages.present?)
+         user.devise_infos.destroy_all if user and user.devise_infos 
          user.user_profile.destroy if user and  user_profile
-         @msg = {status: STATUS_ERROR, message: "Something went wrong. Please try after sometime"}
+         message =  message.present? ?  message.join(",") : "Something went wrong. Please try after sometime"
+         @msg = {status: STATUS_ERROR, message: message}
       end
     else
       @msg = {status: STATUS_ERROR, message: "Something went wrong. Please try after sometime"}
