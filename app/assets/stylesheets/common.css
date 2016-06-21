@@ -1,0 +1,146 @@
+.companyProfile{
+	background-color: #F8F8FF;
+	 font-family: 'Open Sans', sans-serif;
+}
+
+.labs, .cat{
+	font-family: 'Open Sans', sans-serif;
+	font-size: 2em;
+	text-shadow: 1px 1px 1.1px  #555;
+}
+
+.labs{
+	color:		#3385ff;
+}
+
+.username{
+	font-size: 1.2em;
+	margin-top: 7%;
+}
+
+.navbar-brand{
+	font-family: 'Open Sans';
+	font-size: 30px;
+}
+
+.navbar{
+	margin-top: 2%;	
+	font-size: 110%;
+}
+
+#imagePreview{
+	border-radius: 25px;
+	box-shadow: 3px 3px 3px #999;
+	
+}
+
+thead> tr > th{
+	height: 30px;
+	background: linear-gradient(#777, #222,#999);
+	color: #fff;
+}
+
+.table-hover > tbody > tr:hover {
+  background-color: #D2D2D2;
+}
+
+
+#search{
+	border-radius: 100px;
+}
+
+.edit, .remove{
+	display: none;
+}
+
+tr:hover  .edit{
+	display: block;
+	
+}
+
+tr:hover .remove{
+	display: block;
+}
+
+
+#uploadFile{
+	width: 215px;
+}
+
+#editBtn{
+	margin-right:5px;
+}
+
+.row{
+	padding: 0px;
+	
+}
+
+hr{
+	border-color: #fff;
+}
+
+
+#imagePreview {
+    width: 180px;
+    height: 180px;
+    background-position: center center;
+    background-size: cover;
+    -webkit-box-shadow: 0 0 1px 1px rgba(0, 0, 0, .3);
+    display: inline-block;
+}
+
+.cardHeader{
+	padding-top: 15px;
+	height: 53px;
+	background-color: #72a0e5;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	margin-top: 1%;
+}
+
+.cardBody{
+	height: 150px;
+	/*background: url("../images/nitrogen.jpg");*/
+	background-size: 100% 100%;
+    background-repeat: no-repeat;
+    border-right: solid #999 1px;
+    border-left: solid #999 1px ;
+}
+
+.cardFooter{
+	padding: 10px;
+	height: auto;
+	background-color: #FFFFCC;	
+    border-right: solid #999 1px;
+    border-left: solid #999 1px ;
+	-webkit-box-shadow: 0px 3px 0px #666;
+	margin-bottom: 1%;
+}
+
+.card{
+	style="overflow:hidden;"
+}
+
+.pageFooter{
+	padding: 5px;
+	background-color: #222;
+	color: #fff;
+	bottom: 0%;
+	margin-top: 1%;
+	position: relative;
+}
+
+.labsCat{
+	color: #fff;
+}
+
+.privacy{
+	background-color: #;
+	color: #999;
+
+}
+
+.navProfile:over{
+	color: blue;
+}

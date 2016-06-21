@@ -27,4 +27,18 @@ class User < ActiveRecord::Base
     user_profile = self.user_profile if self.user_profile
     up = {email: self.email, mobile_no: self.mobile_no, user_name: self.user_name, city: user_profile.city.city, name: user_profile.name, address: user_profile.address, company_code: user_profile.company_code, fax: user_profile.fax, image: user_profile.avatar.url} if user_profile
   end
+
+  def get_count(role)
+    
+    case role
+    when ADMIN
+     prod= {product_count: Product.all.count, advertisement_count: Advertisement.all.count}
+    when COMPANY
+     prod= {product_count: self.products.count, advertisement_count: self.advertisements.count}
+    when DEALER
+    when CUSTOMER
+    end
+    
+      prod
+  end
 end

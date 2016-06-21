@@ -1,0 +1,53 @@
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12">
+			<strong>
+				<h3>
+					Company Name
+				</h3>
+			</strong>		
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-4">
+		
+		    <%= image_tag current_user.user_profile.try(:avatar), size: "200x200", class: "companyLogoInProfile"%>
+			<!-- <img src="images/companyLogo.jpg" height="200" width="200" class="companyLogoInProfile"> -->
+		</div>
+		<div class="col-lg-4">
+
+			<h1 class="productEntries"><b><%= @prod_adv[:product_count]%></b></h1>
+			<br>
+			<strong>New Entries</strong>
+		</div>
+
+		<div class="col-lg-4">
+			<h1 class="adds"><b><%= @prod_adv[:advertisement_count]%></b></h1>
+			<br>
+			<strong class="addsText">Adds</strong>
+		</div>
+	</div>
+
+	<div class="row">
+		<strong ><h3>Company representative contact details:</h3></strong>
+	</div>
+
+	<div class="row"> 
+		<table class="representativeDetails">
+			<tr>
+				<td><strong>Name:&nbsp;&nbsp;</strong></td>
+				<td><strong><%= current_user.user_profile.try(:name)%></strong></td>
+			</tr>
+			<tr>
+				<td><strong>Contact No:&nbsp;&nbsp;&nbsp;</strong></td>
+				<td><strong><%= current_user.mobile_no%></strong></td>
+			</tr>
+			<tr>
+				<td><strong>Email:&nbsp;&nbsp;&nbsp;</strong></td>
+				<td><strong><%= current_user.email%></strong></td>
+			</tr>
+		</table>
+	</div>
+</div>
+

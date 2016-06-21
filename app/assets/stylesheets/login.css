@@ -1,0 +1,57 @@
+body{
+	font-family: "Prosto One";
+	font-size: 18px;
+}
+
+.login{
+	background-image: url("/assets/Background2.jpg");
+}
+
+.labs , .cat{
+	color: #fff;
+}
+
+.center-logo, .loginForm{
+	margin-top: 20%;
+}
+
+.labs, .cat{
+	font-family: "Prosto One";
+	font-size: 2em;
+}
+
+.remember{
+	margin: 0px;
+	margin-left: -1%;
+	padding: 0px;
+}
+
+.forgot{
+	padding: 0px;
+}
+
+.loginBtn{
+	margin-top: 4%;
+}
+
+.row{
+	margin-right: 0px;
+	margin-left: 0px;
+}
+
+footer{
+	width: 100%;	
+	position:absolute;
+	left:1%;
+	font-size: 16px;
+	
+}
+
+.labsCatFooter{
+	color: #fff;
+}
+
+.privacy{
+	
+
+}

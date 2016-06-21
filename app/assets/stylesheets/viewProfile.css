@@ -1,0 +1,30 @@
+.companyLogoInProfile{
+	margin-top: 10%;
+	margin-bottom: 10%;
+	padding: 0px;
+	-webkit-box-shadow: 0 10px 6px -6px #666;
+       -moz-box-shadow: 0 10px 6px -6px #666;
+            box-shadow: 0 10px 6px -6px #666;
+            border-radius: 5px;
+	background-color: #1E90FF;
+}
+
+.productEntries{
+	font-size: 95px;
+	color:#00BFFF;
+}
+
+.adds{
+	font-size: 95px;
+	color:#00BFFF;
+	margin-left: 30%;	
+}
+
+.addsText{
+	margin-left: 35%;		
+}
+
+.representativeDetails{
+	margin-left: 1%;
+	margin-bottom: 4%;
+}

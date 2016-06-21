@@ -1,8 +1,9 @@
 
 
-<h1>Listing Products</h1>
-<%= link_to 'New Product', new_product_path %>
 
+ <div class="container">
+
+<h1> Products <%= link_to 'New Product', new_product_path,class: "btn btn-primary" %></h1>
 <table>
   <thead>
     <tr>
@@ -14,18 +15,17 @@
      <th >Molar Mass</th>
      <th >Image</th>
      <th >Package</th>
-     <th colspan="3">Manage Price& Pakage</th>
-     <th colspan="3"></th>
-     <th colspan="3"></th>
+     <th >Price</th>
+     <th colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @products.each do |product| %>
-     <tr>
+     <tr >
       <td><%= product.id%></td>
-      <td><%= product.product_name%></td>
-      <td><%= product.product_code%></td>
+      <td style="word-break: break-all;"><%= product.product_name%></td>
+      <td ><%= product.product_code%></td>
       <td><%= product.grade%></td>
       <td><%= product.formula%></td>
       <td><%= product.molar_mass%></td>
@@ -40,7 +40,6 @@
       <td><%= product.pakaging%></td>
       <td><%= product.price%></td>
       
-        <td><%= link_to 'Show', product %></td>
         <td><%= link_to 'Edit', edit_product_path(product) %></td>
         <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -49,4 +48,9 @@
 </table>
 
 <br>
+</div>
 
+<style type="text/css">
+/*tr { border: solid thin; }*/
+/*td { border: 2px solid thin; }*/
+</style>

@@ -1,64 +1,168 @@
-<%= form_for(@product) do |f| %>
-  <% if @product.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
 
-      <ul>
-      <% @product.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+ <div class="container">
+  <div class="row">
+    <div class="col-lg-12 col-xs-12 col-sm-12">
+      <h3 style="color:#00BFFF;">EDIT PRODUCT <hr style="border-color:#00BFFF;"></h3>
     </div>
-    <%end%>
-         <div class="field">
-    <%= f.label :product_name %><br />
-    <%= f.text_field :product_name, autocomplete: "off" %>
   </div>
-   <div class="field">
-    <%= f.label :product_code %><br />
-    <%= f.text_field :product_code, autocomplete: "off" %>
-  </div>
-     <div class="field">
-    <%= f.label :grade %><br />
-    <%= f.text_field :grade, autocomplete: "off" %>
-  </div>
-     <div class="field">
-    <%= f.label :formula %><br />
-    <%= f.text_field :formula, autocomplete: "off" %>
-  </div>
-     <div class="field">
-    <%= f.label :molar_mass %><br />
-    <%= f.text_field :molar_mass, autocomplete: "off" %>
-  </div>
-       <div class="field">
-    <%= f.label :image %><br />
-    <%if @product.image_url.present?%>
-      <%= image_tag @product_detail.image_url%>
-    <%else%>
+<%= form_for(@product) do |f| %>
+  <div class="row">
+    <div class="col-lg-2 col-xs-4 col-sm-4 labelDiv">
+          <div class="label_new">
+            <span class="labelText"><strong>Name</strong></span>
+          </div>
 
+    </div>
+    <div class="col-lg-6 col-xs-8 col-sm-8 inputSizing">
+    
+       <%= f.text_field :product_name, autocomplete: "off",id: "productName", placeholder: "Product Name" ,class: "form-control"%>
+    </div>
+    <div class="col-lg-4 col-xs-0 col-sm-0">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-2 col-xs-4 col-sm-4 labelDiv">
+            <div class="label_new">
+            <span class="labelText"><strong>Code</strong></span>
+          </div>
+
+    </div>
+    <div class="col-lg-6 col-xs-8 col-sm-8 inputSizing">
+      
+      <%= f.text_field :product_code, autocomplete: "off",id: "productCode", placeholder: "e.g.1227HGTSG12364",class: "form-control" %>
+    </div>
+    <div class="col-lg-4 col-xs-0 col-sm-0">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-2 col-xs-4 col-sm-4 labelDiv">
+            <div class="label_new">
+            <span class="labelText"><strong>Formula</strong></span>
+          </div>
+
+    </div>
+    <div class="col-lg-6 col-xs-8 col-sm-8 inputSizing">
+
+      <%= f.text_field :formula, autocomplete: "off", id: "formula", placeholder: "e.g.CN-CN-C-C-HO" ,class: "form-control"%>
+    </div>
+    <div class="col-lg-4 col-xs-0 col-sm-0">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-2 col-xs-4 col-sm-4 labelDiv">
+            <div class="label_new">
+            <span class="labelText"><strong>Molar Mass</strong></span>
+          </div>
+
+    </div>
+    <div class="col-lg-6 col-xs-8 col-sm-8 inputSizing">
+ 
+      <%= f.text_field :molar_mass, autocomplete: "off", id: "molarMass", placeholder: "Molecular Weight g/mol",class: "form-control"  %>
+    </div>
+    <div class="col-lg-4 col-xs-0 col-sm-0">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-2 col-xs-4 col-sm-4 labelDiv">
+            <div class="label_new">
+            <span class="labelText"><strong>Grade</strong></span>
+          </div>
+
+    </div>
+    <div class="col-lg-6 col-xs-8 col-sm-8 inputSizing">
+     
+      <%= f.text_field :grade, autocomplete: "off", id: "grade", placeholder: "e.g.122NGDS" ,class: "form-control"%>
+    </div>
+    <div class="col-lg-4 col-xs-0 col-sm-0">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-2 col-xs-4 col-sm-4 labelDiv">
+            <div class="label_new">
+            <span class="labelText"><strong>Package</strong></span>
+          </div>
+
+    </div>
+    <div class="col-lg-6 col-xs-8 col-sm-8 inputSizing">
+
+      <%= f.text_field :pakaging, autocomplete: "off", id: "package", placeholder: "e.g.543.21mg",class: "form-control" %>
+    </div>
+    <div class="col-lg-4 col-xs-0 col-sm-0">
+    </div>
+  </div> 
+
+  <div class="row">
+    <div class="col-lg-2 col-xs-4 col-sm-4 labelDiv">
+            <div class="label_new">
+            <span class="labelText"><strong>Price</strong></span>
+          </div>
+
+    </div>
+    <div class="col-lg-6 col-xs-8 col-sm-8 inputSizing">
+
+       <%= f.text_field :price, id: "price", placeholder: "&#x20b9; 00.00",class: "form-control" %>
+    </div>
+    <div class="col-lg-4 col-xs-0 col-sm-0">
+    </div>
+  </div>  
+
+ <div class="row">
+    <div class="col-lg-2 col-xs-4 col-sm-4 col-md-4 labelDiv">
+            <div class="label_new">
+            <span class="labelText"><strong>Preview</strong></span>
+          </div>
+
+    </div>
+    <div class="col-lg-6 col-xs-4 col-sm-6 col-md-6 inputSizing">
         <% @product.chemical_images.each do |k|%>
         <%= image_tag k.thumb.url%>
       <%end if @product.chemical_images%>
-    <%end%>
-    <%= f.file_field :chemical_images,  multiple: true %>
-  </div>
-  
-  
-
-     <div class="field">
-      <%= f.label :pakaging %><br />
-      <%= f.text_field :pakaging, autocomplete: "off" %>
+     
     </div>
-     <div class="field">
-      <%= f.label :price %><br />
-      <%= f.text_field :price %>
-      
-    </div>
-  
-  
-  
-
-  <div class="actions">
-    <%= f.submit %>
+<!--     <div class="col-lg-4 col-xs-4 col-sm-2 col-md-2 inputSizing">
+      <button class="btn btn-default" style"margin-left:5%;"><strong>Upload Image</strong></button>
+    </div> -->
   </div>
-<% end %>
+  <div class="row">
+    <div class="col-lg-2 col-xs-4 col-sm-4 col-md-4 labelDiv">
+            <div class="label_new">
+            <span class="labelText"><strong>Image</strong></span>
+          </div>
+
+    </div>
+    <div class="col-lg-6 col-xs-4 col-sm-6 col-md-6 inputSizing">
+  
+      <%= f.file_field :chemical_images,  multiple: true, id: "image", class: "btn btn-default" %>
+    </div>
+<!--     <div class="col-lg-4 col-xs-4 col-sm-2 col-md-2 inputSizing">
+      <button class="btn btn-default" style"margin-left:5%;"><strong>Upload Image</strong></button>
+    </div> -->
+  </div>
+
+  <div class="row">
+    
+    <div class="col-lg-8 col-xs-12 col-sm-12 col-md-12 labelDiv">
+      <center>
+<!--       <button class="btn btn-primary"><strong>Save</strong></button> -->
+      <%= f.submit "Submit", class: "btn btn-primary"%>
+    <!--   <button class="btn btn-default " style="margin-left:5px;"><strong>Cancel</strong></button> -->
+
+<%= link_to 'Cancel', products_path,class: "btn btn-default", style: "margin-left:5px;" %>
+      </center>
+    </div>
+    <div class="col-lg-4 col-xs-0 col-sm-0 col-md-0"></div>
+  </div>
+<%end%>
+ </div>
+
+
+
+
+
+
+

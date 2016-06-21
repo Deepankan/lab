@@ -10,19 +10,10 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
+//= require jquery-1.12.3.min
 //= require jquery_ujs
 //= require turbolinks
+//= require canvasjs.min
+//= require bootstrap.min
+//= require angular.min
 //= require_tree .
-function add_fields(link, association, content) {  
-	event.preventDefault();
-    var new_id = new Date().getTime();  
-    var regexp = new RegExp("new_" + association, "g");  
-    $(link).parent().before(content.replace(regexp, new_id));  
-}
-
-function remove_fields(link) {
-	event.preventDefault();
-	$(link).prevAll("input[type=hidden]").first().val("1");
-	$(link).closest(".fields").remove();
-}

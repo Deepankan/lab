@@ -27,7 +27,7 @@ Rails.application.routes.draw do
  resources :product_details
 
  authenticated :user do
-  root :to => 'products#index', as: :authenticated_root
+  root :to => 'dashboards#index', as: :authenticated_root
 end
  root to: redirect('/users/sign_in'), as: :sign_out
  resources :advertisements
