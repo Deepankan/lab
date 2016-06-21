@@ -1,10 +1,18 @@
 class AdvertisementsController < ApplicationController
-  before_action :set_advertisement, only: [:show, :edit, :update, :destroy]
+  before_action :set_advertisement, only: [:show, :edit, :update, :destroy, :change_status]
 
   # GET /advertisements
   # GET /advertisements.json
   def index
-    @advertisements = Advertisement.all
+    case @role
+     when ADMIN
+      @advertisements = Advertisement.all
+     when COMPANY
+      @advertisements = current_user.advertisements.all
+     when DEALER
+     when CUSTOMER
+     end
+    
   end
 
   # GET /advertisements/1
@@ -25,7 +33,7 @@ class AdvertisementsController < ApplicationController
   # POST /advertisements.json
   def create
     @advertisement = current_user.advertisements.new(advertisement_params)
-
+    @advertisement.status = INACTIVE
     respond_to do |format|
       if @advertisement.save
         format.html { redirect_to @advertisement, notice: 'Advertisement was successfully created.' }
@@ -40,6 +48,7 @@ class AdvertisementsController < ApplicationController
   # PATCH/PUT /advertisements/1
   # PATCH/PUT /advertisements/1.json
   def update
+     @advertisement.status = INACTIVE
     respond_to do |format|
       if @advertisement.update(advertisement_params)
         format.html { redirect_to @advertisement, notice: 'Advertisement was successfully updated.' }
@@ -60,7 +69,12 @@ class AdvertisementsController < ApplicationController
       format.json { head :no_content }
     end
   end
+    def change_status
+    status = params[:status] == ACTIVE ? INACTIVE : ACTIVE
+    @advertisement.update_attributes({status: status})
+    redirect_to @advertisement, notice: 'Advertisement was successfully updated.'
 
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_advertisement

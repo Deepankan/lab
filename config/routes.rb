@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  resources :advertisements
-  resources :products
+  
   devise_for :users, :controllers => {:registrations => "registrations"}
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -17,6 +16,7 @@ Rails.application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
  get 'admins/index' => 'admins#index', as: :admin_root
+ get 'advertisements/change_status/:id' => 'advertisements#change_status' , as: :change_status
  # get 'product_details/index' => 'product_details#index', as: :company_root
  get 'product_details/edit_pricing/:id' => 'product_details#edit_pricing',as:  :get_pricing
  get 'product_details/delete_pricing/:id' => 'product_details#delete_pricing',as:  :delete_pricing
@@ -30,6 +30,8 @@ Rails.application.routes.draw do
   root :to => 'products#index', as: :authenticated_root
 end
  root to: redirect('/users/sign_in'), as: :sign_out
+ resources :advertisements
+  resources :products
   # Example resource route with options:
   #   resources :products do
   #     member do

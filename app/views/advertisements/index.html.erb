@@ -11,7 +11,8 @@
       <th>Start date</th>
       <th>End date</th>
       <th>Images</th>
-      <th colspan="3"></th>
+      <th>Status</th>
+      <th colspan="4"></th>
     </tr>
   </thead>
 
@@ -26,9 +27,14 @@
         <td> <% advertisement.images.each do |k|%>
               <%= image_tag k.thumb.url %>
             <%end%></td>
+        <td><%= advertisement.status == ACTIVE ? "Approved" : "Pending"%></td>    
         <td><%= link_to 'Show', advertisement %></td>
         <td><%= link_to 'Edit', edit_advertisement_path(advertisement) %></td>
         <td><%= link_to 'Destroy', advertisement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+       <% status = advertisement.status == ACTIVE ? "Pending" : "Approved"%>
+        <% if @role == ADMIN%>
+        <td><%= link_to status, change_status_path(advertisement,status: advertisement.status), data: { confirm: 'Are you sure you want to change status ?' } %></td>
+        <%end%>
       </tr>
     <% end %>
   </tbody>

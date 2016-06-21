@@ -12,3 +12,7 @@ STATUS_SUCCESS = 1
 STATUS_ERROR = 0
 
 LIMIT = 100
+
+ACTIVE = "active"
+
+INACTIVE = "inactive"
