@@ -28,7 +28,7 @@ class Api::RegistrationsController < Api::ApiController
       and params[:city_id].present? and params[:name].present? and params[:address].present? and \
       params[:company_code].present? and params[:role_id].present?
       begin
-       user = User.create(email: params[:email], password: BCrypt::Password.create(params[:password]), user_name: params[:user_name], mobile_no: params[:mobile_no], role_id: params[:role_id], status: STATUS_SUCCESS)
+       user = User.create(email: params[:email],password: params[:password], encrypted_password: BCrypt::Password.create(params[:password]), user_name: params[:user_name], mobile_no: params[:mobile_no], role_id: params[:role_id], status: STATUS_SUCCESS)
        token = AccessToken.create!
        user.access_tokens << token
        
@@ -66,7 +66,7 @@ class Api::RegistrationsController < Api::ApiController
           user.access_tokens << token
           user.save
           user.devise_infos.create(devise_id: params[:devise_id], gcm_key: params[:gcm_key], apn_key: params[:apn_key])     
-          msg = {status: 1, token: token.token, user_type: user_type, message: LOGIN_MSG}
+          msg = {status: 1, token: token.token, user_type: user_type, profile: user.get_profile, message: LOGIN_MSG}
           # msg =  token.token
           render json: msg
        else

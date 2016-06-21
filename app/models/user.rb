@@ -25,6 +25,6 @@ class User < ActiveRecord::Base
   def get_profile
     up ={}
     user_profile = self.user_profile if self.user_profile
-    up = {city: user_profile.city.city, name: user_profile.name, address: user_profile.address, company_code: user_profile.company_code, fax: user_profile.fax, image: user_profile.avatar.url} if user_profile
+    up = {email: self.email, mobile_no: self.mobile_no, user_name: self.user_name, city: user_profile.city.city, name: user_profile.name, address: user_profile.address, company_code: user_profile.company_code, fax: user_profile.fax, image: user_profile.avatar.url} if user_profile
   end
 end

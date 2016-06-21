@@ -21,6 +21,7 @@ def self.get_product_detail(user, role, offset, search)
        tmp_hash = {}.tap do |my_hash| 
          my_hash[:id] = h.id
          my_hash[:user_name] = h.user.user_profile.name if (role == ADMIN and user.user_profile)
+         my_hash[:product_name] = h.product_name
          my_hash[:product_code] = h.product_code
          my_hash[:grade] = h.grade
          my_hash[:formula] = h.formula
