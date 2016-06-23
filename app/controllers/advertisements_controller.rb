@@ -8,7 +8,7 @@ class AdvertisementsController < ApplicationController
      when ADMIN
       @advertisements = Advertisement.all.paginate(:page => params[:page])
      when COMPANY
-      @advertisements = current_user.advertisements.all.paginate(:page => params[:page], :per_page => 100)
+      @advertisements = current_user.advertisements.paginate(:page => params[:page], :per_page => 100)
      when DEALER
      when CUSTOMER
      end

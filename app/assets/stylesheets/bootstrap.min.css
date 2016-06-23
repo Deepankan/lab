@@ -11,12 +11,14 @@ html {
     font-family: sans-serif;
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%
-    max-width: 100%;
-    overflow-x: hidden;
+    
+    
 }
 
 body {
-    margin: 0
+    margin: 0;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 article,
@@ -3107,7 +3109,7 @@ input[type=search] {
 input[type=checkbox],
 input[type=radio] {
     margin: 4px 0 0;
-    margin-top: 1px\9;
+    margin-top: 1px;
     line-height: normal
 }
 
@@ -3260,7 +3262,7 @@ input[type=search] {
 .radio input[type=radio],
 .radio-inline input[type=radio] {
     position: absolute;
-    margin-top: 4px\9;
+    margin-top: 4px;
     margin-left: -20px
 }
 
@@ -7802,7 +7804,7 @@ button.close {
 }
 
 @-ms-viewport {
-    width: device-width
+    width: auto;
 }
 
 .visible-lg,
