@@ -8,7 +8,7 @@ class ProductDetailsController < ApplicationController
     when ADMIN
     
     when COMPANY
-      @product_details = current_user.product_details
+      @product_details = current_user.product_details.paginate(:page => params[:page], :per_page => 100)
 
     end
    

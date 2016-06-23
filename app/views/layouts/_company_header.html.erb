@@ -1,7 +1,7 @@
 <div class="container">
  <nav class="navbar navbar-inverse" role="navigation"> 
  	
-		<div class="navbar-header"> 
+		<div class="container"> 
  		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#labCats-navbar-collapse"> 
  			<span class="sr-only">Toggle navigation</span> 
  			<span class="icon-bar"></span> 
@@ -12,15 +12,15 @@
  	</div> 
 
  	<div class="collapse navbar-collapse" id="labCats-navbar-collapse"> 
- 		<ul class="nav navbar-nav"> 
- 			<li class="<%= params[:controller] == "dashboards" ? 'active' : ''%>">
+ 		<ul class=" tabs primary-nav"> 
+ 			<li class="tabs__item <%= params[:controller] == "dashboards" ? 'active' : ''%>">
  			
- 				<%= link_to "Profile", authenticated_root_path%>
+ 				<%= link_to "Profile", authenticated_root_path, class: "tabs__link"%>
  			</li> 
 
- 			<li class="<%= params[:controller] == "products" ? 'active' : ''%>">
+ 			<li class="tabs__item <%= params[:controller] == "products" ? 'active' : ''%>">
  				
- 				<%= link_to 'Product', products_path %>
+ 				<%= link_to 'Product', products_path, class: "tabs__link" %>
  			</li> 
  	<!-- 		<li class="dropdown"> 
  				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Edit<b class="caret"></b> </a> 
@@ -31,11 +31,11 @@
  					
  				</ul> 
  			</li> -->
- 			<li class="<%= params[:controller] == "advertisements" ? 'active' : ''%>">
- 				<%= link_to "Advertisement", advertisements_path %>
+ 			<li class="tabs__item <%= params[:controller] == "advertisements" ? 'active' : ''%>">
+ 				<%= link_to "Advertisement", advertisements_path, class: "tabs__link" %>
  			</li> 
-  			<li>
-      				 <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+  			<li class="tabs__item">
+      				 <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "tabs__link" %>
  			</li>
 
  		</ul> 
@@ -44,4 +44,45 @@
 
  </nav>
  </div>
- 
+ <style type="text/css">
+ .tabs {
+    margin:  0;
+    padding: 0;
+    list-style: none;
+    display: table; /* [1] */
+    table-layout: fixed; /* [2] */
+    width: 100%; /* [3] */
+   
+
+}
+
+    .tabs__item {
+        display: table-cell; /* [4] */
+    }
+
+        .tabs__link {
+            display: block;
+            color: #fff /* [5] */
+        }
+
+
+
+.primary-nav {
+    text-align: center;
+    border-radius: 4px;
+    overflow: hidden; /* [1] */
+}
+
+        .primary-nav a {
+            padding: 1em;
+            color: #9d9d9d
+            color: #fff;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .primary-nav a:hover {
+            background-color: #b2b2b2;
+        }
+       
+ </style>

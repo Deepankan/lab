@@ -1,0 +1,23 @@
+.search{
+	border-radius: 5px;
+	width: 100px;
+}
+
+.editButton{
+	    width: auto;
+}
+
+.edtbtn{
+	padding-top: 0px;
+	padding-bottom: 0px;
+
+}
+
+table td 
+{
+  table-layout:fixed;
+  width: auto;
+  overflow:hidden;
+  word-wrap:break-word;
+  word-break: break-all;
+}

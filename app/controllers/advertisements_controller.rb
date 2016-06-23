@@ -1,14 +1,14 @@
 class AdvertisementsController < ApplicationController
-  before_action :set_advertisement, only: [:show, :edit, :update, :destroy, :change_status]
+  before_action :set_advertisement, only: [:show, :edit, :update, :destroy, :change_status, :get_advertisement, :update_advertisement]
 
   # GET /advertisements
   # GET /advertisements.json
   def index
     case @role
      when ADMIN
-      @advertisements = Advertisement.all
+      @advertisements = Advertisement.all.paginate(:page => params[:page])
      when COMPANY
-      @advertisements = current_user.advertisements.all
+      @advertisements = current_user.advertisements.all.paginate(:page => params[:page], :per_page => 100)
      when DEALER
      when CUSTOMER
      end
@@ -44,9 +44,31 @@ class AdvertisementsController < ApplicationController
       end
     end
   end
-
+  def new_advertisement
+     @advertisement = current_user.advertisements.create(title: params[:title], description: params[:description], web_url: params[:web_url], start_date: params[:start_date], end_date: params[:end_date], images: [params[:images]])
+     redirect_to advertisements_path
+  end
   # PATCH/PUT /advertisements/1
   # PATCH/PUT /advertisements/1.json
+
+  def get_advertisement
+     return render partial: "edit_advertisement"
+  end
+
+  def update_advertisement
+
+   #@advertisement.update_attributes(params.permit(:title, :description, :web_url, :start_date, :end_date))
+   @advertisement.title = params[:title]
+   @advertisement.description = params[:description]
+   @advertisement.web_url = params[:web_url]
+   @advertisement.start_date = params[:start_date]
+   @advertisement.end_date = params[:end_date]
+   @advertisement.images =  [params[:images] ]if params[:images].present?
+   @advertisement.save
+   
+   redirect_to advertisements_path
+  end
+  
   def update
      @advertisement.status = INACTIVE
     respond_to do |format|

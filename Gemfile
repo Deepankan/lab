@@ -42,6 +42,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
  gem 'activerecord-import'
  gem "rmagick", :require => 'RMagick'
  gem "rack-timeout", require:"rack/timeout/base"
+ gem 'jquery-datatables-rails', '~> 3.3.0'
+ gem 'will_paginate', '~> 3.1.0'
 #========================================
 
 #----------Added Gem for API's------------------------------------------------

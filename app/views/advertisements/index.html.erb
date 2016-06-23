@@ -1,45 +1,130 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Listing Advertisements</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Web url</th>
-      <th>Start date</th>
-      <th>End date</th>
-      <th>Images</th>
-      <th>Status</th>
-      <th colspan="4"></th>
-    </tr>
-  </thead>
+<div class="container" style="overflow:hidden;">
 
-  <tbody>
-    <% @advertisements.each do |advertisement| %>
-      <tr>
-        <td><%= advertisement.title %></td>
-        <td><%= advertisement.description %></td>
-        <td><%= advertisement.web_url %></td>
-        <td><%= get_date_format(advertisement.start_date) %></td>
-        <td><%= get_date_format(advertisement.end_date) %></td>
-        <td> <% advertisement.images.each do |k|%>
+
+  
+  <div class="row">
+    
+  <div class="card col-lg-4" id="cardId">
+    <div class="cardHeader">
+      <center>
+        <strong></strong>
+      </center>
+    </div>
+    <div class="cardBody">
+      <center>
+        <strong>
+  
+       
+       <%= link_to "New Advertisement", "#", class: "btn btn-info btn-lg", "data-toggle": "modal", "data-target" => "#myModal", style: "margin: 11%; margin-right: 24%;"%>
+  
+        </strong>
+      </center>
+    </div>
+    <div class="cardFooter">
+      
+    </div>
+  </div>
+
+
+
+
+<% @advertisements.each do |k| %>
+  <div class="card col-lg-4">
+    <div class="cardHeader">
+      <center>
+        <strong><%= k.title%></strong>
+           <%= link_to k,method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-danger editButton" do %>
+              <i class="fa fa-trash" aria-hidden="true" style="margin-left: 0px;"></i>
+         <% end %>  
+        <%= link_to "#",id: k.id ,class: "btn btn-primary editButton edit_adv" do %>
+               <i class="fa fa-pencil-square-o" aria-hidden="true" style="margin-left: 0px;"></i>
+         <% end %> 
+       
+      </center>
+        
+    </div>
+    <div class="cardBody">
+    <div class="row">
+         <div class="col-md-12">
+              <% if k.images.present?%>
+      <% k.images.each do |k|%>
               <%= image_tag k.thumb.url %>
-            <%end%></td>
-        <td><%= advertisement.status == ACTIVE ? "Approved" : "Pending"%></td>    
-        <td><%= link_to 'Show', advertisement %></td>
-        <td><%= link_to 'Edit', edit_advertisement_path(advertisement) %></td>
-        <td><%= link_to 'Destroy', advertisement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-       <% status = advertisement.status == ACTIVE ? "Pending" : "Approved"%>
-        <% if @role == ADMIN%>
-        <td><%= link_to status, change_status_path(advertisement,status: advertisement.status), data: { confirm: 'Are you sure you want to change status ?' } %></td>
-        <%end%>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+            <%end%>
+    <%else%>
+    <label>Sorry No image Available</label>
+    <%end%>        
+      <br /> <br />
+      <label>Start Date : &nbsp;&nbsp;</label><%= get_date_format(k.start_date)%> <br />
+       <label>End Date : &nbsp;&nbsp;</label><%= get_date_format(k.end_date)%>   
+         </div>
+    </div>
+   
+    </div>
+    <div class="cardFooter">
+      <p><strong>
+       <%= k.description%><br />
+       <a href="https://<%= k.web_url%>" target="_blank"><%= k.web_url%></a>
+      
+      
+        </strong>
+      </p>
+    </div>
+  </div>
+<%end%>
 
-<br>
 
-<%= link_to 'New Advertisement', new_advertisement_path %>
+  </div>
+
+  <br>
+
+
+</div>
+
+<div class="container">
+  <div class="row">
+  <div class="col-lg-4 col-sm-3 col-xs-2"></div>
+  <div class="col-lg-4 col-sm-6 xol-xs-8">
+  <center>
+  <%= will_paginate @advertisements %>
+</center>   
+</div>
+
+  </div>
+  <div class="col-lg-4 col-sm-3 col-xs-2"></div>
+</div>
+    <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <%= render partial: "new_advertisement"%>
+      
+    </div>
+  </div>
+<style type="text/css">
+.btn{
+      float: right;
+    margin-right: 2%;
+}
+
+
+</style>
+<script type="text/javascript">
+$('.edit_adv').click(function(){
+
+
+      $.ajax({
+      async : true,
+      type : 'GET',
+      url : "/advertisements/get_advertisement",
+      data : { "id": $(this).attr('id')}, 
+        success : function(data) {
+          $('#myModal').html(data)
+          $('#myModal').modal('show')
+        }, error : function(data) {
+          alert("fail");
+        }
+    });
+});
+</script>

@@ -5,7 +5,19 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link rel="stylesheet" type="text/css" href="/assets/datatable.css"/>
+<link rel="stylesheet" href="/assets/bootstrap.min.css">
+<link rel="stylesheet" href="/assets/bootstrap-theme.min.css">
+<link rel="stylesheet" href="/assets/_card.scss">
+<link rel="stylesheet" href="/assets/font-awesome.css">
+<link rel="stylesheet" href="/assets/common.css">
+<link rel="stylesheet" href="/assets/popup.css">
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+<link rel="stylesheet" href="/assets/viewProfile.css">
+<link rel="stylesheet" href="/assets/editProducts.css">
+
 </head>
+
 <%= render partial: "/layouts/header" if user_signed_in?%>
   <% case @role 
    when ADMIN then 
@@ -32,9 +44,15 @@
 
 <%= yield %>
 <%= render partial: "/layouts/footer"%>
+
+
 <script src="/assets/jquery-1.12.3.min.js"></script>
 <script src="/assets/canvasjs.min.js"></script>
 <script src="/assets/bootstrap.min.js"></script>
+<script src="/assets/popup.js"></script>
+
 <script type="text/javascript" src="/assets/angular.min.js"></script>
+ 
+<script type="text/javascript" src="/assets/datatable.js"></script>
 </body>
 </html>

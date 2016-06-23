@@ -10,14 +10,19 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ 
  *= require bootstrap.min
  *= require bootstrap-theme.min
+ *= require datatable
  *= require card
  *= require login
  *= require font-awesome
+ *= require viewProfile
  *= require sticky-footer-navbar
  *= require common
- *= require viewProfile
+ *= require popup
  *= require newEntry
+ *= require editProducts
+ *= require dataTables/extras/dataTables.responsive
  *= require_self
  */

@@ -12,8 +12,10 @@
 //
 //= require jquery-1.12.3.min
 //= require jquery_ujs
+//= require datatable
 //= require turbolinks
 //= require canvasjs.min
+//= require popup
 //= require bootstrap.min
 //= require angular.min
 //= require_tree .

@@ -1,9 +1,10 @@
+
 <div class="container">
 	<div class="row">
 		<div class="col-lg-12">
 			<strong>
 				<h3>
-					Company Name
+					<%= current_user.user_profile.try(:name)%>
 				</h3>
 			</strong>		
 		</div>
@@ -29,13 +30,28 @@
 		</div>
 	</div>
 
-	<div class="row">
+<!-- 	<div class="row">
 		<strong ><h3>Company representative contact details:</h3></strong>
+	</div> -->
+    	<div class="row">
+		<div class="col-lg-12">
+			<strong>
+				<h3>
+				<strong>Company representative contact details:</strong>
+				</h3>
+			</strong>		
+		</div>
 	</div>
 
-	<div class="row"> 
-		<table class="representativeDetails">
-			<tr>
+
+	   	<div class="row">
+		<div class="col-lg-12">
+					<table>
+			<thead>
+				
+			</thead>
+			<tbody>
+               <tr>
 				<td><strong>Name:&nbsp;&nbsp;</strong></td>
 				<td><strong><%= current_user.user_profile.try(:name)%></strong></td>
 			</tr>
@@ -47,7 +63,12 @@
 				<td><strong>Email:&nbsp;&nbsp;&nbsp;</strong></td>
 				<td><strong><%= current_user.email%></strong></td>
 			</tr>
+
+			</tbody>
 		</table>
+		</div>
+	</div>
+   <br /><br />
+
 	</div>
 </div>
-
