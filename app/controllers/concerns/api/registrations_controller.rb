@@ -25,8 +25,8 @@ class Api::RegistrationsController < Api::ApiController
 
     if params[:email].present? and params[:password].present? and params[:confirm_password].present? and \
        params[:password] == params[:confirm_password] and params[:user_name].present?\
-      and params[:city_id].present? and params[:name].present? and params[:address].present? and \
-      params[:company_code].present? and params[:role_id].present?
+      and params[:city_id].present? and params[:name].present?  
+      and params[:role_id].present?
       begin
        user = User.create(email: params[:email],password: params[:password], encrypted_password: BCrypt::Password.create(params[:password]), user_name: params[:user_name], mobile_no: params[:mobile_no], role_id: params[:role_id], status: STATUS_SUCCESS)
        token = AccessToken.create!
@@ -57,7 +57,7 @@ class Api::RegistrationsController < Api::ApiController
   # Input: email/user_name/mobile_no and password 
   # Output: success or unsuccess message
   def sign_in
-      if params[:user] and params[:password] and (user = (User.find_by_email(params[:user]) or User.find_by_user_name(params[:user]) or User.find_by_mobile_no(params[:user]))) and user.status == true
+      if params[:user] and params[:password] and (user = (User.find_by_email(params[:user])  or User.find_by_mobile_no(params[:user]))) and user.status == true and [DEALER,CUSTOMER].include?(user.role.role_type)
   
       #cipher = Gibberish::AES.new(user.security_token)  
       user_type  = user.get_role  
