@@ -90,12 +90,10 @@
 </div>
 
 <div class="container">
-  <div class="row">
-  <div class="col-lg-4 col-sm-3 col-xs-2"></div>
-  <div class="col-lg-4 col-sm-6 xol-xs-8">
-  <center>
-  <%= will_paginate @advertisements %>
-</center>   
+     <div class="digg_pagination">
+    <center>
+    <%= will_paginate @advertisements,:container => false %> </center>
+  </div>
 </div>
 
   </div>
