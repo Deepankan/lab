@@ -21,10 +21,22 @@ class RegistrationsController < Devise::RegistrationsController
     redirect_to sign_out_path
   end
   def edit
-
+    @user_profile = @user.user_profile
   end
   def update
-    super
+     begin  
+      
+     @user.update_attributes(user_params)
+      @user.user_profile.update_attributes(params[:user][:user_profile].permit!)
+    redirect_to authenticated_root_path
+    rescue Exception => e
+      flash[:error] = e
+       redirect_to :back
+    end
+ 
+    
+ 
+  #  super
   end
 
    def user_params

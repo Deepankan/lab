@@ -13,7 +13,7 @@
 		</div>
 
 		<div class="col-lg-6">
-			<a href="#" class="pull-right username">Welcome, <%= current_user.user_name%></a>
+			<%= link_to "Welcome, #{current_user.user_profile.name}",edit_user_registration_path,class: "pull-right username"%>
 		</div>
 		
 	</div>	

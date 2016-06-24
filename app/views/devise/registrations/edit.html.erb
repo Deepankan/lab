@@ -1,39 +1,156 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+<div class="container">
+<%= render partial: "/layouts/common_messages"%>
+  <div class="row">
+    <div class="col-lg-12 col-xs-12 col-sm-12">
+      <h3 style="color:#00BFFF;">Edit Profile<hr style="border-color:#00BFFF;"></h3>
+    </div>
   </div>
+<%= form_for(@user,  url: registration_path(@user), html: { method: :put }) do |f| %>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+ <%= f.fields_for @user_profile do |up| %>
+   
+     <div class="row">
+  <div class="col-lg-3">
+
+    <%= image_tag @user.user_profile.avatar, size: "200x200", class: "companyLogoInProfile" %>
   </div>
+  <div class="col-lg-6 ">
+    
+     <%= up.file_field :avatar, autocomplete: "off",class: "btn btn-default",id: "previewFile"  %><br />
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
+  <div class="col-lg-3">
   </div>
+ </div>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
+ <div class="row">
+  <div class="col-lg-1 labelForProfile">
+    <i class="fa fa-building glyphyForCompany"  aria-hidden="true"></i>
   </div>
-<% end %>
+  <div class="col-lg-6">
+ 
+    <%= f.text_field :user_name, autocomplete: "off",id: "companyName",class: "form-control inputSizing", placeholder: "Company Name" %>
+  </div>
+  <div class="col-lg-5">
+  </div>
+ </div>
 
-<h3>Cancel my account</h3>
+  <div class="row">
+  <div class="col-lg-1 labelForProfile">
+    <i class="fa fa-user glyphy" aria-hidden="true"></i>
+  </div>
+  <div class="col-lg-6">
+ 
+    <%= up.text_field :name, autocomplete: "off",id: "companyName",class: "form-control inputSizing", placeholder: " Name (Company Representative)" %>
+    
+  </div>
+  <div class="col-lg-5">
+  </div>
+ </div>
+   <div class="row">
+  <div class="col-lg-1 labelForProfile">
+    <i class="fa fa-user glyphy" aria-hidden="true"></i>
+  </div>
+  <div class="col-lg-6 ">
+   
+    <%= up.select :city_id, options_for_select(@cities,@user_profile.city_id), {}, {required: 'true', autofocus: 'true', class: 'form-control inputSizing'} %>
+  </div>
+  <div class="col-lg-5">
+  </div>
+ </div>
+  <div class="row">
+  <div class="col-lg-1 labelForProfile">
+    <i class="fa fa-building glyphyForCompany"  aria-hidden="true"></i>
+  </div>
+  <div class="col-lg-6">
+    <%= up.text_field :address, autocomplete: "off",id: "companyAddress",class: "form-control inputSizing", placeholder: "Company Address" %>
+  </div>
+  <div class="col-lg-5">
+  </div>
+ </div>
+  <div class="row">
+  <div class="col-lg-1 labelForProfile">
+    <i class="fa fa-building glyphyForCompany"  aria-hidden="true"></i>
+  </div>
+  <div class="col-lg-6">
+    <%= up.text_field :company_code, autocomplete: "off",id: "companyCode",class: "form-control inputSizing", placeholder: "Company Code" %>
+  </div>
+  <div class="col-lg-5">
+  </div>
+ </div> 
+  <div class="row">
+  <div class="col-lg-1 labelForProfile">
+    <i class="fa fa-building glyphyForCompany"  aria-hidden="true"></i>
+  </div>
+  <div class="col-lg-6">
+    <%= up.text_field :fax, autocomplete: "off",id: "companyFax",class: "form-control inputSizing", placeholder: "Company Fax Number" %>
+  </div>
+  <div class="col-lg-5">
+  </div>
+ </div> 
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
-<%= link_to "Back", :back %>
+   <%end%>
+
+
+
+ <div class="row">
+  <div class="col-lg-1 labelForProfile">
+    <i class="fa fa-envelope glyphy" aria-hidden="true"></i>
+  </div>
+  <div class="col-lg-6 inputSizing">
+  
+     <%= f.email_field :email, autofocus: true , id: "companyRepresentativeEmail",class: "form-control inputSizing", placeholder: "Email Address (Company Representative)"%>
+  </div>
+  <div class="col-lg-5">
+  </div>
+ </div>
+
+  <div class="row">
+  <div class="col-lg-1 labelForProfile">
+    <i class="fa fa-phone-square glyphy" aria-hidden="true"></i>
+  </div>
+  <div class="col-lg-6 inputSizing">
+
+    <%= f.text_field :mobile_no, autocomplete: "off", id: "companyRepresentativePhone", class: "form-control inputSizing", placeholder: "Phone Number (Company Representative)" %>
+  </div>
+  <div class="col-lg-5">
+  </div>
+ </div>
+
+
+
+ <div class="row">
+    
+    <div class="col-lg-7 col-xs-7 col-sm-7 col-md-7"  style="margin-top:15px;">
+      <center>
+        <%= f.submit "Update", class: "btn btn-primary" %>
+        <%= link_to "Back", :back, class: "btn btn-default " , style: "margin-left:5px;" %>
+     
+      </center>
+    </div>
+    <div class="col-lg-5 col-xs-5 col-sm-5 col-md-5"></div>
+  </div>
+<%end%>
+</div>
+
+
+    <script >
+     $('#previewFile').change(function(){
+
+        var preview = document.querySelector('img[class=companyLogoInProfile]');
+          var file    = document.querySelector('input[type=file]').files[0];
+          var reader  = new FileReader();
+
+        reader.addEventListener("load", function () {
+          preview.src = reader.result;
+          }, false);
+
+          if (file) {
+            reader.readAsDataURL(file);
+          }
+     });
+
+    </script>

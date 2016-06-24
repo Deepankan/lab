@@ -4,9 +4,18 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = current_user.products.paginate(:page => params[:page], :per_page => 10)
+
+      @products = current_user.products.paginate(:page => params[:page], :per_page => 10)     
   end
 
+  def search
+    @products = current_user.products.where("product_name like ? or product_code like ?", "%#{params[:search]}%","%#{params[:search]}%").paginate(:page => params[:page], :per_page => 10)
+    return render partial: "product_table"
+  end
+
+  def all_product
+     @products = current_user.products
+  end
   # GET /products/1
   # GET /products/1.json
   def show

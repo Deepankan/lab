@@ -75,11 +75,14 @@
                                           <strong><%= link_to "Forgot password?", new_password_path(resource_name),class: "pull-right", style: "color:#111;" %></strong>  
                                         </div>       
                             </div>
-                             <div class="col-lg-6 ">
+                             <div class="col-lg-6 remember">
+                             <label>
+                             
                              <strong>
                               <%= link_to "Sign up", new_registration_path(resource_name) %><br />
-                             </strong>
+                             </strong></label>
                             </div>
+
                             <%= f.submit "LOGIN", class: "btn btn-primary col-lg-12 btn-lg loginBtn" %>
                            
                             

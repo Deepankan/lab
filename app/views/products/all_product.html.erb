@@ -1,0 +1,93 @@
+
+
+ <div class="container">
+
+
+<div class ="row">
+
+<div class="col-md-3">
+<form class="navbar-form navbar-left" role="search"> 
+<%= link_to 'New Product', new_product_path,class: "btn btn-primary" %></form>
+</div>
+  <div class="col-md-8">
+      
+        <div class="form-group ">  
+         
+        </div>  
+   
+    </div>
+    <div class="col-md-1 ">
+    <form class="navbar-form navbar-left" role="search"> 
+      <%= link_to "Back", products_path,class: "btn btn-default pull-right showAllBtn", style: "margin-top:10px;    margin-right: 7%;"%></form>
+    </div>
+<div class="clearfix"></div>
+</div>
+
+<table class="table table-striped table-hover" id= "example">
+  <thead  style="background: linear-gradient(#777, #222,#999);">
+    <tr >
+     <th >Product Code</th>
+     <th>Description</th>
+     <th >Package</th>
+     <th >Price</th>
+     <th >Show</th>
+     <th >Edit</th>
+     <th >Delete</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+     <tr  > 
+      <td ><%= product.product_code%></td>
+      <td ><%= product.product_name%></td>
+      <td><%= product.pakaging%></td>
+      <td><%= product.price%></td>
+      <td class="edtbtn">
+         <%= link_to product_path(product), class: "btn btn-success editButton" do %>
+               <strong style="font-size: 70%">Show Product<i class="fa fa-eye" aria-hidden="true" style="  margin-left: 7px;"></i></strong>
+         <% end %>
+
+
+      </td>  
+    
+        <td>
+         <%= link_to edit_product_path(product), class: "btn btn-primary editButton" do %>
+               <strong style="font-size: 70%">Edit Product<i class="fa fa-pencil-square-o" aria-hidden="true" style="  margin-left: 7px;"></i></strong>
+         <% end %>  
+
+    
+        <td>
+         <%= link_to product,method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-danger editButton" do %>
+               <strong style="font-size: 70%">Delete Product<i class="fa fa-trash" aria-hidden="true" style="  margin-left: 7px;"></i></strong>
+         <% end %>  
+      
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+</div>
+
+<style type="text/css">
+/*tr { border: solid thin; }*/
+/*td { border: 2px solid thin; }*/
+
+</style>
+<script type="text/javascript">
+$(document).ready(function(){
+ $('#example').DataTable({
+  paginate:true,
+   "columnDefs": [
+        {"className": "dt-center", "targets": "_all"}
+      ],
+      'language': {
+        'search': '_INPUT_',
+        'searchPlaceholder': 'Search your Product here..'
+    }
+});
+
+})
+
+</script>

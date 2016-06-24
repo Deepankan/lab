@@ -24,11 +24,12 @@ Rails.application.routes.draw do
  get 'product_details/upload_file' => 'product_details/upload_file'
  post 'product_details/import_file' => 'product_details/import_file'
  get 'product_details/sample_xls' => 'product_details#sample_xls', as: :sample_xls
-
  post 'advertisements/new_advertisement' => 'advertisements#new_advertisement', as: :new_adv
  get 'advertisements/get_advertisement' => 'advertisements#get_advertisement', as: :get_adv
  put 'advertisements/update_advertisement/:id' => 'advertisements#update_advertisement', as: :update_adv
- resources :product_details
+ get 'products/search' => 'products#search'
+ get 'products/all_product' => 'products#all_product' , as: :all_product
+resources :product_details
 
  authenticated :user do
   root :to => 'dashboards#index', as: :authenticated_root
