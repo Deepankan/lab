@@ -46,16 +46,14 @@
 <br>
 
 <div class="container">
-  <div class="row">
-  <div class="col-lg-4 col-sm-3 col-xs-2"></div>
-  <div class="col-lg-4 col-sm-6 xol-xs-8">
-  <center>
-  <%= will_paginate @products %>
-</center>   
-</div>
-
+ 
+    <div class="digg_pagination">
+    <center>
+    <%= will_paginate @products,:container => false %> </center>
   </div>
-  <div class="col-lg-4 col-sm-3 col-xs-2"></div>
+
+
+
 </div>
 <script type="text/javascript">
 $(document).ready(function(){
