@@ -25,8 +25,7 @@ class Api::RegistrationsController < Api::ApiController
 
     if params[:email].present? and params[:password].present? and params[:confirm_password].present? and \
        params[:password] == params[:confirm_password] and params[:user_name].present?\
-      and params[:city_id].present? and params[:name].present?  
-      and params[:role_id].present?
+      and params[:city_id].present? and params[:name].present?  and params[:role_id].present?
       begin
        user = User.create(email: params[:email],password: params[:password], encrypted_password: BCrypt::Password.create(params[:password]), user_name: params[:user_name], mobile_no: params[:mobile_no], role_id: params[:role_id], status: STATUS_SUCCESS)
        token = AccessToken.create!
