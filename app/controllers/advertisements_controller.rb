@@ -8,7 +8,7 @@ class AdvertisementsController < ApplicationController
      when ADMIN
       @advertisements = Advertisement.all.paginate(:page => params[:page])
      when COMPANY
-      @advertisements = current_user.advertisements.paginate(:page => params[:page], :per_page => 100)
+      @advertisements = current_user.advertisements.paginate(:page => params[:page], :per_page => 10)
      when DEALER
      when CUSTOMER
      end
@@ -46,7 +46,12 @@ class AdvertisementsController < ApplicationController
   end
   def new_advertisement
      @advertisement = current_user.advertisements.create(title: params[:title], description: params[:description], web_url: params[:web_url], start_date: params[:start_date], end_date: params[:end_date], images: [params[:images]])
-     redirect_to advertisements_path
+     if  @advertisement
+          redirect_to advertisements_path
+     else
+          redirect_to :back
+     end
+    
   end
   # PATCH/PUT /advertisements/1
   # PATCH/PUT /advertisements/1.json

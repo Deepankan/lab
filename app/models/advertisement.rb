@@ -14,7 +14,7 @@ class Advertisement < ActiveRecord::Base
 		# 	when CUSTOMER
 		# end
 
-		all_advertisements = search.present? ?  Advertisement.where("title like ? and status like ?", "%#{search}%",ACTIVE).offset(offset).limit(LIMIT) : Advertisement.where(status: ACTIVE).offset(offset).limit(LIMIT)
+		all_advertisements = search.present? ?  Advertisement.where("title like ?", "%#{search}%").offset(offset).limit(LIMIT) : Advertisement.offset(offset).limit(LIMIT)
 
 		advertisement = all_advertisements.map{|h| 
 	       tmp_hash = {}.tap do |my_hash| 
