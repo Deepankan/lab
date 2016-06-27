@@ -9,7 +9,7 @@ class ProductsController < ApplicationController
   end
 
   def search
-    @products = current_user.products.where("product_name like ? or product_code like ?", "%#{params[:search]}%","%#{params[:search]}%").paginate(:page => params[:page], :per_page => 10)
+    @products = current_user.products.where("lower(product_name) like ? or lower(product_code) like ?", "%#{params[:search].downcase}%","%#{params[:search].downcase}%").paginate(:page => params[:page], :per_page => 10)
     return render partial: "product_table"
   end
 
@@ -70,6 +70,9 @@ class ProductsController < ApplicationController
     else
        product = current_user.products.create(product_params)
     end
+    ActiveRecord::Base.connection.reconnect!
+    ActiveRecord::Base.connection.execute("SELECT remove_products_duplicate();")
+    ActiveRecord::Base.connection.reconnect!
     redirect_to products_path
   end
 
