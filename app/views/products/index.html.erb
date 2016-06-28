@@ -51,7 +51,8 @@ $(document).ready(function(){
       async : true,
       type : 'GET',
       url : "/products/search",
-      data : { "search": search}, 
+      data : { "search": search,
+               "comapny_id": '<%= params[:comapny_id] %>' }, 
         success : function(data) {
           $('#product_table').html(data)
         }, error : function(data) {
