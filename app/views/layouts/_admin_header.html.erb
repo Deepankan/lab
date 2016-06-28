@@ -6,19 +6,19 @@
 
         <div class="collapse navbar-collapse" id="labCats-navbar-collapse"> 
             <ul class=" tabs primary-nav"> 
-                   <li class="tabs__item <%= params[:controller] == "dashboards" ? 'active' : ''%>">
+                  <li class="tabs__item <%= params[:controller] == "dashboards" and params[:action] == "index" and !params[:comapny_id].present?? 'active' : ''%>">
                 
                     <%= link_to "Home ", authenticated_root_path, class: "tabs__link"%>
                 </li> 
-                 <li class="tabs__item">
+                 <li class="tabs__item <%= params[:controller] == "cities"  ? 'active' : ''%>">
                          <%= link_to 'City', cities_path(comapny_id: params[:comapny_id]), class: "tabs__link" %>
                 </li>
 
-                <li class="tabs__item <%= params[:controller] == "dashboards" ? 'active' : ''%>">
+                <li class="tabs__item <%= params[:controller] == "dashboards" and  params[:action] == "index" and params[:comapny_id].present? ? 'active' : ''%>">
                 
-                    <%= link_to "Profile", authenticated_root_path(comapny_id: params[:comapny_id]), class: "tabs__link"%>
+                    <%= link_to "Company Profile", authenticated_root_path(comapny_id: params[:comapny_id]), class: "tabs__link"%>
                 </li> 
-
+                
                 <li class="tabs__item <%= params[:controller] == "products" ? 'active' : ''%>">
                     
                     <%= link_to 'Product', products_path(comapny_id: params[:comapny_id]), class: "tabs__link" %>
@@ -53,14 +53,14 @@
 
          	<div class="collapse navbar-collapse" id="labCats-navbar-collapse"> 
          		<ul class=" tabs primary-nav"> 
-         			<li class="tabs__item <%= params[:controller] == "dashboards" ? 'active' : ''%>">
+         			<li class="tabs__item <%= params[:controller] == "dashboards" and params[:action] == "index" ? 'active' : ''%>">
          			
          				<%= link_to "Home", authenticated_root_path, class: "tabs__link"%>
          			</li> 
-                    <li class="tabs__item">
+                     <li class="tabs__item <%= params[:controller] == "cities"  ? 'active' : ''%>">
                          <%= link_to 'City', cities_path, class: "tabs__link" %>
                      </li>
-         			<li class="tabs__item <%= params[:controller] == "dashboards" ? 'active' : ''%>">
+         			<li class="tabs__item <%= params[:controller] == "dashboards" and params[:action] == "list_company" ? 'active' : ''%>">
          				
          				<%= link_to 'Company', list_company_path, class: "tabs__link" %>
          			</li> 
@@ -125,6 +125,10 @@
         }
 
         .primary-nav a:hover {
+            background-color: #b2b2b2;
+        }
+
+        .active{
             background-color: #b2b2b2;
         }
        

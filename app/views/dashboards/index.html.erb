@@ -4,7 +4,7 @@
 		<div class="col-lg-12">
 			<strong>
 				<h3>
-					<%= current_user.try(:user_name)%>
+					<%= @prod_adv[:comapany_name]%>
 				</h3>
 			</strong>		
 		</div>
@@ -20,7 +20,7 @@
 
 			<h1 class="productEntries"><b><%= @prod_adv[:product_count]%></b></h1>
 			<br>
-			<strong>New Entries</strong>
+			<strong>Products</strong>
 		</div>
 
 		<div class="col-lg-4">
