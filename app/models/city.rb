@@ -1,5 +1,5 @@
 class City < ActiveRecord::Base
-	has_many :user_profiles
+		has_many :user_profiles
 	
 	def self.get_city
         

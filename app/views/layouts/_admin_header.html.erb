@@ -10,6 +10,9 @@
                 
                     <%= link_to "Home ", authenticated_root_path, class: "tabs__link"%>
                 </li> 
+                 <li class="tabs__item">
+                         <%= link_to 'City', cities_path(comapny_id: params[:comapny_id]), class: "tabs__link" %>
+                </li>
 
                 <li class="tabs__item <%= params[:controller] == "dashboards" ? 'active' : ''%>">
                 
@@ -32,10 +35,11 @@
                 <li class="tabs__item <%= params[:controller] == "advertisements" ? 'active' : ''%>">
                     <%= link_to "Advertisement", advertisements_path(comapny_id: params[:comapny_id]), class: "tabs__link" %>
                 </li> 
+
                 <li class="tabs__item">
                          <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "tabs__link" %>
                 </li>
-
+                
             </ul> 
         </div> 
          
@@ -51,13 +55,16 @@
          		<ul class=" tabs primary-nav"> 
          			<li class="tabs__item <%= params[:controller] == "dashboards" ? 'active' : ''%>">
          			
-         				<%= link_to "Profile", authenticated_root_path, class: "tabs__link"%>
+         				<%= link_to "Home", authenticated_root_path, class: "tabs__link"%>
          			</li> 
-
+                    <li class="tabs__item">
+                         <%= link_to 'City', cities_path, class: "tabs__link" %>
+                     </li>
          			<li class="tabs__item <%= params[:controller] == "dashboards" ? 'active' : ''%>">
          				
          				<%= link_to 'Company', list_company_path, class: "tabs__link" %>
          			</li> 
+        
          	<!-- 		<li class="dropdown"> 
          				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Edit<b class="caret"></b> </a> 
          					<ul class="dropdown-menu"> 

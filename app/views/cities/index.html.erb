@@ -1,5 +1,4 @@
 
-
  <div class="container">
 
 
@@ -7,8 +6,8 @@
 
 <div class="col-md-3">
 <form class="navbar-form navbar-left" role="search"> 
-<% if @role != ADMIN%>
-<%= link_to 'New Product', new_product_path,class: "btn btn-primary" %>
+<% if @role == ADMIN%>
+<%= link_to 'New City', new_city_path,class: "btn btn-primary" %>
 <%end%>
 </form>
 </div>
@@ -21,7 +20,7 @@
     </div>
     <div class="col-md-1 ">
     <form class="navbar-form navbar-left" role="search"> 
-      <%= link_to "Back", products_path,class: "btn btn-default pull-right showAllBtn", style: "margin-top:10px;    margin-right: 7%;"%></form>
+    </form>
     </div>
 <div class="clearfix"></div>
 </div>
@@ -29,11 +28,9 @@
 <table class="table table-striped table-hover" id= "example">
   <thead  style="background: linear-gradient(#777, #222,#999);">
     <tr >
-     <th >Product Code</th>
-     <th>Description</th>
-     <th >Package</th>
-     <th >Price</th>
-     <% if @role != ADMIN%>
+     <th >City Id</th>
+     <th>City Name</th>
+     <% if @role == ADMIN%>
      <th >Edit</th>
      <th >Delete</th>
      <%end%>
@@ -41,23 +38,21 @@
   </thead>
 
   <tbody>
-    <% @products.each do |product| %>
+    <% @cities.each do |city| %>
      <tr  > 
-      <td ><%= product.product_code%></td>
-      <td ><%= link_to product.product_name, product_path(product)%></td>
-      <td><%= product.pakaging%></td>
-      <td><%= product.price%></td>
+      <td ><%= city.id%></td>
+      <td ><%= link_to city.city, city_path(city)%></td>
+
+<% if @role == ADMIN%>
+      <td class="edtbtn">
+         <%= link_to edit_city_path(city), class: "btn btn-success editButton" do %>
+               <strong style="font-size: 70%">Edit City<i class="fa fa-edit" aria-hidden="true" style="  margin-left: 7px;"></i></strong>
+         <% end %>
 
 
-      <% if @role != ADMIN%>
+      </td>  
         <td>
-         <%= link_to edit_product_path(product), class: "btn btn-primary editButton" do %>
-               <strong style="font-size: 70%">Edit Product<i class="fa fa-pencil-square-o" aria-hidden="true" style="  margin-left: 7px;"></i></strong>
-         <% end %>  
-
-    
-        <td>
-         <%= link_to product,method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-danger editButton" do %>
+         <%= link_to city,method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-danger editButton" do %>
                <strong style="font-size: 70%">Delete Product<i class="fa fa-trash" aria-hidden="true" style="  margin-left: 7px;"></i></strong>
          <% end %>  
       <%end%>
