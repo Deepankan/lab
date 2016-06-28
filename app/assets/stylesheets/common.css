@@ -24,8 +24,10 @@
 }
 
 .navbar{
-	margin-top: 2%;	
-	font-size: 110%;
+	/*margin-top: 2%;	
+	font-size: 110%;*/
+	margin-top: 1%;
+    font-size: small;
 }
 
 #imagePreview{
@@ -35,7 +37,7 @@
 }
 
 thead> tr > th{
-	height: 30px;
+	height: 28px;
 	background: linear-gradient(#777, #222,#999);
 	color: #fff;
 }

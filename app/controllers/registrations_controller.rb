@@ -21,16 +21,23 @@ class RegistrationsController < Devise::RegistrationsController
     redirect_to sign_out_path
   end
   def edit
-    @user_profile = @user.user_profile
+    if @user.user_profile
+      @user_profile = @user.user_profile 
+    else
+      @user_profile = @user.build_user_profile
+    end
   end
   def update
      begin  
-      
-     @user.update_attributes(user_params)
-      @user.user_profile.update_attributes(params[:user][:user_profile].permit!)
-    redirect_to authenticated_root_path
+      @user.update_attributes(user_params)
+      if @user.user_profile.present?
+       @user.user_profile.update_attributes(params[:user][:user_profile].permit!)
+      else
+         @user.create_user_profile(params[:user][:user_profile].permit!) 
+      end 
+      redirect_to authenticated_root_path
     rescue Exception => e
-      flash[:error] = e
+      flash[:error] = "Sorry something went wrong."
        redirect_to :back
     end
  

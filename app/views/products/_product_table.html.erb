@@ -6,9 +6,11 @@
      <th>Description</th>
      <th >Package</th>
      <th >Price</th>
-     <th >Show</th>
+     <!-- <th >Show</th> -->
+     <% if @role != ADMIN%>
      <th >Edit</th>
      <th >Delete</th>
+     <%end%>
     </tr>
   </thead>
 
@@ -16,17 +18,17 @@
     <% @products.each do |product| %>
      <tr  > 
       <td ><%= product.product_code%></td>
-      <td ><%= product.product_name%></td>
+      <td ><%= link_to product.product_name, product_path(product)%></td>
       <td><%= product.pakaging%></td>
       <td><%= product.price%></td>
-      <td class="edtbtn">
-         <%= link_to product_path(product), class: "btn btn-success editButton" do %>
+<!--       <td class="edtbtn">
+         < %= link_to product_path(product), class: "btn btn-success editButton" do %>
                <strong style="font-size: 70%">Show Product<i class="fa fa-eye" aria-hidden="true" style="  margin-left: 7px;"></i></strong>
-         <% end %>
+         < % end %>
 
 
-      </td>  
-    
+      </td>   -->
+     <% if @role != ADMIN%>
         <td>
          <%= link_to edit_product_path(product), class: "btn btn-primary editButton" do %>
                <strong style="font-size: 70%">Edit Product<i class="fa fa-pencil-square-o" aria-hidden="true" style="  margin-left: 7px;"></i></strong>
@@ -37,7 +39,7 @@
          <%= link_to product,method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-danger editButton" do %>
                <strong style="font-size: 70%">Delete Product<i class="fa fa-trash" aria-hidden="true" style="  margin-left: 7px;"></i></strong>
          <% end %>  
-      
+      <%end%>
       </tr>
     <% end %>
   </tbody>
@@ -47,9 +49,9 @@
 
 <div class="container">
  
-    <div class="digg_pagination">
-    <center>
-    <%= will_paginate @products,:container => false %> </center>
+    <div class="digg_pagination" align="center">
+  
+    <%= will_paginate @products,:container => false %> 
   </div>
 
 

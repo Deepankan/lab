@@ -1,0 +1,12 @@
+ 
+  <%= form_for(user,  url: change_status_company_path, html: { method: :get, remote: true, style: "margin-left: 25%;" }) do |f| %>
+           <%= f.select :status, options_for_select(STATUS, user.status), {}, {required: 'true', autofocus: 'true', class: 'form-control inputSizing change_status', id: user.id, placeholder: "Select Status", style: "margin-left: auto;"}  %>
+  <%end%>
+  <script type="text/javascript">
+$(document).ready(function(){
+
+
+
+
+})
+  </script>

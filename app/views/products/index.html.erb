@@ -7,7 +7,9 @@
 
 <div class="col-md-3">
  <form class="navbar-form navbar-left" role="search"> 
-<%= link_to 'New Product', new_product_path,class: "btn btn-primary" %>
+ <% if @role != ADMIN%>
+  <%= link_to 'New Product', new_product_path,class: "btn btn-primary" %>
+<%end%>
 </form>
 </div>
 
@@ -22,7 +24,7 @@
     <div class="col-md-4"></div>
     <div class="col-md-3">
       <form class="navbar-form navbar-left" role="search"> 
-      <%= link_to "Show All",all_product_path,class: "btn btn-default pull-right showAllBtn", style: ""%>
+      <%= link_to "Show All",all_product_path(comapny_id: params[:comapny_id]),class: "btn btn-default pull-right showAllBtn", style: ""%>
       </form>
     </div>
 
@@ -34,6 +36,7 @@
 </div>
 
 </div>
+
 <style type="text/css">
 /*tr { border: solid thin; }*/
 /*td { border: 2px solid thin; }*/
@@ -42,9 +45,8 @@
 <script type="text/javascript">
 $(document).ready(function(){
   $('#search').keyup(function(){
- 
    search = $('#search').val()
-   if(search.length >= 3 || search.length == 0 ){
+   if(search.length >= 3  ){
           $.ajax({
       async : true,
       type : 'GET',
@@ -58,6 +60,8 @@ $(document).ready(function(){
         }
     });
 
+   }else if (search.length == 0){
+      location.reload();
    }
 });
 })

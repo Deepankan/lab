@@ -16,3 +16,5 @@ LIMIT = 100
 ACTIVE = "active"
 
 INACTIVE = "inactive"
+
+STATUS = { ACTIVE => true, INACTIVE => false }

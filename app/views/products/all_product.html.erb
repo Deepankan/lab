@@ -7,7 +7,10 @@
 
 <div class="col-md-3">
 <form class="navbar-form navbar-left" role="search"> 
-<%= link_to 'New Product', new_product_path,class: "btn btn-primary" %></form>
+<% if @role != ADMIN%>
+<%= link_to 'New Product', new_product_path,class: "btn btn-primary" %>
+<%end%>
+</form>
 </div>
   <div class="col-md-8">
       
@@ -31,8 +34,10 @@
      <th >Package</th>
      <th >Price</th>
      <th >Show</th>
+     <% if @role != ADMIN%>
      <th >Edit</th>
      <th >Delete</th>
+     <%end%>
     </tr>
   </thead>
 
@@ -43,6 +48,7 @@
       <td ><%= product.product_name%></td>
       <td><%= product.pakaging%></td>
       <td><%= product.price%></td>
+
       <td class="edtbtn">
          <%= link_to product_path(product), class: "btn btn-success editButton" do %>
                <strong style="font-size: 70%">Show Product<i class="fa fa-eye" aria-hidden="true" style="  margin-left: 7px;"></i></strong>
@@ -50,7 +56,7 @@
 
 
       </td>  
-    
+      <% if @role != ADMIN%>
         <td>
          <%= link_to edit_product_path(product), class: "btn btn-primary editButton" do %>
                <strong style="font-size: 70%">Edit Product<i class="fa fa-pencil-square-o" aria-hidden="true" style="  margin-left: 7px;"></i></strong>
@@ -61,7 +67,7 @@
          <%= link_to product,method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-danger editButton" do %>
                <strong style="font-size: 70%">Delete Product<i class="fa fa-trash" aria-hidden="true" style="  margin-left: 7px;"></i></strong>
          <% end %>  
-      
+      <%end%>
       </tr>
     <% end %>
   </tbody>

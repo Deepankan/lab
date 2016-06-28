@@ -1,20 +1,33 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy, :change_status]
+  before_action :get_user,  if: "params[:comapny_id].present?"
 
   # GET /products
   # GET /products.json
   def index
-
-      @products = current_user.products.paginate(:page => params[:page], :per_page => 10)     
+      if params[:comapny_id].present?  
+         @products = @user.products.paginate(:page => params[:page], :per_page => 10)
+      else
+         @products = current_user.products.paginate(:page => params[:page], :per_page => 10)    
+      end
+       
   end
 
   def search
-    @products = current_user.products.where("lower(product_name) like ? or lower(product_code) like ?", "%#{params[:search].downcase}%","%#{params[:search].downcase}%").paginate(:page => params[:page], :per_page => 10)
+       if params[:comapny_id].present?
+        @products = @user.products.where("lower(product_name) like ? or lower(product_code) like ?", "%#{params[:search].downcase}%","%#{params[:search].downcase}%").paginate(:page => params[:page], :per_page => 10)
+       else
+        @products = current_user.products.where("lower(product_name) like ? or lower(product_code) like ?", "%#{params[:search].downcase}%","%#{params[:search].downcase}%").paginate(:page => params[:page], :per_page => 10)
+        end
     return render partial: "product_table"
   end
 
   def all_product
-     @products = current_user.products
+       if params[:comapny_id].present?
+            @products = @user.products
+      else
+          @products = current_user.products
+      end
   end
   # GET /products/1
   # GET /products/1.json
@@ -23,11 +36,20 @@ class ProductsController < ApplicationController
 
   # GET /products/new
   def new
-    @product = current_user.products.new()
+    if @role != ADMIN
+     @product = current_user.products.new()
+    else
+     flash[:error] = "Sorry invalid request. "
+     redirect_to authenticated_root_path
+    end
   end
 
   # GET /products/1/edit
   def edit
+   if @role == ADMIN
+       flash[:error] = "Sorry invalid request. "
+     redirect_to :back
+    end
   end
 
   # POST /products
@@ -92,11 +114,16 @@ class ProductsController < ApplicationController
   # DELETE /products/1
   # DELETE /products/1.json
   def destroy
+    if @role != ADMIN
     @product.destroy
     respond_to do |format|
       format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
       format.json { head :no_content }
     end
+  else
+     flash[:error] = "Sorry invalid request. "
+     redirect_to :back
+  end
   end
 
   private
@@ -108,5 +135,9 @@ class ProductsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
       params.require(:product).permit(:product_name,:product_code,:grade,:formula,:molar_mass,{chemical_images: []},:pakaging, :price)
+    end
+
+    def get_user
+      @user = User.find_by_id(params[:comapny_id])
     end
 end

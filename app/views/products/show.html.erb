@@ -139,11 +139,12 @@
     <div class="col-lg-8 col-xs-12 col-sm-12 col-md-12 labelDiv">
       <center>
 <!--       <button class="btn btn-primary"><strong>Save</strong></button> -->
+<%if @role != ADMIN%>
 <%= link_to 'Edit', edit_product_path(@product), class: "btn btn-primary" %> 
-
+<%end%>
     <!--   <button class="btn btn-default " style="margin-left:5px;"><strong>Cancel</strong></button> -->
 
-<%= link_to 'Cancel', products_path,class: "btn btn-default", style: "margin-left:5px;" %>
+<%= link_to "Back", :back,class: "btn btn-default", style: "margin-left:5px;" %>
       </center>
     </div>
     <div class="col-lg-4 col-xs-0 col-sm-0 col-md-0"></div>

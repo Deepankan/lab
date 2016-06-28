@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   has_many :devise_infos
   acts_as_paranoid      
   accepts_nested_attributes_for :user_profile
-
+  scope :get_company_name, -> {where.not(role_id: Role.find_by_role_type(ADMIN))}
   def get_role
     self.role.role_type
   end
@@ -32,13 +32,19 @@ class User < ActiveRecord::Base
     
     case role
     when ADMIN
-     prod= {product_count: Product.all.count, advertisement_count: Advertisement.all.count}
+     prod= {comapany_name: self.try(:user_name), image: self.user_profile.try(:avatar), representative_name: self.try(:user_profile).try(:name),mobile_no: self.mobile_no, email: self.email, product_count: Product.all.count, advertisement_count: Advertisement.all.count}
     when COMPANY
-     prod= {product_count: self.products.count, advertisement_count: self.advertisements.count}
+     prod= {comapany_name: self.try(:user_name), image: self.user_profile.try(:avatar), representative_name: self.try(:user_profile).try(:name),mobile_no: self.mobile_no, email: self.email, product_count: self.products.count, advertisement_count: self.advertisements.count}
     when DEALER
     when CUSTOMER
     end
     
       prod
+  end
+
+  def self.get_count(id)
+    user = User.find_by_id(id)
+    prod= {comapany_name: user.try(:user_name), image: user.try(:user_profile).try(:avatar), representative_name: user.try(:user_profile).try(:name),mobile_no: user.try(:mobile_no), email: user.try(:email), product_count: user.products.count, advertisement_count: user.advertisements.count}
+    prod
   end
 end

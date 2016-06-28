@@ -16,9 +16,11 @@
       <center>
         <strong>
   
-       
+       <%if @role != ADMIN%>
        <%= link_to "New Advertisement", "#", class: "btn btn-info btn-lg", "data-toggle": "modal", "data-target" => "#myModal", style: "margin: 11%; margin-right: 24%;"%>
-  
+       <%else%>
+       <label>Not allowed to create new Advertisement</label>
+       <%end%>
         </strong>
       </center>
     </div>
@@ -35,13 +37,14 @@
     <div class="cardHeader">
       <center>
         <strong><%= k.title%></strong>
+        <%if @role != ADMIN%>
            <%= link_to k,method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-danger editButton" do %>
               <i class="fa fa-trash" aria-hidden="true" style="margin-left: 0px;"></i>
          <% end %>  
         <%= link_to "#",id: k.id ,class: "btn btn-primary editButton edit_adv" do %>
                <i class="fa fa-pencil-square-o" aria-hidden="true" style="margin-left: 0px;"></i>
          <% end %> 
-       
+       <%end%>
       </center>
         
     </div>

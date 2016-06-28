@@ -7,13 +7,18 @@
 	<div class="row">
 		<div class="col-lg-6">
 		  
-			<img src="/assets/Logo2-01.png" width="60" height="60" class="img-circle">
+			<!-- <img src="/assets/Logo2-01.png" width="60" height="60" class="img-circle"> -->
+
+
+			<%= link_to authenticated_root_path do %>
+				  <%= image_tag('/assets/Logo2-01.png',  size: "60x60", class: "img-circle") %>
+				<% end %>
 			<strong class="labs">Labs</strong><span class="cat">Cat</span>
 
 		</div>
 
 		<div class="col-lg-6">
-			<%= link_to "Welcome, #{current_user.user_profile.name}",edit_user_registration_path,class: "pull-right username"%>
+			<%= link_to "Welcome, #{current_user.try(:user_profile).try(:name)}",edit_user_registration_path,class: "pull-right username"%>
 		</div>
 		
 	</div>	

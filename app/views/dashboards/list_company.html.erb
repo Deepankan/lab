@@ -1,0 +1,96 @@
+
+
+ <div class="container">
+
+
+<div class ="row">
+
+<div class="col-md-3">
+<form class="navbar-form navbar-left" role="search"> 
+<!-- < %= link_to 'New Product', new_product_path,class: "btn btn-primary" %> --></form>
+</div>
+  <div class="col-md-8">
+      
+        <div class="form-group ">  
+         
+        </div>  
+   
+    </div>
+    <div class="col-md-1 ">
+    <form class="navbar-form navbar-left" role="search"> 
+     <!--    < %= link_to "Back", products_path,class: "btn btn-default pull-right showAllBtn", style: "margin-top:10px;    margin-right: 7%;"%> --></form>
+    </div>
+<div class="clearfix"></div>
+</div>
+
+<table class="table table-striped table-hover" id= "example">
+  <thead  style="background: linear-gradient(#777, #222,#999);">
+    <tr >
+     <th >Company Name</th>
+     <th>Product Count</th>
+     <th >Advertisement Count</th>
+     <th >Status</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @list_company.each do |user| %>
+     <tr  > 
+      <td ><%= link_to user.user_name, authenticated_root_path(comapny_id: user.id)%></td>
+      <td ><%= user.products.count%></td>
+      <td><%= user.advertisements.count%></td>
+      <td class="edtbtn" id="<%= user.id%>">
+      
+         <%= render partial: "change_status_company", :locals => {:user => user}%>
+      </td>  
+    
+
+      
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+</div>
+
+<style type="text/css">
+/*tr { border: solid thin; }*/
+/*td { border: 2px solid thin; }*/
+
+</style>
+<script type="text/javascript">
+$(document).ready(function(){
+ $('#example').DataTable({
+  paginate:true,
+   "columnDefs": [
+        {"className": "dt-center", "targets": "_all"}
+      ],
+      'language': {
+        'search': '_INPUT_',
+        'searchPlaceholder': 'Search Comapany here..'
+    }
+});
+
+ $('.change_status').change(function(){
+        id = $(this).attr('id');
+        value = $(this).val();
+        $.ajax({
+          async : true,
+          type : 'GET',
+          url : "/dashboards/change_status_company",
+          data : { "id": id,
+                   "status": value}, 
+            success : function(data) {
+              $('#'+id).html(data)
+            }, error : function(data) {
+               alert("fail")
+               
+            }
+        });
+        
+ });
+
+})
+
+</script>

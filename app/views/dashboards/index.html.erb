@@ -13,7 +13,7 @@
 	<div class="row">
 		<div class="col-lg-4">
 		
-		    <%= image_tag current_user.user_profile.try(:avatar), size: "200x200", class: "companyLogoInProfile"%>
+		    <%= image_tag @prod_adv[:image], size: "200x200", class: "companyLogoInProfile"%>
 			<!-- <img src="images/companyLogo.jpg" height="200" width="200" class="companyLogoInProfile"> -->
 		</div>
 		<div class="col-lg-4">
@@ -48,20 +48,20 @@
 		<div class="col-lg-12">
 					<table>
 			<thead>
-				
+			
 			</thead>
 			<tbody>
                <tr>
 				<td><strong>Name:&nbsp;&nbsp;</strong></td>
-				<td><strong><%= current_user.user_profile.try(:name)%></strong></td>
+				<td><strong><%= @prod_adv[:representative_name]%></strong></td>
 			</tr>
 			<tr>
 				<td><strong>Contact No:&nbsp;&nbsp;&nbsp;</strong></td>
-				<td><strong><%= current_user.mobile_no%></strong></td>
+				<td><strong><%= @prod_adv[:mobile_no]%></strong></td>
 			</tr>
 			<tr>
 				<td><strong>Email:&nbsp;&nbsp;&nbsp;</strong></td>
-				<td><strong><%= current_user.email%></strong></td>
+				<td><strong><%= @prod_adv[:email]%></strong></td>
 			</tr>
 
 			</tbody>
