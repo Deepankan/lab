@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   has_many :devise_infos
   acts_as_paranoid      
   accepts_nested_attributes_for :user_profile
-  scope :get_company_name, -> {where.not(role_id: Role.find_by_role_type(ADMIN))}
+  scope :get_company_name, -> {where(role_id: Role.find_by_role_type(COMPANY))}
   def get_role
     self.role.role_type
   end
