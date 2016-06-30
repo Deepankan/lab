@@ -15,7 +15,7 @@ def self.get_product_detail(user,count =50,  offset, search)
 	# 		when CUSTOMER
 
 	# end
-    all_products = search.present? ?  Product.where("product_name like ? or product_code like ?", "%#{search}%","%#{search}%").limit(count).offset(offset) : Product.limit(count).offset(offset)
+    all_products = search.present? ?  Product.where("lower(product_name) like ? or lower(product_code) like ?", "%#{search.downcase}%","%#{search.downcase}%").limit(count).offset(offset)  : Product.limit(count).offset(offset)
     product_detail = all_products.map{|h|            
        tmp_hash = {}.tap do |my_hash| 
          my_hash[:id] = h.id
@@ -28,7 +28,7 @@ def self.get_product_detail(user,count =50,  offset, search)
          my_hash[:image] = h.chemical_images.first.thumb.url if h.chemical_images.present?
          my_hash[:package] = h.pakaging
          my_hash[:price] = h.price
-         my_hash[:count] = all_products
+         my_hash[:count] = all_products.count
        end
        
      tmp_hash 
