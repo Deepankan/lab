@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
   end
 
 
-  def get_info
+  def self.get_info
     dealer = User.get_dealer().includes(:user_profile).map{|h| {id: h.id, name: h.user_profile.name, email: h.email, mobile_no: h.mobile_no, city: h.user_profile.city.city}}      
   end
    
