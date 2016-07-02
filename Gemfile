@@ -44,6 +44,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
  gem "rack-timeout", require:"rack/timeout/base"
  gem 'jquery-datatables-rails', '~> 3.3.0'
  gem 'will_paginate', '~> 3.1.0'
+ gem 'react-rails-hot-loader'
 #========================================
 
 #----------Added Gem for API's------------------------------------------------

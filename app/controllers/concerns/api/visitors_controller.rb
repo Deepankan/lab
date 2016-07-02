@@ -5,6 +5,7 @@ class Api::VisitorsController < Api::ApiController
 
 	def advertisements
 		begin
+			
 		advertisement = Advertisement.get_details(current_user,params[:limit] , params[:offset],params[:search])
 		@msg = {status: STATUS_SUCCESS, advertisement: advertisement, message: "Data Fetch Successfully"}
 		rescue Exception => e

@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery-1.12.3.min
+//= require react-rails-hot-loader
 //= require jquery_ujs
 //= require datatable
 //= require turbolinks
