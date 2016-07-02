@@ -13,6 +13,8 @@
  
  *= require bootstrap.min
  *= require bootstrap-theme.min
+ *= require nprogress
+ *= require nprogress-bootstrap
  *= require datatable
  *= require card
  *= require login

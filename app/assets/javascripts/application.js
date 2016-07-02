@@ -12,6 +12,8 @@
 //
 //= require jquery-1.12.3.min
 //= require react-rails-hot-loader
+//= require nprogress
+//= require nprogress-turbolinks
 //= require jquery_ujs
 //= require datatable
 //= require turbolinks

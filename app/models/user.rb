@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   acts_as_paranoid      
   accepts_nested_attributes_for :user_profile
   scope :get_company_name, -> {where(role_id: Role.find_by_role_type(COMPANY))}
+  scope :get_dealer, -> {where(role_id: Role.find_by_role_type(DEALER))}
   def get_role
     self.role.role_type
   end
@@ -47,4 +48,10 @@ class User < ActiveRecord::Base
     prod= {comapany_name: user.try(:user_name), image: user.try(:user_profile).try(:avatar), representative_name: user.try(:user_profile).try(:name),mobile_no: user.try(:mobile_no), email: user.try(:email), product_count: user.products.count, advertisement_count: user.advertisements.count}
     prod
   end
+
+
+  def get_info
+    dealer = User.get_dealer().includes(:user_profile).map{|h| {id: h.id, name: h.user_profile.name, email: h.email, mobile_no: h.mobile_no, city: h.user_profile.city.city}}      
+  end
+   
 end

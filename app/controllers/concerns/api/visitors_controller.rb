@@ -24,4 +24,15 @@ class Api::VisitorsController < Api::ApiController
 		end
 		render json: @msg
 	end
+
+	def get_dealer
+		begin
+		    dealer = get_info()	
+		    @msg = {status: STATUS_SUCCESS, dealers: dealer, message: "Data Fetch Successfully"}
+		rescue Exception => e
+			@msg = {status: STATUS_ERROR, message: "Something went wrong Please try after sometime."}	
+		end
+		render json: @msg
+		
+	end
 end

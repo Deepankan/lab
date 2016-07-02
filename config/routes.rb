@@ -33,6 +33,7 @@ Rails.application.routes.draw do
  get 'products/search' => 'products#search'
  get 'products/all_product' => 'products#all_product' , as: :all_product
 
+
 resources :product_details
 
  authenticated :user do
@@ -97,6 +98,7 @@ end
          post '/edit_advertisement' => 'advertisements#edit_advertisement'
          post '/update_advertisement' => 'advertisements#update_advertisement'
          delete '/delete_advertisement' => 'advertisements#delete_advertisement'
+         get '/get_dealer' => 'visitors#get_dealer' 
   end
 
   #------------------------------------------------------------------------------------
