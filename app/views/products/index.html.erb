@@ -46,23 +46,16 @@
 $(document).ready(function(){
   $('#search').keyup(function(){
    search = $('#search').val()
-   if(search.length >= 3  ){
+   if(search.length >= 3  || search.length == 0 ){
           $.ajax({
       async : true,
       type : 'GET',
       url : "/products/search",
       data : { "search": search,
-               "comapny_id": '<%= params[:comapny_id] %>' }, 
-        success : function(data) {
-          $('#product_table').html(data)
-        }, error : function(data) {
-           alert("fail")
-           
-        }
+               "comapny_id": '<%= params[:comapny_id] %>' }
+       
     });
 
-   }else if (search.length == 0){
-      location.reload();
    }
 });
 })
