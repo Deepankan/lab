@@ -10,7 +10,12 @@ class DashboardsController < ApplicationController
 	end
 
 	def list_company
-		@list_company = User.get_company_name.includes(:products,:advertisements)
+		if @role == ADMIN
+		  @list_company = User.get_company_name.includes(:products,:advertisements)
+		else
+		   flash[:error] = "You are not authorized to view this page"
+           redirect_to :back
+		end
 	end
 
 	def change_status_company
