@@ -27,7 +27,7 @@ class Api::VisitorsController < Api::ApiController
 
 	def get_dealer
 		begin
-		    dealer = User.get_info()	
+		    dealer = User.get_dealer_info()	
 		    @msg = {status: STATUS_SUCCESS, dealers: dealer, message: "Data Fetch Successfully"}
 		rescue Exception => e
 			@msg = {status: STATUS_ERROR, message: "Something went wrong Please try after sometime."}	

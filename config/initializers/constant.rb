@@ -1,6 +1,6 @@
 ADMIN = "admin"
 COMPANY = "company"
-DEALER = "delear"
+DEALER = "dealer"
 CUSTOMER = "customer" 
 LOGIN_MSG = "Login Successfully!"
 CREDENTIAL_ERROR_MSG = "Invalid credentials. Please try again!"
