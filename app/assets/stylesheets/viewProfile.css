@@ -10,12 +10,12 @@
 }
 
 .productEntries{
-	font-size: 95px;
+	font-size: 430%;
 	color:#00BFFF;
 }
 
 .adds{
-	font-size: 95px;
+	font-size: 430%;
 	color:#00BFFF;
 	margin-left: 30%;	
 }
@@ -27,4 +27,8 @@
 .representativeDetails{
 	margin-left: 1%;
 	margin-bottom: 4%;
+}
+
+.font_header{
+	font-size: 135%;
 }

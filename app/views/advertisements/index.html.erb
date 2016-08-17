@@ -1,12 +1,19 @@
 
 
 <div class="container" style="overflow:hidden;">
-
-
+<div class="row">
+    <div class="col-md-3">
+ <%if @role != ADMIN%>
+       <%= link_to "New Advertisement", "#", class: "btn btn-primary", "data-toggle": "modal", "data-target" => "#myModal", style: "margin: 11%; margin-right: 44%;"%>
+       <%else%>
+       <label>Not allowed to create new Advertisement</label>
+       <%end%>
+</div>
+</div>
   
   <div class="row">
-    
-  <div class="card col-lg-4" id="cardId">
+
+<!--   <div class="card col-lg-4" id="cardId">
     <div class="cardHeader">
       <center>
         <strong></strong>
@@ -16,20 +23,20 @@
       <center>
         <strong>
   
-       <%if @role != ADMIN%>
-       <%= link_to "New Advertisement", "#", class: "btn btn-info btn-lg", "data-toggle": "modal", "data-target" => "#myModal", style: "margin: 11%; margin-right: 24%;"%>
-       <%else%>
+       <   %if @role != ADMIN%>
+       < %= link_to "New Advertisement", "#", class: "btn btn-info btn-lg", "data-toggle": "modal", "data-target" => "#myModal", style: "margin: 11%; margin-right: 24%;"%>
+       < %else%>
        <label>Not allowed to create new Advertisement</label>
-       <%end%>
+       < %end%>
         </strong>
       </center>
     </div>
     <div class="cardFooter">
       
     </div>
-  </div>
+  </div> -->
 
-
+ 
 
 
 <% @advertisements.each do |k| %>
@@ -51,16 +58,20 @@
     <div class="cardBody">
     <div class="row">
          <div class="col-md-12">
+         <div class="col-md-4">
               <% if k.images.present?%>
       <% k.images.each do |k|%>
-              <%= image_tag k.thumb.url, size: "50x50" %>
+              <%= image_tag k.thumb.url, size: "100x100" %>
             <%end%>
     <%else%>
     <label>Sorry No image Available</label>
     <%end%>        
-      <br /> <br />
+   
+      </div>
+      <div class="col-md-8">
       <label>Start Date : &nbsp;&nbsp;</label><%= get_date_format(k.start_date)%> <br />
        <label>End Date : &nbsp;&nbsp;</label><%= get_date_format(k.end_date)%>   
+         </div>
          </div>
     </div>
    

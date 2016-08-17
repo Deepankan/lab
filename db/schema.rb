@@ -33,8 +33,9 @@ ActiveRecord::Schema.define(version: 201606160525010) do
     t.datetime "start_date"
     t.datetime "end_date"
     t.json     "images"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.string   "status",      default: "inactive"
   end
 
   create_table "cities", force: :cascade do |t|

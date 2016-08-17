@@ -125,6 +125,48 @@ class ProductsController < ApplicationController
   end
   end
 
+  def new_upload_product
+      if @role != ADMIN
+  
+        file_type = params[:file].content_type
+        file_name = ""
+        if file_type == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' or file_type == "text/csv"
+          file_name = "DatabaseManagement.csv"
+          file_path = File.join(Rails.root, 'public', file_name)
+          File.open(file_path, 'wb') do |f|
+             f.write params[:file].read
+           end
+        end
+        fil = ("public/DatabaseManagement.csv")
+              batch,batch_size = [], 1_000 
+      
+            CSV.foreach(fil, :headers => true) do |row|
+
+              batch << current_user.products.new(row.to_hash)
+
+              if batch.size >= batch_size
+                current_user.products.import batch
+                batch = []
+              end
+            end
+      current_user.products.import batch  
+       ActiveRecord::Base.connection.reconnect!
+      ActiveRecord::Base.connection.execute("SELECT remove_products_duplicate();")
+        redirect_to products_path
+      else
+         flash[:error] = "Sorry invalid request. "
+        redirect_to :back
+      end
+    
+  end
+
+ def sample_xls
+  respond_to do |format|
+        #format.js { render partial: "sample_xls" }
+        format.xls
+  end
+ end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
