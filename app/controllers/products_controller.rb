@@ -161,9 +161,10 @@ class ProductsController < ApplicationController
   end
 
  def sample_xls
+  @products = ["product_name", "product_code",  "grade", "formula" ,"molar_mass",  "image_url", "pakaging",  "price"]
   respond_to do |format|
         #format.js { render partial: "sample_xls" }
-        format.xls
+         format.csv { send_data @products.to_csv }
   end
  end
 

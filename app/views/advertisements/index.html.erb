@@ -40,7 +40,7 @@
 
 
 <% @advertisements.each do |k| %>
-  <div class="card col-lg-4">
+  <div class="card col-lg-4" >
     <div class="cardHeader">
       <center>
         <strong><%= k.title%></strong>
@@ -57,7 +57,7 @@
     </div>
     <div class="cardBody">
     <div class="row">
-         <div class="col-md-12">
+         <div class="col-md-12" >
          <div class="col-md-4">
               <% if k.images.present?%>
       <% k.images.each do |k|%>
@@ -76,7 +76,7 @@
     </div>
    
     </div>
-    <div class="cardFooter">
+    <div class="cardFooter" style="word-break: break-all;">
       <p><strong>
        <%= k.description%><br />
        <a href="https://<%= k.web_url%>" target="_blank"><%= k.web_url%></a>

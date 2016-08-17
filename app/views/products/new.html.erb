@@ -142,41 +142,7 @@
   </div>
 <%end%>
  </div>
- <div class="container">
-  <div class="row">
-    <div class="col-lg-12 col-xs-12 col-sm-12">
-      <h3 style="color:#00BFFF;">Upload NEW PRODUCTS <hr style="border-color:#00BFFF;"></h3>
-    </div>
-  </div>
 
-    <div class="row">
-    <div class="col-lg-2 col-xs-4 col-sm-4 labelDiv">
-          <div class="label_new">
-            <span class="labelText"><strong>Upload</strong></span>
-          </div>
-
-    </div>
-    <%= form_tag @product, multipart: true do %>   
-    <%= hidden_field_tag :file_upload, true%>
-    <div class="col-lg-6 col-xs-8 col-sm-8 inputSizing">
-     
-    
-       <%= file_field_tag :file, id: "upload", class: "btn btn-default" %>   
-       
-    </div>
-    <div class="col-lg-4 col-xs-0 col-sm-0">
-    </div>
- 
-      <div class="col-lg-8 col-xs-12 col-sm-12 col-md-12 labelDiv">
-      <center>
-      <%= submit_tag "Import", class: "btn btn-primary" %> 
-      <%= link_to 'Cancel', products_path,class: "btn btn-default", style: "margin-left:5px;" %>
-      </center>
-    </div>
-    <div class="col-lg-4 col-xs-0 col-sm-0 col-md-0"></div>
-   </div>
-<% end %>
-  </div>
 
 
 
