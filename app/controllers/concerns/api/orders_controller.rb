@@ -1,7 +1,7 @@
 class Api::OrdersController < Api::ApiController
  
 
- def create_order
+ def place_order
  	begin
  		order = current_user.create_user_order(params)
  		msg = {status: STATUS_SUCCESS, message: SUCCESS_MESSAGE}
