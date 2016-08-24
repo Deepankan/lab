@@ -13,7 +13,7 @@ class Api::OrdersController < Api::ApiController
  end
 
 
- def place_order
+ def get_order
  	begin
  		order = current_user.get_list_order
  		msg = {status: STATUS_SUCCESS, order: order, message: SUCCESS_MESSAGE}
