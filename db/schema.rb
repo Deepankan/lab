@@ -33,8 +33,9 @@ ActiveRecord::Schema.define(version: 201606160525010) do
     t.datetime "start_date"
     t.datetime "end_date"
     t.json     "images"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.string   "status",      default: "inactive"
   end
 
   create_table "cities", force: :cascade do |t|
@@ -50,6 +51,27 @@ ActiveRecord::Schema.define(version: 201606160525010) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.integer  "user_id"
+  end
+
+  create_table "order_product_details", force: :cascade do |t|
+    t.integer  "order_id"
+    t.integer  "product_id"
+    t.integer  "quantity"
+    t.decimal  "price",      precision: 5, scale: 2
+    t.decimal  "sub_total"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "dealer_id"
+    t.integer  "order_no"
+    t.decimal  "total_amount", precision: 5, scale: 2
+    t.datetime "date"
+    t.integer  "status"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
   end
 
   create_table "product_details", force: :cascade do |t|
