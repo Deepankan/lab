@@ -8,24 +8,28 @@
 <div class="col-md-3">
  <form class="navbar-form navbar-left" role="search"> 
  <% if @role != ADMIN%>
-  <%= link_to 'New Product', new_product_path,class: "btn btn-primary" %>
+   <%= link_to 'New Product', new_product_path,class: "btn btn-primary" %>
+   <%= link_to 'Mass Import',  "#",class: "btn btn-primary", "data-toggle": "modal", "data-target" => "#myModal" %>
+    
 <%end%>
 </form>
 </div>
 
-  <div class="col-md-2">
-       <form class="navbar-form navbar-left" role="search"> 
+  <div class="col-md-6">
+      <!--  <form class="navbar-form navbar-left" role="search"> 
         <div class="form-group ">  
-          <%= text_field_tag "search",nil,class: "form-control search", id: "search",placeholder: "Search by product Name/Code"%>
+          < %= text_field_tag "search",nil,class: "form-control search", id: "search",placeholder: "Search by product Name/Code"%>
         </div>  
-        </form>
+        </form> -->
    
     </div>
-    <div class="col-md-4"></div>
+    
     <div class="col-md-3">
-      <form class="navbar-form navbar-left" role="search"> 
-      <%= link_to "Show All",all_product_path(comapny_id: params[:comapny_id]),class: "btn btn-default pull-right showAllBtn", style: ""%>
-      </form>
+   <!--    <form class="navbar-form navbar-left" role="search"> 
+      < %= link_to "Show All",all_product_path(comapny_id: params[:comapny_id]),class: "btn btn-default pull-right showAllBtn", style: ""%>
+      </form> -->
+         <form class="navbar-form navbar-left" role="search"> 
+       <%= text_field_tag "search",nil,class: "form-control search", id: "search",placeholder: "Search by product Name/Code", style: "width: 130%;"%></form>
     </div>
 
 </div>
@@ -34,6 +38,15 @@
   
   <%= render partial: "product_table"%>
 </div>
+
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <%= render partial: "new_product"%>
+      
+    </div>
+  </div>
 
 </div>
 
