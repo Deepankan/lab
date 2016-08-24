@@ -77,7 +77,9 @@ class User < ActiveRecord::Base
  end 
  
  def get_order_product_detail(product_detail)
-  product_detail.map{|k| {id: k.id, product_name: k.product.product_name, quantity: k.quantity, price: k.price, sub_total: k.sub_total}}
+  product_detail.map{|k| {id: k.id, product_name: k.product.product_name, quantity: k.quantity,\
+                          price: k.price, sub_total: k.sub_total, pakaging: k.product.pakaging, grade: k.product.grade,\
+                          formula: k.product.formula, molar_mass: k.product.molar_mass}}
  end
    
 end
