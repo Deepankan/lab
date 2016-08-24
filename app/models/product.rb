@@ -1,8 +1,8 @@
 class Product < ActiveRecord::Base
-	belongs_to :user
+belongs_to :user
 acts_as_paranoid
 mount_uploaders :chemical_images, ChemicalImageUploader
-
+has_many :order_product_details
 def self.get_product_detail(user,count,  offset, search)
 	offset  ||= 0
     count ||= 50

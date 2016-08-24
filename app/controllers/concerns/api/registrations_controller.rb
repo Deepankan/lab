@@ -55,7 +55,7 @@ class Api::RegistrationsController < Api::ApiController
   # URL: /api/sign_in => POST request
   # Input: email/user_name/mobile_no and password 
   # Output: success or unsuccess message
-  def sign_in
+  def sign_in 
       if params[:user] and params[:password] and (user = (User.find_by_email(params[:user])  or User.find_by_mobile_no(params[:user]))) and user.status == true and [DEALER,CUSTOMER].include?(user.role.role_type)
   
       #cipher = Gibberish::AES.new(user.security_token)  

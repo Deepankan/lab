@@ -20,7 +20,7 @@ Rails.application.routes.draw do
  get 'dashboards/list_company' => 'dashboards#list_company' , as: :list_company
  get 'dashboards/change_status_company' => 'dashboards#change_status_company' , as: :change_status_company
  get 'advertisements/change_status/:id' => 'advertisements#change_status' , as: :change_status
- # get 'product_details/index' => 'product_details#index', as: :company_root
+ #get 'product_details/index' => 'product_details#index', as: :company_root
  get 'product_details/edit_pricing/:id' => 'product_details#edit_pricing',as:  :get_pricing
  get 'product_details/delete_pricing/:id' => 'product_details#delete_pricing',as:  :delete_pricing
  patch 'product_details/update_pricing/:id' => 'product_details#update_pricing' , as: :update_pricing
@@ -99,6 +99,8 @@ end
          post '/update_advertisement' => 'advertisements#update_advertisement'
          delete '/delete_advertisement' => 'advertisements#delete_advertisement'
          get '/get_dealer' => 'visitors#get_dealer' 
+         post '/create_order' => 'orders#create_order' 
+         get '/get_order' => 'orders#get_order' 
   end
 
   #------------------------------------------------------------------------------------

@@ -14,6 +14,9 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :user_profile
   scope :get_company_name, -> {where(role_id: Role.find_by_role_type(COMPANY))}
   scope :get_dealer, -> {where(role_id: Role.find_by_role_type(DEALER))}
+
+  has_many :orders
+
   def get_role
     self.role.role_type
   end
@@ -53,5 +56,28 @@ class User < ActiveRecord::Base
   def self.get_dealer_info
     dealer = User.get_dealer().includes(:user_profile).map{|h| {id: h.id, name: h.user_profile.name, email: h.email, mobile_no: h.mobile_no, city: h.user_profile.city.city}}      
   end
+
+
+ def create_user_order(params)
+      self.orders.create(params.require(:order).permit!)
+ end
+
+
+ def orders
+  Order.where(dealer_id: self.id)
+ end
+
+
+ def get_list_order
+  self.orders.map{|h| {id: h.id, order_no: h.order_no, total_amount: h.total_amount, status: get_status(h.status), order_product_detail: get_order_product_detail(h.order_product_details) }}
+ end
+  
+ def get_status(value)
+  STATUS_ORDER.invert[value]
+ end 
+ 
+ def get_order_product_detail(product_detail)
+  product_detail.map{|k| {id: k.id, product_name: k.product.product_name, quantity: k.quantity, price: k.price, sub_total: k.sub_total}}
+ end
    
 end
