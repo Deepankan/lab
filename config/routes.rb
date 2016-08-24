@@ -102,7 +102,7 @@ end
          delete '/delete_advertisement' => 'advertisements#delete_advertisement'
          get '/get_dealer' => 'visitors#get_dealer' 
          post '/create_order' => 'orders#create_order' 
-         get '/get_order' => 'orders#get_order' 
+         get '/place_order' => 'orders#place_order' 
   end
 
   #------------------------------------------------------------------------------------
