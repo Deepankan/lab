@@ -29,4 +29,15 @@ class Api::ApiController < ActionController::Base
     end
   end
 
+
+  def get_error_message(val)
+   errors = []
+   val.each do |key, array|
+     array.each do |h|
+       errors << h
+     end
+   end
+   errors
+  end
+
 end

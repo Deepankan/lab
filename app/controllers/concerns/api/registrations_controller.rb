@@ -5,6 +5,8 @@ class Api::RegistrationsController < Api::ApiController
   # URL: /api/registrations/sign_in => PUT request
   # Input: email/user_name/mobile_no and password 
   # Output: success or unsuccess message
+  include GeneralQuery
+
   def get_city_role
     city = City.get_list_city
     role = Role.get_list_role
@@ -27,7 +29,7 @@ class Api::RegistrationsController < Api::ApiController
        params[:password] == params[:confirm_password] and params[:user_name].present?\
       and params[:city_id].present? and params[:name].present?  and params[:role_id].present?
       begin
-       user = User.create(email: params[:email],password: params[:password], encrypted_password: BCrypt::Password.create(params[:password]), user_name: params[:user_name], mobile_no: params[:mobile_no], role_id: params[:role_id], status: STATUS_SUCCESS)
+      if  user = User.create(email: params[:email],password: params[:password], encrypted_password: BCrypt::Password.create(params[:password]), user_name: params[:user_name], mobile_no: params[:mobile_no], role_id: params[:role_id], status: STATUS_SUCCESS)
        token = AccessToken.create!
        user.access_tokens << token
        
@@ -37,6 +39,10 @@ class Api::RegistrationsController < Api::ApiController
         status = STATUS_SUCCESS
         msg = "User created sucessfully."
         @msg = {status: status,token: token.token, user_type: user.role.role_type, profile: user.get_profile,  message: msg}
+     else
+       error = get_error_message(user.errors.messages)
+       @msg = {status: STATUS_ERROR, message: error }
+     end   
       rescue Exception => e
          p "------------------------Error------------------------------------------"
 
