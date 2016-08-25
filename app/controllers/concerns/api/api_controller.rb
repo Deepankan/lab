@@ -37,7 +37,7 @@ class Api::ApiController < ActionController::Base
        errors << h
      end
    end
-   errors
+   errors.join(",")
   end
 
 end
