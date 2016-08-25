@@ -5,7 +5,6 @@ class Api::RegistrationsController < Api::ApiController
   # URL: /api/registrations/sign_in => PUT request
   # Input: email/user_name/mobile_no and password 
   # Output: success or unsuccess message
-  include GeneralQuery
 
   def get_city_role
     city = City.get_list_city
