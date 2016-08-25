@@ -28,21 +28,21 @@ class Api::RegistrationsController < Api::ApiController
        params[:password] == params[:confirm_password] and params[:user_name].present?\
       and params[:city_id].present? and params[:name].present?  and params[:role_id].present?
       begin
-      if  user = User.new(email: params[:email],password: params[:password], encrypted_password: BCrypt::Password.create(params[:password]), user_name: params[:user_name], mobile_no: params[:mobile_no], role_id: params[:role_id], status: STATUS_SUCCESS)
-       user.save
-       token = AccessToken.create!
-       user.access_tokens << token
-       
-       user.devise_infos.create(devise_id: params[:devise_id], gcm_key: params[:gcm_key], apn_key: params[:apn_key])     
-       user.create_user_profile(city_id: params[:city_id], name: params[:name], address: params[:address],\
-         company_code: params[:company_code], fax: params[:fax])
-        status = STATUS_SUCCESS
-        msg = "User created sucessfully."
-        @msg = {status: status,token: token.token, user_type: user.role.role_type, profile: user.get_profile,  message: msg}
-     else
-       error = get_error_message(user.errors.messages)
-       @msg = {status: STATUS_ERROR, message: error }
-     end   
+        user = User.new(email: params[:email],password: params[:password], encrypted_password: BCrypt::Password.create(params[:password]), user_name: params[:user_name], mobile_no: params[:mobile_no], role_id: params[:role_id], status: STATUS_SUCCESS)
+       if user.save
+         token = AccessToken.create!
+         user.access_tokens << token
+         
+         user.devise_infos.create(devise_id: params[:devise_id], gcm_key: params[:gcm_key], apn_key: params[:apn_key])     
+         user.create_user_profile(city_id: params[:city_id], name: params[:name], address: params[:address],\
+           company_code: params[:company_code], fax: params[:fax])
+          status = STATUS_SUCCESS
+          msg = "User created sucessfully."
+          @msg = {status: status,token: token.token, user_type: user.role.role_type, profile: user.get_profile,  message: msg}
+       else
+         error = get_error_message(user.errors.messages)
+         @msg = {status: STATUS_ERROR, message: error }
+       end   
       rescue Exception => e
          p "------------------------Error------------------------------------------"
 
