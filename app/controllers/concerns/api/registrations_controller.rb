@@ -42,7 +42,7 @@ class Api::RegistrationsController < Api::ApiController
 
          p "------------------------------__#{e}------------------------------------"
 
-         p "---------------------------End----------------------------------------"
+         p "---------------------------End-------------------"
          user.really_destroy! if user and (message = user.errors.full_messages if user.errors.full_messages.present?)
          token.destroy if token and (message = token.errors.full_messages if token.errors.full_messages.present?)
          user.devise_infos.destroy_all if user and user.devise_infos 
