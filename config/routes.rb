@@ -35,8 +35,9 @@ Rails.application.routes.draw do
  post 'products/new_upload_product' => 'products#new_upload_product', as: :new_upload_product
  get 'products/sample_xls' => 'products#sample_xls', as: :sample_xls
 
- get 'dashboards/about_us' => 'dashboards#about_us', as: :about_us
-
+ get '/about_us' => 'dashboards#about_us', as: :about_us
+ get '/contact_us' => 'dashboards#contact_us', as: :contact_us
+ 
 
 resources :product_details
 
