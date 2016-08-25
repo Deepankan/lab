@@ -78,7 +78,7 @@ class User < ActiveRecord::Base
 
 
  def get_list_order
-  self.dealer_orders.map{|h| {id: h.id, order_no: h.order_no, total_amount: h.total_amount, status: get_status(h.status), order_product_detail: get_order_product_detail(h.order_product_details) }}
+  self.dealer_orders.map{|h| {id: h.id, order_no: h.order_no, total_amount: h.total_amount, status: get_status(h.status), user_name: h.user.user_profile.name, order_product_detail: get_order_product_detail(h.order_product_details) }}
  end
   
  def get_status(value)
