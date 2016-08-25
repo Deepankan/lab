@@ -6,6 +6,11 @@ class Api::OrdersController < Api::ApiController
  		order = current_user.create_user_order(params)
  		msg = {status: STATUS_SUCCESS, message: SUCCESS_MESSAGE}
  	rescue Exception => e
+ 		p "------------------------Error------------------------------------------"
+
+         p "------------------------------__#{e}------------------------------------"
+
+         p "---------------------------End-------------------"
  		msg = {status: STATUS_ERROR, message: "Something went wrong"}
  	end
 
@@ -15,6 +20,11 @@ class Api::OrdersController < Api::ApiController
 
  def get_order
  	begin
+ 		p "------------------------Error------------------------------------------"
+
+         p "------------------------------__#{e}------------------------------------"
+
+         p "---------------------------End-------------------"
  		order = current_user.get_list_order
  		msg = {status: STATUS_SUCCESS, order: order, message: SUCCESS_MESSAGE}
  	rescue Exception => e
