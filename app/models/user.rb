@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   has_many :orders
 
   validates :user_name, presence: {message: "User Name can't be blank"}
-  validates :mobile_no, presence: { message: "Mobile Number can't be blank" }, length: { maximum: 10, message: "Mobile Number can't be greater than 10 " }, uniqueness: {message: "Mobile Number already registered."} 
+  validates :mobile_no, presence: { message: "Mobile Number can't be blank" }, length: { maximum: 10, message: "Mobile Number can't be greater than 10 " }, uniqueness: {message: "Mobile Number is already registered."} 
   validates :email, presence: { message: "Email Id can't be blank" }, uniqueness: {message: "Email Id must be unique"} 
   validates :role_id, presence: {message: "Role is not assigned"}
 
