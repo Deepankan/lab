@@ -25,3 +25,6 @@ OPEN  = 1
 STATUS_ORDER = { "Open" => 1, "Accept" => 2  ,  "Reject" => 3 , "Processed" => 4,  "Close" => 5 }
 
 SUCCESS_MESSAGE = "Data process successfully"
+
+
+FORGET_PASS_EMAIL = "Email send successfully."

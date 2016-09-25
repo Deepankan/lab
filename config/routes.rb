@@ -87,7 +87,7 @@ end
   #     #   end
 
 
-   #-------------Routes for Inmegh API Version 1 -------------------------------------------------------
+   #-------------Routes for LabCat API Version 1 -------------------------------------------------------
 
   
   namespace :api, defaults: {format: 'json'} do
@@ -106,6 +106,9 @@ end
          get '/get_dealer' => 'visitors#get_dealer' 
          post '/place_order' => 'orders#place_order' 
          get '/get_order' => 'orders#get_order' 
+         post '/change_order_status' => 'orders#change_order_status'
+         get 'user_order' => 'orders#user_order'
+
   end
 
   #------------------------------------------------------------------------------------

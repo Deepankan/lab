@@ -34,4 +34,34 @@ class Api::OrdersController < Api::ApiController
  	render json: msg
  end
 
+ def change_order_status
+ 	begin
+ 	  order = Order.change_status(params)	
+ 	  msg = {status: STATUS_SUCCESS, message: "Order placed successfully.."}	
+ 	rescue Exception => e
+ 	  p "------------------------Error------------------------------------------"
+
+      p "------------------------------__#{e}------------------------------------"
+
+      p "---------------------------End-------------------"
+ 	  msg = {status: STATUS_ERROR, message: "Something went wrong"}
+ 	end
+ 	render json: msg
+ end
+
+ # def user_order
+ # 	begin
+ 	  	
+ # 	  msg = {status: STATUS_SUCCESS,order: current_user.get_user_order, message: "Order placed successfully.."}	
+ # 	rescue Exception => e
+ # 	  p "------------------------Error------------------------------------------"
+
+ #      p "------------------------------__#{e}------------------------------------"
+
+ #      p "---------------------------End-------------------"
+ # 	  msg = {status: STATUS_ERROR, message: "Something went wrong"}
+ # 	end
+ # 	render json: msg
+ # end
+
 end
