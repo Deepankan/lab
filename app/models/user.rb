@@ -22,7 +22,6 @@ class User < ActiveRecord::Base
 
   validates :user_name, presence: {message: "User Name can't be blank"}
   validates :mobile_no, presence: { message: "Mobile Number can't be blank" }, length: { maximum: 10, message: "Mobile Number can't be greater than 10 " }, uniqueness: {message: "Mobile Number is already registered."} 
-  validates :email, presence: { message: "Email Id can't be blank" }, uniqueness: {message: "Email Id must be unique"} 
   validates :role_id, presence: {message: "Role is not assigned"}
 
   def get_role
@@ -95,6 +94,21 @@ class User < ActiveRecord::Base
   product_detail.map{|k| {id: k.id, product_name: k.product.product_name, quantity: k.quantity,\
                           price: k.price, sub_total: k.sub_total, pakaging: k.product.pakaging, grade: k.product.grade,\
                           formula: k.product.formula, molar_mass: k.product.molar_mass}}
+ end
+
+ def send_notification(order)
+   case self.role.role_type
+   when CUSTOMER
+    message = "You got new order from #{self.user_name}, for amount #{order.total_amount}"
+    usr = order.dealer 
+   when DEALER
+    usr = order.user 
+    message = "Your order from dealer #{self.user_name}, has been #{STATUS_ORDER.invert[order.status]}"
+   end
+   registration_ids = usr.devise_infos.last(3).map{|h| h.devise_id}
+   options = {data: {body: message}, collapse_key: "updated_score"}
+   fcm = FCM.new(FCM_NOTIFICATION) 
+   response = fcm.send(registration_ids, options)     
  end
    
 end

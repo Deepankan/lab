@@ -1,6 +1,5 @@
 class Api::RegistrationsController < Api::ApiController
   before_action :restrict_access, except: [ :sign_in, :forgot_password, :sign_up, :get_city_role]
-
   # Objective: This is method for signin
   # URL: /api/registrations/sign_in => PUT request
   # Input: email/user_name/mobile_no and password 
@@ -29,19 +28,22 @@ class Api::RegistrationsController < Api::ApiController
       and params[:city_id].present? and params[:name].present?  and params[:role_id].present?
       begin
         user = User.new(email: params[:email],password: params[:password], encrypted_password: BCrypt::Password.create(params[:password]), user_name: params[:user_name], mobile_no: params[:mobile_no], role_id: params[:role_id], status: STATUS_SUCCESS)
+      binding.pry
        if user.save
          token = AccessToken.create!
          user.access_tokens << token
          
-         user.devise_infos.create(devise_id: params[:devise_id], gcm_key: params[:gcm_key], apn_key: params[:apn_key])     
+         user.devise_infos.create(devise_id: params[:devise_id], fcm_key: params[:fcm_key], apn_key: params[:apn_key])     
          user.create_user_profile(city_id: params[:city_id], name: params[:name], address: params[:address],\
            company_code: params[:company_code], fax: params[:fax])
           status = STATUS_SUCCESS
           msg = "User created sucessfully."
           @msg = {status: status,token: token.token, user_type: user.role.role_type, profile: user.get_profile,  message: msg}
        else
-         error = get_error_message(user.errors.messages)
-         @msg = {status: STATUS_ERROR, message: error }
+         #error = get_error_message(user.errors.messages)
+         temp_message = {}
+         user.errors.messages.each{|h,v| temp_message[h] =  v[0]}
+         @msg = {status: STATUS_ERROR, message: temp_message }
        end   
       rescue Exception => e
          p "------------------------Error------------------------------------------"
@@ -76,7 +78,7 @@ class Api::RegistrationsController < Api::ApiController
           # user.api_key << token
           user.access_tokens << token
           user.save
-          user.devise_infos.create(devise_id: params[:devise_id], gcm_key: params[:gcm_key], apn_key: params[:apn_key])     
+          user.devise_infos.create(devise_id: params[:devise_id], fcm_key: params[:fcm_key], apn_key: params[:apn_key])     
           msg = {status: 1, token: token.token, user_type: user_type, profile: user.get_profile, message: LOGIN_MSG}
           # msg =  token.token
           render json: msg

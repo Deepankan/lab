@@ -45,33 +45,33 @@ ActiveRecord::Schema.define(version: 201606160525010) do
   end
 
   create_table "devise_infos", force: :cascade do |t|
-    t.string   "devise_id",  limit: 100
-    t.string   "gcm_key",    limit: 500
+    t.string   "fcm_key",    limit: 500
     t.string   "apn_key",    limit: 500
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.integer  "user_id"
+    t.text     "devise_id"
   end
 
   create_table "order_product_details", force: :cascade do |t|
     t.integer  "order_id"
     t.integer  "product_id"
     t.integer  "quantity"
-    t.decimal  "price",      precision: 5, scale: 2
+    t.decimal  "price"
     t.decimal  "sub_total"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "dealer_id"
     t.integer  "order_no"
-    t.decimal  "total_amount", precision: 5, scale: 2
+    t.decimal  "total_amount"
     t.datetime "date"
     t.integer  "status"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "product_details", force: :cascade do |t|
@@ -162,6 +162,5 @@ ActiveRecord::Schema.define(version: 201606160525010) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["mobile_no"], name: "index_users_on_mobile_no", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-  add_index "users", ["user_name"], name: "index_users_on_user_name", unique: true, using: :btree
 
 end

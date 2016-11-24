@@ -4,6 +4,7 @@ class Api::OrdersController < Api::ApiController
  def place_order
  	begin
  		order = current_user.create_user_order(params)
+ 		notification = current_user.send_notification(order)
  		msg = {status: STATUS_SUCCESS, message: SUCCESS_MESSAGE}
  	rescue Exception => e
  		p "------------------------Error------------------------------------------"

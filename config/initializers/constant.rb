@@ -28,3 +28,5 @@ SUCCESS_MESSAGE = "Data process successfully"
 
 
 FORGET_PASS_EMAIL = "Email send successfully."
+
+FCM_NOTIFICATION = "AIzaSyDYzRSOOIyDCh-WaLDZ4NuQQE1-wFUQV44"
