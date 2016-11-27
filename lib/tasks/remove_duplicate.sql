@@ -1,6 +1,6 @@
 
 
-
+p ----------------------------- Remove Advertisement Duplicate -----------------------
 
    CREATE OR REPLACE FUNCTION remove_advertisement_duplicate() 
       RETURNS void AS $$
@@ -10,7 +10,7 @@
     $$ LANGUAGE plpgsql;
 
 
-
+p ----------------------------- Remove Product Duplicate -----------------------
        CREATE OR REPLACE FUNCTION remove_products_duplicate() 
 	    RETURNS void AS $$
 		    BEGIN
@@ -29,50 +29,6 @@
 		    END;
 	    $$ LANGUAGE plpgsql;
     
-
-
-
-	    CREATE OR REPLACE FUNCTION search_test41( count integer,
-	       start integer,
-	       search  varchar
-	       )
-			     RETURNS setof products
-			       AS $$
-			 
-				    BEGIN
-				  
-
-		                RETURN QUERY select * from products  where ( lower(product_name) LIKE  '%'||$3||'%') 
-		                 or (lower(product_code) LIKE  '%'||$3||'%') LIMIT $1 OFFSET $2;   
-
-
-				    END;
-				     $$ LANGUAGE plpgsql;
-
-
-	    CREATE OR REPLACE FUNCTION search_test41( count integer,
-	       start integer,
-	       search  varchar
-	       )
-			     RETURNS setof products
-			       AS $$
-			 
-				    BEGIN
-				  
-
-		                 RETURN QUERY  select p.id,up.name,p.product_name,p.product_code,p.grade,p.formula,p.molar_mass,p.chemical_images,p.image_url,p.pakaging,p.price from products as p inner join users as u on p.user_id = u.id inner join user_profiles as up on up.user_id = u.id
-
-				      where ( lower(p.product_name) LIKE  '%'||$3||'%') 
-		                 or (lower(p.product_code) LIKE  '%'||$3||'%') LIMIT $1 OFFSET $2;
-
-
-				    END;
-				     $$ LANGUAGE plpgsql;
-
-
-select p.id,up.name,p.product_name,p.product_code,p.grade,p.formula,p.molar_mass,p.chemical_images,p.image_url,p.pakaging,p.price from products as p inner join users as u on p.user_id = u.id inner join user_profiles as up on up.user_id = u.id;
-
-
 
 
 
@@ -98,3 +54,31 @@ select p.id,up.name,p.product_name,p.product_code,p.grade,p.formula,p.molar_mass
 
 				    END;
 				     $$ LANGUAGE plpgsql;
+
+    
+p ------------------ Search Product with Exact search --------------------------------------
+
+
+      CREATE OR REPLACE FUNCTION  search_product( count integer,
+	       start integer,
+	       search  varchar
+	       )
+			     RETURNS  TABLE (id int, company_name varchar, product_name varchar ,product_code varchar,grade varchar,formula varchar,molar_mass varchar
+                            ,image json,image_url varchar,pakaging varchar,price double precision)
+			       AS $$
+			 
+				    BEGIN
+				  
+
+		                 RETURN QUERY  select p.id,up.name,p.product_name,p.product_code,p.grade,p.formula,p.molar_mass,p.chemical_images,p.image_url,p.pakaging,p.price from products as p inner join users as u on p.user_id = u.id inner join user_profiles as up on up.user_id = u.id
+
+				      where ( lower(p.product_name) LIKE  '%'||$3||'%') 
+		                 or (lower(p.product_code) LIKE  '%'||$3||'%') 
+
+
+		                 ORDER BY CASE WHEN lower(p.product_name) like $3||'%' THEN 1 ELSE 2 END LIMIT $1 OFFSET $2;
+
+
+	 END;
+				     $$ LANGUAGE plpgsql;
+

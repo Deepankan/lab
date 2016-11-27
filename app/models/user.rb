@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
-
+ include GeneralQuery
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
@@ -76,25 +76,29 @@ class User < ActiveRecord::Base
  end
 
 
- def get_list_order
+ def get_list_order(params)
+  
   case self.role.role_type
   when CUSTOMER
     order = self.orders
   when DEALER
     order = self.dealer_orders
   end
-  order.map{|h| {id: h.id, order_no: h.order_no, total_amount: h.total_amount, status: get_status(h.status), user_name: h.user.user_profile.name, order_product_detail: get_order_product_detail(h.order_product_details) }}
+  order = params["modified_at"].present? ? order.where('updated_at >= ?', DateTime.parse(params["modified_at"])) : order
+  
+  order.map{|h| {order_id: h.id, order_no: h.order_no, total_amount: h.total_amount, status: h.status, user_name: h.user.user_profile.name, order_product_detail: get_order_product_detail(h.order_product_details, h.id), order_at: get_date_format(h.created_at) }}
  end
   
  def get_status(value)
   STATUS_ORDER.invert[value]
  end 
  
- def get_order_product_detail(product_detail)
-  product_detail.map{|k| {id: k.id, product_name: k.product.product_name, quantity: k.quantity,\
+ def get_order_product_detail(product_detail, order_id)
+  product_detail.map{|k| {product_detail_id: k.id, product_name: k.product.product_name, quantity: k.quantity,\
                           price: k.price, sub_total: k.sub_total, pakaging: k.product.pakaging, grade: k.product.grade,\
-                          formula: k.product.formula, molar_mass: k.product.molar_mass}}
+                          formula: k.product.formula, molar_mass: k.product.molar_mass, order_id: order_id} if k.product}
  end
+
 
  def send_notification(order)
    case self.role.role_type
@@ -105,9 +109,11 @@ class User < ActiveRecord::Base
     usr = order.user 
     message = "Your order from dealer #{self.user_name}, has been #{STATUS_ORDER.invert[order.status]}"
    end
-   registration_ids = usr.devise_infos.last(3).map{|h| h.devise_id}
+
+   registration_ids = usr.devise_infos.last(3).map{|h| h.fcm_key}
    options = {data: {body: message}, collapse_key: "updated_score"}
    fcm = FCM.new(FCM_NOTIFICATION) 
+   
    response = fcm.send(registration_ids, options)     
  end
    

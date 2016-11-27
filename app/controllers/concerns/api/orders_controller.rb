@@ -22,8 +22,8 @@ class Api::OrdersController < Api::ApiController
  def get_order
  	begin
  		
- 		order = current_user.get_list_order
- 		msg = {status: STATUS_SUCCESS, order: order, message: SUCCESS_MESSAGE}
+ 		order = current_user.get_list_order(params)
+ 		msg = {status: STATUS_SUCCESS, order: order, time: Time.now, message: SUCCESS_MESSAGE}
  	rescue Exception => e
  		p "------------------------Error------------------------------------------"
 
