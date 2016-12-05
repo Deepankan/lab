@@ -9,6 +9,22 @@ class DashboardsController < ApplicationController
       
 	end
 
+	def list_products
+
+	 @search = params[:search]	
+	 if @search
+      @products = Product.where("lower(product_name) like ? or lower(product_code) like ?", "%#{params[:search].downcase}%","%#{params[:search].downcase}%").paginate(:page => params[:page], :per_page => 10)
+     else
+      @products = Product.paginate(:page => params[:page], :per_page => 10)	
+     end
+    end
+
+    def search
+
+       @search = params[:search]	
+      @products = Product.where("lower(product_name) like ? or lower(product_code) like ?", "%#{params[:search].downcase}%","%#{params[:search].downcase}%").paginate(:page => params[:page], :per_page => 10)
+    end
+
 	def list_company
 		if @role == ADMIN
 		  @list_company = User.get_company_name.includes(:products,:advertisements)

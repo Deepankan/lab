@@ -5,6 +5,7 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
+ 
       if params[:comapny_id].present?  
          @products = @user.products.paginate(:page => params[:page], :per_page => 10)
       else
@@ -20,6 +21,8 @@ class ProductsController < ApplicationController
         @products = current_user.products.where("lower(product_name) like ? or lower(product_code) like ?", "%#{params[:search].downcase}%","%#{params[:search].downcase}%").paginate(:page => params[:page], :per_page => 10)
         end
   end
+
+
 
   def all_product
        if params[:comapny_id].present?

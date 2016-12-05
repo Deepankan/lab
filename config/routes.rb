@@ -16,6 +16,9 @@ Rails.application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
+
+ get 'dashboards/list_products'  => 'dashboards#list_products' , as: :product_list
+ get 'dashboards/search' => 'dashboards#search'
  get 'admins/index' => 'admins#index', as: :admin_root
  get 'dashboards/list_company' => 'dashboards#list_company' , as: :list_company
  get 'dashboards/change_status_company' => 'dashboards#change_status_company' , as: :change_status_company
@@ -44,7 +47,10 @@ resources :product_details
  authenticated :user do
   root :to => 'dashboards#index', as: :authenticated_root
 end
- root to: redirect('/users/sign_in'), as: :sign_out
+
+  root 'dashboards#visitors'
+ #root to: redirect('/users/sign_in'), as: :sign_out
+
  resources :advertisements
   resources :products
   # Example resource route with options:

@@ -3,7 +3,7 @@
 <div class="container" style="overflow:hidden;">
 <div class="row">
     <div class="col-md-3">
- <%if @role != ADMIN%>
+ <%if @role and @role != ADMIN%>
        <%= link_to "New Advertisement", "#", class: "btn btn-primary", "data-toggle": "modal", "data-target" => "#myModal", style: "margin: 11%; margin-right: 44%;"%>
        <%else%>
        <label>Not allowed to create new Advertisement</label>
@@ -44,7 +44,7 @@
     <div class="cardHeader">
       <center>
         <strong><%= k.title%></strong>
-        <%if @role != ADMIN%>
+         <%if @role and @role != ADMIN%>
            <%= link_to k,method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-danger editButton" do %>
               <i class="fa fa-trash" aria-hidden="true" style="margin-left: 0px;"></i>
          <% end %>  

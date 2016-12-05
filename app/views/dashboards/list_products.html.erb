@@ -1,0 +1,59 @@
+
+<div class="container">
+  <div class="row" style="padding: 1%;">
+    <div class="col-lg-6">
+    <a href="<%= root_path%>">
+       <%= image_tag('/assets/Logo2-01.png',  size: "80x80", class: "img-circle") %>
+      <strong class="labs">Labs</strong><span class="cat">Cat</span>
+
+     </a>
+
+    </div>
+
+    <div class="col-lg-5">
+      <%= text_field_tag :search,@search, autofocus: true,:id => "search1", class: "form-control input-lg", placeholder: "Enter Product Name/Code..", style: "margin-left: -74%; width: 90%;margin-top: 2%;text-align: center" %>  
+    </div>  
+    <div class="col-lg-1">
+      <strong class="labs" style=""><%= link_to "Sign In", new_user_session_path, style: "color: #FA4E7B;" %>
+      </strong> 
+    </div>  
+  </div>
+</div>    
+
+
+<br />
+<div class="clearfix"></div>
+<div id="product_table">
+  
+  <%= render partial: "products/product_table"%>
+</div>
+
+
+
+
+<style type="text/css">
+/*tr { border: solid thin; }*/
+/*td { border: 2px solid thin; }*/
+
+</style>
+<script type="text/javascript">
+$(document).ready(function(){
+  $('#search1').keyup(function(){
+   search = $('#search1').val()
+   if(search.length >= 3  || search.length == 0 ){
+          $.ajax({
+      async : true,
+      type : 'GET',
+      url : "/dashboards/search",
+      data : { "search": search
+                }
+       
+    });
+
+   }
+});
+
+ 
+});
+
+</script>

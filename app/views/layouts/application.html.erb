@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="/assets/editProducts.css">
 
 </head>
+<% @footer = false %>
 
 <%= render partial: "/layouts/header" if user_signed_in?%>
   <% case @role 
@@ -25,9 +26,16 @@
    when DEALER then 
    when CUSTOMER then 
    else
-     body = "login"
+     if params[:action] == "visitors" or  params[:action] == "list_products" or params[:action] == "show"
+      body = ""
+      @footer = true 
+     else
+      body = "login"
+
+     end
    end
   %>
+  
 <% content_for :body_class, body%>
 <body class="<%= yield (:body_class) %>">
 <%if user_signed_in?%>
@@ -43,10 +51,10 @@
 
 
 <%= yield %>
-
+<% if @footer == false%>
 <%= render partial: "/layouts/footer"%>
-
-
+<%end%>
+<style type="text/css"></style>
 <script src="/assets/jquery-1.12.3.min.js"></script>
 <script src="/assets/canvasjs.min.js"></script>
 <script src="/assets/bootstrap.min.js"></script>
@@ -55,5 +63,6 @@
 <script type="text/javascript" src="/assets/angular.min.js"></script>
  
 <script type="text/javascript" src="/assets/datatable.js"></script>
+
 </body>
 </html>

@@ -7,7 +7,7 @@
      <th >Package</th>
      <th >Price</th>
      <!-- <th >Show</th> -->
-     <% if @role != ADMIN%>
+     <% if @role and @role != ADMIN%>
      <th >Edit</th>
      <th >Delete</th>
      <%end%>
@@ -28,7 +28,7 @@
 
 
       </td>   -->
-     <% if @role != ADMIN%>
+     <% if @role and  @role != ADMIN%>
         <td>
          <%= link_to edit_product_path(product), class: "btn btn-primary editButton" do %>
                <strong style="font-size: 70%">Edit Product<i class="fa fa-pencil-square-o" aria-hidden="true" style="  margin-left: 7px;"></i></strong>
