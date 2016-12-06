@@ -11,15 +11,17 @@ class ProductsController < ApplicationController
       else
          @products = current_user.products.paginate(:page => params[:page], :per_page => 10)    
       end
+      
        
   end
 
   def search
-       if params[:comapny_id].present?
-        @products = @user.products.where("lower(product_name) like ? or lower(product_code) like ?", "%#{params[:search].downcase}%","%#{params[:search].downcase}%").paginate(:page => params[:page], :per_page => 10)
-       else
-        @products = current_user.products.where("lower(product_name) like ? or lower(product_code) like ?", "%#{params[:search].downcase}%","%#{params[:search].downcase}%").paginate(:page => params[:page], :per_page => 10)
-        end
+   if params[:comapny_id].present?
+     @products = @user.products.where("lower(product_name) like ? or lower(product_code) like ?", "%#{params[:search].downcase}%","%#{params[:search].downcase}%").order("case when (lower(product_name)) like '#{params[:search]}%' then 1 else 2 end, case when (lower(product_code)) like '#{params[:search]}%' then 1 else 2 end")
+   else
+     @products = current_user.products.where("lower(product_name) like ? or lower(product_code) like ?", "%#{params[:search].downcase}%","%#{params[:search].downcase}%").order("case when (lower(product_name)) like '#{params[:search]}%' then 1 else 2 end, case when (lower(product_code)) like '#{params[:search]}%' then 1 else 2 end")
+   end
+     @products = @products.paginate(:page => params[:page], :per_page => 10)
   end
 
 
