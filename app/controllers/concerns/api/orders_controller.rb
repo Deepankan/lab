@@ -23,6 +23,7 @@ class Api::OrdersController < Api::ApiController
  	begin
  		
  		order = current_user.get_list_order(params)
+
  		msg = {status: STATUS_SUCCESS, order: order, time: Time.now, message: SUCCESS_MESSAGE}
  	rescue Exception => e
  		p "------------------------Error------------------------------------------"
@@ -37,7 +38,8 @@ class Api::OrdersController < Api::ApiController
 
  def change_order_status
  	begin
- 	  order = Order.change_status(params)	
+ 	  order = Order.change_status(params, current_user)	
+
  	  msg = {status: STATUS_SUCCESS, message: "Order placed successfully.."}	
  	rescue Exception => e
  	  p "------------------------Error------------------------------------------"

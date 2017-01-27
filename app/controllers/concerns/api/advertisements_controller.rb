@@ -23,7 +23,7 @@ class Api::AdvertisementsController < Api::ApiController
 	def edit_advertisement
 		begin
 			
-			advertisement = { id: @adv.id, tilte: @adv.title, description: @adv.description, web_url: @adv.web_url, start_date: @adv.start_date, end_date: @adv.end_date}
+			advertisement = { advertisement_id: @adv.id, tilte: @adv.title, description: @adv.description, web_url: @adv.web_url, start_date: @adv.start_date, end_date: @adv.end_date}
 			@msg = {status: STATUS_SUCCESS,advertisement: advertisement, message: "Advertisement fetch successfully"}
 		rescue Exception => e
 			@msg = {status: STATUS_ERROR, message: "Something went wrong"}

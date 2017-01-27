@@ -58,4 +58,9 @@ def self.to_csv(options = {})
     end
   end
 end
+
+ def to_param
+    "#{id}-#{Product.find_by_id(id).product_code}"
+  end
+
 end

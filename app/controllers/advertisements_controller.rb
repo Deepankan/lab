@@ -43,8 +43,11 @@ class AdvertisementsController < ApplicationController
     @advertisement.status = INACTIVE
     respond_to do |format|
       if @advertisement.save
+        
         format.html { redirect_to @advertisement, notice: 'Advertisement was successfully created.' }
         format.json { render :show, status: :created, location: @advertisement }
+        message = "Heyy new advertisement: #{@advertisement.title} is added by #{current_user.user_profile.name}"
+        User.get_customer_dealer(message)
       else
         format.html { render :new }
         format.json { render json: @advertisement.errors, status: :unprocessable_entity }
@@ -55,6 +58,8 @@ class AdvertisementsController < ApplicationController
       if @role != ADMIN
          @advertisement = current_user.advertisements.create(title: params[:title], description: params[:description], web_url: params[:web_url], start_date: params[:start_date], end_date: params[:end_date], images: [params[:images]])
          if  @advertisement
+          message = "Heyy new advertisement: #{@advertisement.title} is added by #{current_user.user_profile.name}"
+          User.get_customer_dealer(message)
               redirect_to advertisements_path
          else
               redirect_to :back
@@ -83,7 +88,9 @@ class AdvertisementsController < ApplicationController
        @advertisement.end_date = params[:end_date]
        @advertisement.images =  [params[:images] ]if params[:images].present?
        @advertisement.save
-       
+       message = "Heyy  advertisement: #{@advertisement.title} is edited by #{current_user.user_profile.name}"
+ 
+       User.get_customer_dealer(message)
        redirect_to advertisements_path
     else
          flash[:error] = "Sorry invalid request. "

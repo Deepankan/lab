@@ -81,12 +81,15 @@ class User < ActiveRecord::Base
   case self.role.role_type
   when CUSTOMER
     order = self.orders
+    flag = true
   when DEALER
     order = self.dealer_orders
+    flag = false
   end
+
   order = params["modified_at"].present? ? order.where('updated_at >= ?', DateTime.parse(params["modified_at"])) : order
   
-  order.map{|h| {order_id: h.id, order_no: h.order_no, total_amount: h.total_amount, status: h.status, user_name: h.user.user_profile.name, order_product_detail: get_order_product_detail(h.order_product_details, h.id), order_at: get_date_format(h.created_at) }}
+  order.map{|h| {order_id: h.id, order_no: h.order_no, total_amount: h.total_amount, status: h.status, user_name: (flag ? h.dealer.user_profile.name : h.user.user_profile.name), order_product_detail: get_order_product_detail(h.order_product_details, h.id), order_at: get_date_format(h.created_at) }}
  end
   
  def get_status(value)
@@ -106,15 +109,28 @@ class User < ActiveRecord::Base
     message = "You got new order from #{self.user_name}, for amount #{order.total_amount}"
     usr = order.dealer 
    when DEALER
-    usr = order.user 
-    message = "Your order from dealer #{self.user_name}, has been #{STATUS_ORDER.invert[order.status]}"
-   end
 
-   registration_ids = usr.devise_infos.last(3).map{|h| h.fcm_key}
+    usr = order.user 
+    message = "Your order from dealer #{self.user_name}, has been #{STATUS_ORDER.invert[order.status]}ed."
+   end
+   
+   User.push_notification(usr, message)
+   
+
+     
+ end
+
+ def self.push_notification(usr, message)
+  registration_ids = usr.devise_infos.last(3).map{|h| h.fcm_key}
    options = {data: {body: message}, collapse_key: "updated_score"}
    fcm = FCM.new(FCM_NOTIFICATION) 
    
-   response = fcm.send(registration_ids, options)     
+   response = fcm.send(registration_ids, options)   
+ end
+
+ def self.get_customer_dealer(message)
+
+  user = Role.where(role_type: [CUSTOMER, DEALER]).map{|h| h.users.map{|k| User.push_notification(k, message)}}
  end
    
 end

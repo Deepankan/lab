@@ -7,7 +7,9 @@ class Order < ActiveRecord::Base
       User.find_by_id(self.dealer_id)
     end
 
-    def self.change_status(params)
-    	Order.find_by_id(params[:order_id]).update(status:  params[:status])
+    def self.change_status(params, user)
+    	order = Order.find_by_id(params[:order_id])
+    	order.update(status:  params[:status])
+    	notification = user.send_notification(order)
     end
 end

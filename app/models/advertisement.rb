@@ -17,7 +17,7 @@ class Advertisement < ActiveRecord::Base
 		all_advertisements = search.present? ?  Advertisement.where("lower(title) like ?","%#{search.downcase}%").offset(offset).limit(count) : Advertisement.offset(offset).limit(count)
 		advertisement = all_advertisements.map{|h| 
 	       tmp_hash = {}.tap do |my_hash| 
-	         my_hash[:id] = h.id
+	         my_hash[:advertisement_id] = h.id
 	         my_hash[:company_name] = h.user.user_name  
 	         my_hash[:company_logo] = h.user.try(:user_profile).try(:avatar).try(:url)
 	         my_hash[:title] = h.title

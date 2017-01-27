@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 201606160525010) do
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "dealer_id"
-    t.integer  "order_no"
+    t.string   "order_no"
     t.decimal  "total_amount"
     t.datetime "date"
     t.integer  "status"

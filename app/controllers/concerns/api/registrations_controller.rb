@@ -42,7 +42,7 @@ class Api::RegistrationsController < Api::ApiController
          #error = get_error_message(user.errors.messages)
          temp_message = {}
          user.errors.messages.each{|h,v| temp_message[h] =  v[0]}
-         @msg = {status: STATUS_ERROR, message: temp_message }
+         @msg = {status: STATUS_ERROR, error_message: temp_message }
        end   
       rescue Exception => e
          p "------------------------Error------------------------------------------"
