@@ -38,10 +38,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
  gem "paranoia", "~> 2.0" #For Soft Delete
  gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
  gem 'roo'
- #gem 'puma'
+ gem 'puma'
  gem 'activerecord-import'
  gem "rmagick", :require => 'RMagick'
- #gem "rack-timeout", require:"rack/timeout/base"
+ gem "rack-timeout", require:"rack/timeout/base"
  gem 'jquery-datatables-rails', '~> 3.3.0'
  gem 'will_paginate', '~> 3.1.0'
  gem 'react-rails-hot-loader'
