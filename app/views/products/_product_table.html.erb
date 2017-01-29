@@ -11,6 +11,9 @@
      <th >Edit</th>
      <th >Delete</th>
      <%end%>
+     <%if !current_user%>
+     <th>Company Name</th>
+     <%end%>
     </tr>
   </thead>
 
@@ -28,6 +31,9 @@
 
 
       </td>   -->
+      <%if !current_user%>
+      <td><%= product.user.user_name%></td>
+      <%end%>
      <% if @role and  @role != ADMIN%>
         <td>
          <%= link_to edit_product_path(product), class: "btn btn-primary editButton" do %>
