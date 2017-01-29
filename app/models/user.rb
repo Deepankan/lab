@@ -83,7 +83,7 @@ class User < ActiveRecord::Base
     order = self.orders
     flag = true
   when DEALER
-    order = self.dealer_orders
+    order = self.dealer_orders.where.not(status: STATUS_ORDER["Reject"])
     flag = false
   end
 
