@@ -35,7 +35,7 @@
      end
    end
   %>
-  
+
 <% content_for :body_class, body%>
 <body class="<%= yield (:body_class) %>">
 <%if user_signed_in?%>
@@ -53,6 +53,8 @@
 <%= yield %>
 <% if @footer == false%>
 <%= render partial: "/layouts/footer"%>
+<% elsif !current_user%>
+<%= render partial: "/layouts/sign_in_footer"%>
 <%end%>
 <style type="text/css"></style>
 <script src="/assets/jquery-1.12.3.min.js"></script>
