@@ -31,7 +31,6 @@ def self.get_product_detail(user,count,  offset, search, company_id, price_filte
     end
 
     if company_id.present?
-      company_id = '{'+company_id+'}'  
       sql = "select * from search_product(#{count},#{offset},'#{value}', '#{company_id}', '#{price_filter}')"  
     else
       sql = "select * from search_product(#{count},#{offset},'#{value}', null, '#{price_filter}')"  
