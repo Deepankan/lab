@@ -3,7 +3,7 @@ belongs_to :user
 acts_as_paranoid
 mount_uploaders :chemical_images, ChemicalImageUploader
 has_many :order_product_details
-def self.get_product_detail(user,count,  offset, search)
+def self.get_product_detail(user,count,  offset, search, company_id, price_filter)
 	offset  ||= 0
     count ||= 50
 	all_products = []
@@ -25,7 +25,18 @@ def self.get_product_detail(user,count,  offset, search)
     else
      value = ''
     end
-    sql = "select * from search_product(#{count},#{offset},'#{value}')"
+
+    if price_filter.nil?
+     price_filter = 0
+    end
+
+    if company_id.present?
+      company_id = '{'+company_id+'}'  
+      sql = "select * from search_product(#{count},#{offset},'#{value}', '#{company_id}', '#{price_filter}')"  
+    else
+      sql = "select * from search_product(#{count},#{offset},'#{value}', null, '#{price_filter}')"  
+    end
+    
     products = ActiveRecord::Base.connection.execute(sql)
     # product_detail = all_products.map{|h|            
     #    tmp_hash = {}.tap do |my_hash| 

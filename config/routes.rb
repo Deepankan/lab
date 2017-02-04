@@ -113,7 +113,8 @@ end
          post '/place_order' => 'orders#place_order' 
          get '/get_order' => 'orders#get_order' 
          post '/change_order_status' => 'orders#change_order_status'
-         get 'user_order' => 'orders#user_order'
+         get '/user_order' => 'orders#user_order'
+         get '/get_company' => 'visitors#get_company'
 
   end
 

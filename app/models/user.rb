@@ -109,11 +109,10 @@ class User < ActiveRecord::Base
     message = "You got new order from #{self.user_name}, for amount #{order.total_amount}"
     usr = order.dealer 
    when DEALER
-
     usr = order.user 
     message = "Your order from dealer #{self.user_name}, has been #{STATUS_ORDER.invert[order.status]}ed."
    end
-   
+  
    User.push_notification(usr, message)
    
 
@@ -124,7 +123,6 @@ class User < ActiveRecord::Base
   registration_ids = usr.devise_infos.last(3).map{|h| h.fcm_key}
    options = {data: {body: message}, collapse_key: "updated_score"}
    fcm = FCM.new(FCM_NOTIFICATION) 
-   
    response = fcm.send(registration_ids, options)   
  end
 

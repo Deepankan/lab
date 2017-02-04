@@ -17,7 +17,7 @@ class Api::VisitorsController < Api::ApiController
 
 	def products
 		begin
-		product = Product.get_product_detail(current_user,params[:limit],params[:offset], params[:search])
+		product = Product.get_product_detail(current_user,params[:limit],params[:offset], params[:search], params[:company_id], params[:price_filter])
 		@msg = {status: STATUS_SUCCESS, products: product, message: "Data Fetch Successfully"}
 		rescue Exception => e
 		@msg = {status: STATUS_ERROR, message: "Something went wrong Please try after sometime."}	
@@ -34,5 +34,14 @@ class Api::VisitorsController < Api::ApiController
 		end
 		render json: @msg
 		
+	end
+
+	def get_company
+		begin
+		@msg = {status: STATUS_SUCCESS, comapny_name: Role.find_by_role_type(COMPANY).get_company_name, message: "Data Fetch Successfully"}
+		rescue Exception => e
+		@msg = {status: STATUS_ERROR, message: "Something went wrong Please try after sometime."}	
+		end
+		render json: @msg
 	end
 end
