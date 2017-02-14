@@ -1,5 +1,6 @@
 
 <div class="container">
+
   <div class="row" style="padding: 1%;">
     <div class="col-lg-6">
     <a href="<%= root_path%>">
@@ -14,8 +15,7 @@
       <%= text_field_tag :search,@search, autofocus: true,:id => "search1", class: "form-control input-lg", placeholder: "Enter Product Name/Code..", style: "margin-left: -74%; width: 90%;margin-top: 2%;text-align: center" %>  
     </div>  
     <div class="col-lg-1">
-      <strong class="labs" style=""><%= link_to "Sign In", new_user_session_path, style: "color: #FA4E7B;" %>
-      </strong> 
+     <h3> <%= link_to "Login", new_user_session_path,class: "btn btn-primary", style: "width: auto; color: #2B2B2B;" %></h3>
     </div>  
   </div>
 </div>    

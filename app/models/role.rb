@@ -11,6 +11,6 @@ class Role < ActiveRecord::Base
 	end
 
 	def get_company_name
-		self.users.map{|h| {company_id: h.id, company_name: h.user_name, company_email: h.email}}
+		self.users.map{|h| {company_id: h.id, company_name: h.user_profile.name, company_email: h.email}}
 	end
 end
