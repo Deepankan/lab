@@ -1,6 +1,6 @@
 
 
-<footer class="footer" >
+<footer class="footer" style="<%= user_signed_in? ? '' : 'bottom: 0'%>" >
 <% if  user_signed_in?%>
 <div class="pageFooter">
 <div class="container">
@@ -16,74 +16,40 @@
       
       </div>
     </div>
-    <div class="col-lg-8">
-      <H3>Notification</H3>
+    <br />
+
+    <div class="col-lg-10">
+    
     <p> We invite all chemical suppliers to participate. Company products will be included in the LABSCAT Catlog and in the website specialty checmical catalog. Company profiles are listed in the directory of over 500 chemical suppliers.</p>
-    <p>Companies providing equipment and services to chemical industry &amp; resarch are listed in our equipment.</p>   </div>
-    <div class="col-lg-2">
-      <button class="btn btn-primary" style="margin-top:22%;">LETS EXPLORE <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+    <p>Companies providing equipment and services to chemical industry &amp; resarch are listed in our equipment.</p>   
     </div>
     
   </div>
 </div>
 </div>
-
+  <%end%>
 <div class="privacy">
-  <div class="container">
-    <br>
-        <div class="row">
+  <div class="container" style= "background-color: #efefef; text-align: center;">
+    
+    <div class="row" >
+      <br />
           <div class="col-lg-4">
-
-            <%= link_to "About Us", about_us_path%> | <%= link_to "Contact Us", contact_us_path%> | <a href="">Privacy</a> | <a href="">Terms</a></p>
+            <font size="3"><%= link_to "About Us", about_us_path%> | <%= link_to "Contact Us", contact_us_path%> | <a href="">Privacy</a> | <a href="">Terms</a></p></font>
           </div>
-          <div class="col-lg-4">
-            <a href="#">
-        <i class="fa fa-twitter" style="color:#000; font-size: 25px; margin-right:5%; margin-bottom: 2%;"></i>
-      </a>
-      <a href="#">
-        <i class="fa fa-facebook" style="color:#000; font-size: 25px; margin-right:5%; margin-bottom: 2%;"></i>
-      </a>
-      <a href="#">
-        <i class="fa fa-pinterest-p" style="color:#000; font-size: 25px; margin-right:5%; margin-bottom: 2%;"></i>
-      </a>
-      <a href="#">
-        <i class="fa fa-google-plus" style="color:#000; font-size: 25px; margin-bottom: 2%;"></i>
-      </a>
-          </div>
-          <div class="col-lg-4">
-            <p> &copy; <a href="#">LabsCat 2016</a> 
+          <div class="col-lg-5">
+          
+           <%= link_to "https://play.google.com/store/apps/details?id=com.labscat.buyer" , target: "_blank" do %>
+          <%= image_tag('/assets/google.png',  width: "20%") %>
+        <% end %>
+      </div>
+          <div class="col-lg-3">
+            <font size="3"><p> &copy; <a href="#">LabsCat 2017</a> </font>
           </div>  
         </div>
+
+     
   </div>
 </div>
-<%else%>
 
 
-  <div class="row">
-    <div class="col-lg-4 col-sm-3 col-md-3 col-xs-3">
-        <%= link_to "About Us", about_us_path, :style => "color: #fff;"%>  | <%= link_to "Contact Us", contact_us_path, :style => "color: #fff;"%>
-    </div>
-    
-
-    <div class="col-lg-4 col-sm-6 col-md-6 col-xs-6 social-Logo hide">
-      <a href="#">
-        <i class="fa fa-twitter" style="color:#fff; font-size: 25px; margin-right:20px;"></i>
-      </a>
-      <a href="#">
-        <i class="fa fa-facebook" style="color:#fff; font-size: 25px; margin-right:20px;"></i>
-      </a>
-      <a href="#">
-        <i class="fa fa-pinterest-p" style="color:#fff; font-size: 25px; margin-right:20px;"></i>
-      </a>
-      <a href="#">
-        <i class="fa fa-google-plus" style="color:#fff; font-size: 25px;"></i>
-      </a>
-    </div>
-    <div class="col-lg-4 col-sm-6 col-md-6 col-xs-6 social-Logo "></div>
-
-    <div class="col-lg-4 col-sm-6 col-md-6 col-xs-6 labsCatFooter">
-      &copy; <a href="#" style="color:#fff;">LabsCat 2016</a>
-    </div>
-  </div>
-  <%end%>
 </footer>

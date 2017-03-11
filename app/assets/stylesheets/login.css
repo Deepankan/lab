@@ -4,11 +4,11 @@ body{
 }
 
 .login{
-	background-image: url("/assets/Background2.jpg");
+	/*background-image: url("/assets/Background2.jpg");*/
 }
 
 .labs , .cat{
-	color: #fff;
+	color: #000;
 }
 
 .center-logo, .loginForm{

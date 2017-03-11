@@ -18,8 +18,8 @@
 
 </head>
 <% @footer = false %>
+<%= render partial: "/layouts/common_header"%>
 
-<%= render partial: "/layouts/header" if user_signed_in?%>
   <% case @role 
    when ADMIN then 
    when COMPANY then body = "companyProfile"

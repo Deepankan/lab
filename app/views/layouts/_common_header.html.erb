@@ -1,0 +1,33 @@
+ <div class="container">
+    <div class="row" style="margin-top:1%;">
+    <a href="<%= root_path%>">
+   <div class="col-md-1">
+     <img src="/assets/Logo2-01.png" width="80" height="80" class="img-circle">
+   </div> 
+
+   <div class="col-md-2">
+   <div class="row">
+     <font size="4"><strong class="labs">Labs</strong><span class="cat">Cat</span></font>
+    </div>
+    <div class="row">
+     <strong style="color: #000;"><font size="2">Smart Scientific Catalog</font></strong>
+    </div>
+   </div>
+   </a>
+   	<% if user_signed_in? %>
+   	<div class="col-md-7">
+   </div>
+   <div class="col-md-2">
+	<%= link_to "Welcome, #{current_user.try(:user_profile).try(:name)}",edit_user_registration_path,class: "pull-right username"%>
+	</div>
+	<%else%>
+	 <div class="col-md-8">
+   </div>
+   <div class="col-md-1">
+    <%= link_to "Login", new_user_session_path,class: "btn btn-primary", style: "width: auto;;" %>
+   </div>
+	<%end%>	
+	
+  </div>
+
+</div>

@@ -1,114 +1,38 @@
-<!-- <h2>Log in</h2>
-
-< %= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    < %= f.label :email %><br />
-    < %= f.email_field :email, autofocus: true %>
-  </div>
-
-  <div class="field">
-    < %= f.label :password %><br />
-    < %= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  < % if devise_mapping.rememberable? -%>
-    <div class="field">
-      < %= f.check_box :remember_me %>
-      < %= f.label :remember_me %>
-    </div>
-  < % end -%>
-
-  <div class="actions">
-    < %= f.submit "Log in" %>
-  </div>
-< % end %>
-
-< %= render "devise/shared/links" %> -->
-
-  <div class="row">
-    <div class="col-lg-offset-2">
-       <a href="<%= root_path%>">
-      <img src="/assets/Logo3-01.png" width="100" height="100" class="img-circle" >
-      <strong class="labs">Labs</strong><span class="cat">Cat</span>
-     </a> 
-    </div>
-    
-  </div>
-
-  <div class="row">
-    <div class="container">
-    <div class="col-lg-7">
-      <div class="col-lg-offset-3">
-        <img src="/assets/Logo2-01.png" width="400" height="400" class="img-circle center-logo">
-      </div>
-    </div>
-    <div class="col-lg-1"></div>
-    <div class="col-lg-4 loginForm">
+ <div class="container">
+  
+   <div class="row">
+   <div class="col-lg-4"></div>
+   <div class="col-lg-4 loginForm">
       <%= form_for(resource, as: resource_name,:class => "form-vertical push-right",:id => "loginform", url: session_path(resource_name)) do |f| %>
-          
-                           
-                           <div class="input-group username">
-                                        <span class="input-group-addon">
-                                            <i class="glyphicon glyphicon-user"></i></span>
-                                            
-                                             <%= f.email_field :email, autofocus: true,:id => "login-username", class: "form-control input-lg", placeholder: "Email" %>
-                                                                               
-                                    </div>
-                                
-                            <div style="margin-bottom: 25px" class="input-group">
-                                        <span class="input-group-addon">
-                                            <i class="glyphicon glyphicon-lock"></i></span>
-                                      
-                                         <%= f.password_field :password, autocomplete: "off",:id => "login-password", class: "form-control input-lg", placeholder: "Password" %>
-                                    </div>
-                                    
-
-                                
-                            <div >
-                                      <div class="checkbox col-lg-6 remember">
-                                        <label>
-                                         <strong> 
-                                         <!--  <input id="login-remember" type="checkbox" name="remember" value="1"> -->  <%= f.check_box :remember_me, :id => "login-remember" %><span style="color:#111; ">Remember me</span>
-                                         </strong>
-
-                                        </label>
-                                       </div>
-
-                                        <div class="col-lg-6  forgot">
-                                          <strong><%= link_to "Forgot password?", new_password_path(resource_name),class: "pull-right", style: "color:#111;" %></strong>  
-                                        </div>       
-                            </div>
-                             <div class="col-lg-6 remember">
-                         <!--     <label>
-                             
-                             <strong>
-                              < %= link_to "Sign up", new_registration_path(resource_name) %><br />
-                             </strong></label> -->
-                            </div>
-
-                            <%= f.submit "LOGIN", class: "btn btn-primary col-lg-12 btn-lg loginBtn" %>
-                           
-                            
-
-         
-        <%end%>
+      <div class="input-group username">
+         <span class="input-group-addon">
+         <i class="glyphicon glyphicon-user"></i></span>
+         <%= f.email_field :email, autofocus: true,:id => "login-username", class: "form-control input-lg", placeholder: "Email" %>
       </div>
-      
-    </div>
-    <div class="col-lg-8">
+      <div style="margin-bottom: 25px" class="input-group">
+         <span class="input-group-addon">
+         <i class="glyphicon glyphicon-lock"></i></span>
+         <%= f.password_field :password, autocomplete: "off",:id => "login-password", class: "form-control input-lg", placeholder: "Password" %>
+      </div>
+      <div class="row">
+         <div class=" col-lg-4 remember">
+            <label>
+               <strong>
+                  <!--  <input id="login-remember" type="checkbox" name="remember" value="1"> -->  <%= f.check_box :remember_me, :id => "login-remember" %><span style="color:#111; ">Remember me</span>
+               </strong>
+            </label>
+         </div>
+          <div class=" col-lg-4  forgot"></div>
+         <div class=" col-lg-4  forgot">
+         <label>
+            <strong><%= link_to "Forgot password?", new_password_path(resource_name),class: "pull-right", style: "color:#111;" %></strong> 
+            </label> 
+         </div>
+      </div>
+ 
+      <%= f.submit "LOGIN", class: "btn btn-primary col-lg-12 btn-lg loginBtn" %>
+      <%end%>
+   </div>
+   </div>
+</div>   
 
-    </div>
-
-    <div class="col-lg-4">
-      <a href="http://www.apple.com/">
-        <i class="fa fa-apple" style="font-size: 60px; color:#fff; margin-right:65px;"></i>
-      </a>
-      <a href="https://play.google.com/store/apps/details?id=com.labscat.buyer", target="_blank">
-        <i class="fa fa-android"style="font-size: 60px; color:#fff;"></i>
-      </a>
-      
-    </div>
-
-  </div>
-
-    

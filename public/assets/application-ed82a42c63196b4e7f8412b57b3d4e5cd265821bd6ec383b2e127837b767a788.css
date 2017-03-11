@@ -9,9 +9,9 @@
 
 
 html {
-    font-family: sans-serif;
+ /*   font-family: sans-serif;
     -webkit-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%
+    -ms-text-size-adjust: 100%*/
     
     
 }
@@ -20,10 +20,11 @@ body {
     margin: 0;
     max-width: 100%;
     overflow-x: hidden;
+    font-size: 100%;
 }
 
 article,
-aside,
+aside,font-size
 details,
 figcaption,
 figure,
@@ -289,6 +290,7 @@ th {
     }
     .navbar {
         display: none
+        
     }
     .btn>.caret,
     .dropup>.btn>.caret {
@@ -1397,7 +1399,7 @@ html {
 
 body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 14px;
+    font-size: 100%;
     line-height: 1.42857143;
     color: #333;
     background-color: #fff
@@ -5029,7 +5031,7 @@ textarea.input-group-sm>.input-group-btn>.btn {
 
 .navbar {
     position: relative;
-    min-height: 50px;
+        min-height: 37%;
     margin-bottom: 20px;
     border: 1px solid transparent
 }
@@ -8619,6 +8621,93 @@ fieldset[disabled] .btn-danger:hover {
 }
 /*# sourceMappingURL=bootstrap-theme.min.css.map 
 */
+/* Make clicks pass-through */
+/* line 6, /home/deepankan/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/nprogress-rails-0.1.6.7/app/assets/stylesheets/nprogress.scss */
+#nprogress {
+  pointer-events: none;
+}
+
+/* line 10, /home/deepankan/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/nprogress-rails-0.1.6.7/app/assets/stylesheets/nprogress.scss */
+#nprogress .bar {
+  background: #29d;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+}
+
+/* Fancy blur effect */
+/* line 23, /home/deepankan/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/nprogress-rails-0.1.6.7/app/assets/stylesheets/nprogress.scss */
+#nprogress .peg {
+  display: block;
+  position: absolute;
+  right: 0px;
+  width: 100px;
+  height: 100%;
+  box-shadow: 0 0 10px #29d, 0 0 5px #29d;
+  opacity: 1.0;
+  -webkit-transform: rotate(3deg) translate(0px, -4px);
+  -ms-transform: rotate(3deg) translate(0px, -4px);
+  transform: rotate(3deg) translate(0px, -4px);
+}
+
+/* Remove these to get rid of the spinner */
+/* line 38, /home/deepankan/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/nprogress-rails-0.1.6.7/app/assets/stylesheets/nprogress.scss */
+#nprogress .spinner {
+  display: block;
+  position: fixed;
+  z-index: 100;
+  top: 15px;
+  right: 15px;
+}
+
+/* line 46, /home/deepankan/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/nprogress-rails-0.1.6.7/app/assets/stylesheets/nprogress.scss */
+#nprogress .spinner-icon {
+  width: 18px;
+  height: 18px;
+  box-sizing: border-box;
+  border: solid 2px transparent;
+  border-top-color: #29d;
+  border-left-color: #29d;
+  border-radius: 50%;
+  -webkit-animation: nprogress-spinner 400ms linear infinite;
+  animation: nprogress-spinner 400ms linear infinite;
+}
+
+/* line 60, /home/deepankan/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/nprogress-rails-0.1.6.7/app/assets/stylesheets/nprogress.scss */
+.nprogress-custom-parent {
+  overflow: hidden;
+  position: relative;
+}
+
+/* line 65, /home/deepankan/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/nprogress-rails-0.1.6.7/app/assets/stylesheets/nprogress.scss */
+.nprogress-custom-parent #nprogress .spinner,
+.nprogress-custom-parent #nprogress .bar {
+  position: absolute;
+}
+
+@-webkit-keyframes nprogress-spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes nprogress-spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+#nprogress .bar,
+#nprogress .spinner {
+  z-index: 999999;
+}
 
 
 
@@ -9279,15 +9368,15 @@ body{
 }
 
 .login{
-	background-image: url("/assets/Background2.jpg");
+	/*background-image: url("/assets/Background2.jpg");*/
 }
 
 .labs , .cat{
-	color: #fff;
+	color: #000;
 }
 
 .center-logo, .loginForm{
-	margin-top: 20%;
+	    margin-top: 4%;
 }
 
 .labs, .cat{
@@ -9317,9 +9406,13 @@ body{
 footer{
 	width: 100%;	
 	position:absolute;
-	left:1%;
 	font-size: 16px;
-    bottom: 0;
+    right: 0;
+        bottom: auto;
+    left: 0;
+  padding: 1rem;
+   text-align: center;
+  
 	
 }
 
@@ -11543,12 +11636,12 @@ footer{
 }
 
 .productEntries{
-	font-size: 95px;
+	font-size: 430%;
 	color:#00BFFF;
 }
 
 .adds{
-	font-size: 95px;
+	font-size: 430%;
 	color:#00BFFF;
 	margin-left: 30%;	
 }
@@ -11560,6 +11653,10 @@ footer{
 .representativeDetails{
 	margin-left: 1%;
 	margin-bottom: 4%;
+}
+
+.font_header{
+	font-size: 135%;
 }
 .companyProfile{
 	background-color: #F8F8FF;
@@ -11587,8 +11684,10 @@ footer{
 }
 
 .navbar{
-	margin-top: 2%;	
-	font-size: 110%;
+	/*margin-top: 2%;	
+	font-size: 110%;*/
+	margin-top: 1%;
+    font-size: small;
 }
 
 #imagePreview{
@@ -11598,7 +11697,7 @@ footer{
 }
 
 thead> tr > th{
-	height: 30px;
+	height: 28px;
 	background: linear-gradient(#777, #222,#999);
 	color: #fff;
 }
@@ -11775,8 +11874,9 @@ table td
   word-break: break-all;
 }
 .digg_pagination {
-  background: white;
+  /*background: white;*/
   cursor: default;
+  margin-left: 26%;
   /* self-clearing method: */ }
   .digg_pagination a, .digg_pagination span, .digg_pagination em {
     padding: 0.2em 0.5em;
@@ -11878,14 +11978,14 @@ table td
     margin-right: 1em; }
   .flickr_pagination .next_page {
     margin-left: 1em; }
-/* line 34, /home/deepankan/.rvm/gems/ruby-2.3.1/gems/jquery-datatables-rails-3.3.0/app/assets/stylesheets/dataTables/extras/dataTables.responsive.scss */
+/* line 34, /home/deepankan/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/jquery-datatables-rails-3.3.0/app/assets/stylesheets/dataTables/extras/dataTables.responsive.scss */
 table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child,
 table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child {
   position: relative;
   padding-left: 30px;
   cursor: pointer;
 }
-/* line 40, /home/deepankan/.rvm/gems/ruby-2.3.1/gems/jquery-datatables-rails-3.3.0/app/assets/stylesheets/dataTables/extras/dataTables.responsive.scss */
+/* line 40, /home/deepankan/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/jquery-datatables-rails-3.3.0/app/assets/stylesheets/dataTables/extras/dataTables.responsive.scss */
 table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child:before,
 table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child:before {
   top: 8px;
@@ -11904,27 +12004,27 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child:before {
   content: '+';
   background-color: #31b131;
 }
-/* line 49, /home/deepankan/.rvm/gems/ruby-2.3.1/gems/jquery-datatables-rails-3.3.0/app/assets/stylesheets/dataTables/extras/dataTables.responsive.scss */
+/* line 49, /home/deepankan/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/jquery-datatables-rails-3.3.0/app/assets/stylesheets/dataTables/extras/dataTables.responsive.scss */
 table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child.dataTables_empty:before,
 table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child.dataTables_empty:before {
   display: none;
 }
-/* line 55, /home/deepankan/.rvm/gems/ruby-2.3.1/gems/jquery-datatables-rails-3.3.0/app/assets/stylesheets/dataTables/extras/dataTables.responsive.scss */
+/* line 55, /home/deepankan/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/jquery-datatables-rails-3.3.0/app/assets/stylesheets/dataTables/extras/dataTables.responsive.scss */
 table.dataTable.dtr-inline.collapsed > tbody > tr.parent > td:first-child:before,
 table.dataTable.dtr-inline.collapsed > tbody > tr.parent > th:first-child:before {
   content: '-';
   background-color: #d33333;
 }
-/* line 61, /home/deepankan/.rvm/gems/ruby-2.3.1/gems/jquery-datatables-rails-3.3.0/app/assets/stylesheets/dataTables/extras/dataTables.responsive.scss */
+/* line 61, /home/deepankan/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/jquery-datatables-rails-3.3.0/app/assets/stylesheets/dataTables/extras/dataTables.responsive.scss */
 table.dataTable.dtr-inline.collapsed > tbody > tr.child td:before {
   display: none;
 }
-/* line 68, /home/deepankan/.rvm/gems/ruby-2.3.1/gems/jquery-datatables-rails-3.3.0/app/assets/stylesheets/dataTables/extras/dataTables.responsive.scss */
+/* line 68, /home/deepankan/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/jquery-datatables-rails-3.3.0/app/assets/stylesheets/dataTables/extras/dataTables.responsive.scss */
 table.dataTable.dtr-inline.collapsed.compact > tbody > tr > td:first-child,
 table.dataTable.dtr-inline.collapsed.compact > tbody > tr > th:first-child {
   padding-left: 27px;
 }
-/* line 72, /home/deepankan/.rvm/gems/ruby-2.3.1/gems/jquery-datatables-rails-3.3.0/app/assets/stylesheets/dataTables/extras/dataTables.responsive.scss */
+/* line 72, /home/deepankan/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/jquery-datatables-rails-3.3.0/app/assets/stylesheets/dataTables/extras/dataTables.responsive.scss */
 table.dataTable.dtr-inline.collapsed.compact > tbody > tr > td:first-child:before,
 table.dataTable.dtr-inline.collapsed.compact > tbody > tr > th:first-child:before {
   top: 5px;
@@ -11934,13 +12034,13 @@ table.dataTable.dtr-inline.collapsed.compact > tbody > tr > th:first-child:befor
   border-radius: 14px;
   line-height: 12px;
 }
-/* line 86, /home/deepankan/.rvm/gems/ruby-2.3.1/gems/jquery-datatables-rails-3.3.0/app/assets/stylesheets/dataTables/extras/dataTables.responsive.scss */
+/* line 86, /home/deepankan/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/jquery-datatables-rails-3.3.0/app/assets/stylesheets/dataTables/extras/dataTables.responsive.scss */
 table.dataTable.dtr-column > tbody > tr > td.control,
 table.dataTable.dtr-column > tbody > tr > th.control {
   position: relative;
   cursor: pointer;
 }
-/* line 91, /home/deepankan/.rvm/gems/ruby-2.3.1/gems/jquery-datatables-rails-3.3.0/app/assets/stylesheets/dataTables/extras/dataTables.responsive.scss */
+/* line 91, /home/deepankan/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/jquery-datatables-rails-3.3.0/app/assets/stylesheets/dataTables/extras/dataTables.responsive.scss */
 table.dataTable.dtr-column > tbody > tr > td.control:before,
 table.dataTable.dtr-column > tbody > tr > th.control:before {
   top: 50%;
@@ -11961,41 +12061,41 @@ table.dataTable.dtr-column > tbody > tr > th.control:before {
   content: '+';
   background-color: #31b131;
 }
-/* line 104, /home/deepankan/.rvm/gems/ruby-2.3.1/gems/jquery-datatables-rails-3.3.0/app/assets/stylesheets/dataTables/extras/dataTables.responsive.scss */
+/* line 104, /home/deepankan/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/jquery-datatables-rails-3.3.0/app/assets/stylesheets/dataTables/extras/dataTables.responsive.scss */
 table.dataTable.dtr-column > tbody > tr.parent td.control:before,
 table.dataTable.dtr-column > tbody > tr.parent th.control:before {
   content: '-';
   background-color: #d33333;
 }
-/* line 113, /home/deepankan/.rvm/gems/ruby-2.3.1/gems/jquery-datatables-rails-3.3.0/app/assets/stylesheets/dataTables/extras/dataTables.responsive.scss */
+/* line 113, /home/deepankan/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/jquery-datatables-rails-3.3.0/app/assets/stylesheets/dataTables/extras/dataTables.responsive.scss */
 table.dataTable > tbody > tr.child {
   padding: 0.5em 1em;
 }
-/* line 116, /home/deepankan/.rvm/gems/ruby-2.3.1/gems/jquery-datatables-rails-3.3.0/app/assets/stylesheets/dataTables/extras/dataTables.responsive.scss */
+/* line 116, /home/deepankan/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/jquery-datatables-rails-3.3.0/app/assets/stylesheets/dataTables/extras/dataTables.responsive.scss */
 table.dataTable > tbody > tr.child:hover {
   background: transparent !important;
 }
-/* line 120, /home/deepankan/.rvm/gems/ruby-2.3.1/gems/jquery-datatables-rails-3.3.0/app/assets/stylesheets/dataTables/extras/dataTables.responsive.scss */
+/* line 120, /home/deepankan/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/jquery-datatables-rails-3.3.0/app/assets/stylesheets/dataTables/extras/dataTables.responsive.scss */
 table.dataTable > tbody > tr.child ul {
   display: inline-block;
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-/* line 126, /home/deepankan/.rvm/gems/ruby-2.3.1/gems/jquery-datatables-rails-3.3.0/app/assets/stylesheets/dataTables/extras/dataTables.responsive.scss */
+/* line 126, /home/deepankan/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/jquery-datatables-rails-3.3.0/app/assets/stylesheets/dataTables/extras/dataTables.responsive.scss */
 table.dataTable > tbody > tr.child ul li {
   border-bottom: 1px solid #efefef;
   padding: 0.5em 0;
 }
-/* line 130, /home/deepankan/.rvm/gems/ruby-2.3.1/gems/jquery-datatables-rails-3.3.0/app/assets/stylesheets/dataTables/extras/dataTables.responsive.scss */
+/* line 130, /home/deepankan/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/jquery-datatables-rails-3.3.0/app/assets/stylesheets/dataTables/extras/dataTables.responsive.scss */
 table.dataTable > tbody > tr.child ul li:first-child {
   padding-top: 0;
 }
-/* line 134, /home/deepankan/.rvm/gems/ruby-2.3.1/gems/jquery-datatables-rails-3.3.0/app/assets/stylesheets/dataTables/extras/dataTables.responsive.scss */
+/* line 134, /home/deepankan/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/jquery-datatables-rails-3.3.0/app/assets/stylesheets/dataTables/extras/dataTables.responsive.scss */
 table.dataTable > tbody > tr.child ul li:last-child {
   border-bottom: none;
 }
-/* line 140, /home/deepankan/.rvm/gems/ruby-2.3.1/gems/jquery-datatables-rails-3.3.0/app/assets/stylesheets/dataTables/extras/dataTables.responsive.scss */
+/* line 140, /home/deepankan/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/jquery-datatables-rails-3.3.0/app/assets/stylesheets/dataTables/extras/dataTables.responsive.scss */
 table.dataTable > tbody > tr.child span.dtr-title {
   display: inline-block;
   min-width: 75px;
@@ -12014,6 +12114,8 @@ table.dataTable > tbody > tr.child span.dtr-title {
  * file per style scope.
  *
  
+
+
 
 
 
