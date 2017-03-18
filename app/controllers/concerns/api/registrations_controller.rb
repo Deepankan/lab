@@ -115,14 +115,8 @@ class Api::RegistrationsController < Api::ApiController
     def forgot_password
     #TODO
     if params[:user].present? and user = User.find_by_email(params[:user])
-     user.update(reset_password_token: SecureRandom.hex, reset_password_sent_at: 24.hours.from_now)
-     @reset_token = user.reset_password_token
-      begin
-        UserMailer.forgot_password_mail(params[:user]).deliver
-        render json: { status: 1, message:  FORGET_PASS_EMAIL}
-      rescue Net::SMTPAuthenticationError, Net::SMTPServerBusy, Net::SMTPSyntaxError, Net::SMTPFatalError, Net::SMTPUnknownError => e
-        render json: { status: 0, message: CREDENTIAL_ERROR_MSG }
-      end
+     user.send_reset_password_instructions
+      render json: { status: 1, message:  "Reset password link has been sent to registered mail."}
     else
        render json: { status: 0, message:  CREDENTIAL_ERROR_MSG}
     end

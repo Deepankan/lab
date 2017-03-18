@@ -1,6 +1,6 @@
 class Api::VisitorsController < Api::ApiController
-	before_action :restrict_access
-    before_action :get_role
+	before_action :restrict_access, except: [:product_detail]
+    before_action :get_role, except: [:product_detail]
 	
 
 	def advertisements
@@ -39,6 +39,15 @@ class Api::VisitorsController < Api::ApiController
 	def get_company
 		begin
 		@msg = {status: STATUS_SUCCESS, comapny_name: Role.find_by_role_type(COMPANY).get_company_name, message: "Data Fetch Successfully"}
+		rescue Exception => e
+		@msg = {status: STATUS_ERROR, message: "Something went wrong Please try after sometime."}	
+		end
+		render json: @msg
+	end
+
+	def product_detail
+		begin
+		@msg = {status: STATUS_SUCCESS, product: Product.get_details(params), message: "Data Fetch Successfully"}
 		rescue Exception => e
 		@msg = {status: STATUS_ERROR, message: "Something went wrong Please try after sometime."}	
 		end

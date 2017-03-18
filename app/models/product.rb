@@ -72,4 +72,20 @@ end
     "#{id}-#{Product.find_by_id(id).product_code}"
   end
 
+def self.get_details(params)
+  product = Product.find(params[:product_id])
+  return  {}.tap do |my_hash| 
+         my_hash[:id] = product.id
+         my_hash[:company_name] = product.user.user_name
+         my_hash[:product_name] = product.product_name
+         my_hash[:product_code] = product.product_code
+         my_hash[:grade] = product.grade
+         my_hash[:formula] = product.formula
+         my_hash[:molar_mass] = product.molar_mass
+         my_hash[:image] = product.chemical_images.first.thumb.url if product.chemical_images.present?
+         my_hash[:package] = product.pakaging
+         my_hash[:price] = product.price
+  end       
+end  
+
 end

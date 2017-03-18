@@ -28,7 +28,15 @@ class ApplicationController < ActionController::Base
     @cities = City.get_city
   end
  protected
-
+  def after_sign_in_path_for(resource)
+    if LOGIN_USER.include?(current_user.role.role_type)
+      authenticated_root_path
+    else
+      flash[:error] = "Password changed Successfully.Sorry,you are not authorized to acces web portal."
+      sign_out current_user
+      root_path
+    end
+  end
   # def configure_permitted_parameters
 
   # devise_parameter_sanitizer.permit(:sign_up) do |user_params|
