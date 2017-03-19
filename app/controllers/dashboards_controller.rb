@@ -1,6 +1,7 @@
 class DashboardsController < ApplicationController
 	
 	def index
+		
 		if params[:comapny_id].present?
 			  @prod_adv = User.get_count(params[:comapny_id])
 		else

@@ -1,23 +1,23 @@
 
 <div class="container">
-
-  <div class="row" style="padding: 1%;">
-    <div class="col-lg-6">
-    <a href="<%= root_path%>">
-       <%= image_tag('/assets/Logo2-01.png',  size: "80x80", class: "img-circle") %>
-      <strong class="labs">Labs</strong><span class="cat">Cat</span>
-
-     </a>
-
+ <div class="row"  >
+      <div class="col-md-3">
+      
+      </div>
+      <div class="col-md-6">
+        
+        <div id="custom-search-input" >
+          <div class="input-group col-md-12">
+          <%= text_field_tag :search,@search, autofocus: true,:id => "search1", class: "form-control input-lg", placeholder: "Enter Product Name/Code..", style: "text-align: center" %>  
+            <span class="input-group-btn">       
+             <%= link_to '<i class="glyphicon glyphicon-search"></i>'.html_safe, "#", id: "find_product", class: "btn btn-info btn-lg"%>                
+                        
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <div class="col-lg-5">
-      <%= text_field_tag :search,@search, autofocus: true,:id => "search1", class: "form-control input-lg", placeholder: "Enter Product Name/Code..", style: "margin-left: -74%; width: 90%;margin-top: 2%;text-align: center" %>  
-    </div>  
-    <div class="col-lg-1">
-     <h3> <%= link_to "Login", new_user_session_path,class: "btn btn-primary", style: "width: auto; color: #2B2B2B;" %></h3>
-    </div>  
-  </div>
+ 
 </div>    
 
 
@@ -44,7 +44,7 @@
 $(document).ready(function(){
   $('#search1').keyup(function(){
    search = $('#search1').val()
-   if(search.length >= 3  || search.length == 0 ){
+   if(search.length == 0 ){
           $.ajax({
       async : true,
       type : 'GET',
@@ -57,6 +57,18 @@ $(document).ready(function(){
    }
 });
 
+$('#find_product').click(function(){
+   search = $('#search1').val()
+   
+    $.ajax({
+        async : true,
+        type : 'GET',
+        url : "/dashboards/search",
+        data : { "search": search
+                  }
+    });
+ 
+});
  
 });
 
