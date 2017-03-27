@@ -47,6 +47,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
  gem 'react-rails-hot-loader'
  gem 'nprogress-rails'
  gem 'fcm'
+ gem 'city-state'
 #========================================
 
 #----------Added Gem for API's------------------------------------------------

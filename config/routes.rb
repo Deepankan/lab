@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  
-  resources :cities
+
   devise_for :users, :controllers => {:registrations => "registrations" }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -41,8 +40,9 @@ Rails.application.routes.draw do
  get '/about_us' => 'dashboards#about_us', as: :about_us
  get '/contact_us' => 'dashboards#contact_us', as: :contact_us
  
-
 resources :product_details
+  
+resources :cities
 
  authenticated :user do
   root :to => 'dashboards#index', as: :authenticated_root
@@ -116,6 +116,7 @@ end
          get '/user_order' => 'orders#user_order'
          get '/get_company' => 'visitors#get_company'
          post '/product_detail' => 'visitors#product_detail'
+         post '/city_list' => 'visitors#city_list'
 
   end
 

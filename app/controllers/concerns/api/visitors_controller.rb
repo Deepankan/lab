@@ -1,11 +1,10 @@
 class Api::VisitorsController < Api::ApiController
-	before_action :restrict_access, except: [:product_detail]
-    before_action :get_role, except: [:product_detail]
+	before_action :restrict_access, except: [:product_detail, :city_list]
+    before_action :get_role, except: [:product_detail, :city_list]
 	
 
 	def advertisements
-		begin
-			
+		begin	
 		advertisement = Advertisement.get_details(current_user,params[:limit] , params[:offset],params[:search])
 		@msg = {status: STATUS_SUCCESS, advertisement: advertisement, message: "Data Fetch Successfully"}
 		rescue Exception => e
@@ -48,6 +47,15 @@ class Api::VisitorsController < Api::ApiController
 	def product_detail
 		begin
 		@msg = {status: STATUS_SUCCESS, product: Product.get_details(params), message: "Data Fetch Successfully"}
+		rescue Exception => e
+		@msg = {status: STATUS_ERROR, message: "Something went wrong Please try after sometime."}	
+		end
+		render json: @msg
+	end
+
+	def city_list
+		begin
+		@msg = {status: STATUS_SUCCESS, city: City.get_auto_city_name(params), message: "Data Fetch Successfully"}
 		rescue Exception => e
 		@msg = {status: STATUS_ERROR, message: "Something went wrong Please try after sometime."}	
 		end

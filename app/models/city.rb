@@ -9,4 +9,9 @@ class City < ActiveRecord::Base
 	def self.get_list_city
 		City.all.map{|h| {id: h.id, name: h.city}}
 	end
+
+	def self.get_auto_city_name(params)
+		city = City.where('city LIKE ? or city LIKE ?',"%#{params[:city]}%", "%#{params[:city].titleize}%" )
+		city.map{|h| {id: h.id, name: h.city}}
+	end
 end

@@ -57,6 +57,8 @@ GEM
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
     byebug (9.0.5)
+    city-state (0.0.13)
+      rubyzip (~> 1.1)
     coderay (1.1.1)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
@@ -222,6 +224,7 @@ DEPENDENCIES
   bcrypt
   byebug
   carrierwave!
+  city-state
   coffee-rails (~> 4.1.0)
   devise
   fcm
