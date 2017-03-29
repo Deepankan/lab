@@ -60,9 +60,9 @@ class User < ActiveRecord::Base
   end
 
 
-  def self.get_dealer_info(city_id, params)
-    user_dealer = params[:city_id].present? ? User.get_dealer(params[:city_id]) : User.get_dealer(city_id) 
-    dealer = user_dealer.includes(:user_profile).map{|h| {id: h.id, name: h.user_profile.name, email: h.email, mobile_no: h.mobile_no, city_id: h.user_profile.city_id, city: h.user_profile.city.city}}      
+  def self.get_dealer_info(user, params)
+    city_id = params[:city_id].present? ? params[:city_id] : user.user_profile.city_id
+    dealer = User.get_dealer(city_id).includes(:user_profile).map{|h| {id: h.id, name: h.user_profile.name, email: h.email, mobile_no: h.mobile_no, city_id: h.user_profile.city_id, city: h.user_profile.city.city}}      
   end
 
 
