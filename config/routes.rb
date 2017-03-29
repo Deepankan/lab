@@ -109,7 +109,7 @@ end
          post '/edit_advertisement' => 'advertisements#edit_advertisement'
          post '/update_advertisement' => 'advertisements#update_advertisement'
          delete '/delete_advertisement' => 'advertisements#delete_advertisement'
-         get '/get_dealer' => 'visitors#get_dealer' 
+         post '/get_dealer' => 'visitors#get_dealer' 
          post '/place_order' => 'orders#place_order' 
          get '/get_order' => 'orders#get_order' 
          post '/change_order_status' => 'orders#change_order_status'

@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   acts_as_paranoid      
   accepts_nested_attributes_for :user_profile
   scope :get_company_name, -> {where(role_id: Role.find_by_role_type(COMPANY))}
-  scope :get_dealer, -> {where(role_id: Role.find_by_role_type(DEALER))}
+  scope :get_dealer, -> (city_id){ includes(:user_profile).where("role_id = ? and user_profiles.city_id = ?", Role.find_by_role_type(DEALER), city_id)}
 
   has_many :orders
 
@@ -60,8 +60,9 @@ class User < ActiveRecord::Base
   end
 
 
-  def self.get_dealer_info
-    dealer = User.get_dealer().includes(:user_profile).map{|h| {id: h.id, name: h.user_profile.name, email: h.email, mobile_no: h.mobile_no, city: h.user_profile.city.city}}      
+  def self.get_dealer_info(city_id, params)
+    user_dealer = params[city_id].present? ? User.get_dealer(city_id) : User.get_dealer(params[:city_id])
+    dealer = user_dealer.map{|h| {id: h.id, name: h.user_profile.name, email: h.email, mobile_no: h.mobile_no, city: h.user_profile.city.city}}      
   end
 
 
