@@ -39,6 +39,7 @@ Rails.application.routes.draw do
 
  get '/about_us' => 'dashboards#about_us', as: :about_us
  get '/contact_us' => 'dashboards#contact_us', as: :contact_us
+ get '/term_condition' => 'dashboards#term_condition', as: :term_condition
  
 resources :product_details
   
