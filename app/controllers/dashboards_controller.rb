@@ -46,5 +46,10 @@ class DashboardsController < ApplicationController
 	    end
 	end
 
+	def contact_detail
+		UserMailer.contact_detail(params).deliver
+		redirect_to root_path
+	end
+
 
 end

@@ -1,4 +1,4 @@
-
+<%= form_tag contact_detail_path, :enctype =>"multipart/form-data" do |f| %>
 <div class="container">
 	<div class="row">
  		<div class="col-lg-12 col-xs-12 col-sm-12">
@@ -9,31 +9,34 @@
  	</div>
 	<div class="row">
 		<div class="col-lg-12">
- 			<input id="yourName" type="text" class="form-control input-lg" name="yourName" value="" placeholder="Name">
+ 			<%= text_field_tag :name, nil, :class => "form-control input-lg", value: "", placeholder: "Name" %> 
  		</div>
 	</div>
 	<br>
 	<div class="row">
 		<div class="col-lg-12">
- 			<input id="emailAddress" type="text" class="form-control input-lg" name="emailAddress" value="" placeholder="Email Address">
+ 			<%= text_field_tag :email, nil, :class => "form-control input-lg", value: "", placeholder: "Email" %> 
  		</div>
 	</div>
 	<br>
 	<div class="row">
 		<div class="col-lg-12">
- 			<input id="url" type="text" class="form-control input-lg" name="url" value="" placeholder="Website URL">
+ 			
+ 			<%= text_field_tag :website_url, nil, :class => "form-control input-lg", value: "", placeholder: "Website url" %> 
  		</div>
 	</div>
 	<br>
 	<div class="row">
 		<div class="col-lg-12">
- 			<input style="height:100px;" id="comments" type="text" class="form-control input-lg" name="comments" value="" placeholder="Comments">
+		    <%= text_area_tag :comment, nil, :class => "form-control input-lg", value: "", placeholder: "Comment" %> 
+ 			
  		</div>
 	</div>
 	<br>
 	<div class="row">
 		<div class="col-lg-12">
-			<button class="btn btn-primary btn-lg" style="width:100%;">SUBMIT</button>
+			
+			<%= submit_tag "Submit", :class => "btn btn-primary btn-lg", style: "width: 100%"%>
 		</div>
 	</div>
 	<br />
@@ -54,6 +57,6 @@
 </div>
 <br />
 
-
+<%end%>
 
                              		

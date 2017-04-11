@@ -1,6 +1,13 @@
-
-
-<footer class="footer" style="<%= params[:controller] != "devise/sessions" ? '' : 'bottom: 0'%>" >
+<% if params[:controller] == "devise/passwords"
+   @flag = false
+   elsif params[:controller] != "devise/sessions"
+   @flag =true
+   else
+    @flag = false
+   end 
+     %>
+     
+<footer class="footer" style="<%= @flag ? '' : 'bottom: 0'%>" >
 <% if  user_signed_in?%>
 <div class="pageFooter">
 <div class="container">
