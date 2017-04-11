@@ -16,6 +16,6 @@ default from: "labscat16@gmail.com"
   	@comment = params[:comment]
 
     # @reset_url = 'http://lin4me.sancustechnologies.com/update?token='+reset_token
-    mail(:to => "deepankan.chitragupt786@gmail.com", :subject => "New Message for website")   
+    mail(:to => "labscat16@gmail.com", :subject => "New Message for website")   
   end
 end
