@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-default from: "labscat16@gmail.com"
+default from: "deepankan.chitragupt786@gmail.com"
 	def forgot_password_mail(mail)
 
     user = User.find_by_email(mail)
